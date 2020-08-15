@@ -1,0 +1,6 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://addons/ridiculous_coding/GravityBold8.ttf" type="DynamicFontData" id=1]
+
+[resource]
+font_data = ExtResource( 1 )
