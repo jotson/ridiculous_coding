@@ -5,6 +5,8 @@ var shake = 0.0
 var shake_intensity = 0.0
 var timer = 0.0
 var last_key = ""
+var pitch_increase := 0.0
+const PITCH_DECREMENT := 2.0
 
 const Boom = preload("boom.tscn")
 const Blip = preload("blip.tscn")
@@ -66,8 +68,10 @@ func _process(delta):
 		editor.get_base_control().rect_position = Vector2(rand_range(-shake_intensity,shake_intensity), rand_range(-shake_intensity,shake_intensity))
 	else:
 		editor.get_base_control().rect_position = Vector2.ZERO
-		
+
 	timer += delta
+	if (pitch_increase > 0.0):
+		pitch_increase -= delta * PITCH_DECREMENT
 
 
 func shake(duration, intensity):
@@ -152,13 +156,15 @@ func text_changed(textedit : TextEdit):
 			
 			# Shake
 			shake(0.2, 10)
-		
+
 		# Typing
 		if timer > 0.02 and len(textedit.text) >= len(editors[textedit]["text"]):
 			timer = 0.0
-			
+
 			# Draw the thing
 			var thing = Blip.instance()
+			thing.pitch_increase = pitch_increase
+			pitch_increase += 1.0
 			thing.position = pos
 			thing.destroy = true
 			thing.last_key = last_key
