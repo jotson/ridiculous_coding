@@ -136,12 +136,15 @@ func text_changed(textedit : TextEdit):
 	font.font_data = load(settings.get_setting("interface/editor/code_font"))
 	font.size = settings.get_setting("interface/editor/code_font_size")
 	var fontsize = font.get_string_size(" ")
+	# Compensate for editor zoom... It took me all day uuuuugh
+	var editor_zoom=editor.get_editor_scale()
 	
 	# Compute caret position
 	var pos = Vector2()
-	pos.x = (column) * (fontsize.x) - hscroll + 100
+	pos.x = ((column * fontsize.x) + 15*fontsize.x) *editor_zoom
+	pos.x-=hscroll
 	pos.y = (line-vscroll) * (fontsize.y+line_spacing-2) + 16
-
+	pos.y*=editor_zoom
 	if editors.has(textedit):
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
