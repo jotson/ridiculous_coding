@@ -139,9 +139,12 @@ func text_changed(textedit : TextEdit):
 	# Compensate for editor zoom... It took me all day uuuuugh
 	var editor_zoom=editor.get_editor_scale()
 	
+	# Compute padding
+	var num_str="%d"%line
+	var padding=(10+num_str.length()-1)
 	# Compute caret position
 	var pos = Vector2()
-	pos.x = ((column * fontsize.x) + 15*fontsize.x) *editor_zoom
+	pos.x = ((column +padding) * fontsize.x) *editor_zoom
 	pos.x-=hscroll
 	pos.y = (line-vscroll) * (fontsize.y+line_spacing-2) + 16
 	pos.y*=editor_zoom
