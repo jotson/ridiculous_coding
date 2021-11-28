@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/readme-enable.png-0f4494e1f868b4e7b573504376cca048.stex"
+path="res://.import/readme-enable.png-86bd87b56cede29f6cfbdb3368d4bc9a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ridiculous_coding/readme-enable.png"
-dest_files=[ "res://.import/readme-enable.png-0f4494e1f868b4e7b573504376cca048.stex" ]
+source_file="res://readme-enable.png"
+dest_files=[ "res://.import/readme-enable.png-86bd87b56cede29f6cfbdb3368d4bc9a.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
