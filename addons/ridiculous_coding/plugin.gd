@@ -148,9 +148,13 @@ func text_changed(textedit : TextEdit):
 	# Compensate for editor scaling
 	var scale = editor.get_editor_scale()
 
+	# Compute gutter width in characters
+	var line_count = textedit.get_line_count()
+	var gutter = str(line_count).length() + 6
+	
 	# Compute caret position
 	var pos = Vector2()
-	pos.x = column * fontsize.x * scale + 100 * scale - hscroll
+	pos.x = (gutter + column) * fontsize.x * scale - hscroll
 	pos.y = (line - folding_adjustment - vscroll) * (fontsize.y + line_spacing - 2) + 16
 	pos.y *= scale
 	
