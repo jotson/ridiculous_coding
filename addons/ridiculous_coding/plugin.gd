@@ -6,6 +6,7 @@ var shake_intensity = 0.0
 var timer = 0.0
 var last_key = ""
 var pitch_increase := 0.0
+var editors = {}
 const PITCH_DECREMENT := 2.0
 
 const Boom = preload("boom.tscn")
@@ -23,7 +24,6 @@ func _exit_tree():
 	pass
 
 
-var editors = {}
 func get_all_text_editors(parent : Node):
 	for child in parent.get_children():
 		if child.get_child_count():
@@ -103,16 +103,24 @@ func text_changed(textedit : TextEdit):
 		# when the file is saved so you need to reload them
 		editors.clear()
 		get_all_text_editors(editor.get_script_editor())
-		
+	
 	# Get line and character count
 	var line = textedit.cursor_get_line()
 	var column = textedit.cursor_get_column()
 	
+	# Compensate for code folding
+	var folding_adjustment = 0
+	for i in range(textedit.get_line_count()):
+		if i > line:
+			break
+		if textedit.is_line_hidden(i):
+			folding_adjustment += 1
+
 	# Compensate for tab size
 	var tab_size = settings.get_setting("text_editor/indent/size")
 	var line_text = textedit.get_line(line).substr(0,column)
 	column += line_text.count("\t") * (tab_size - 1)
-	
+
 	# Compensate for scroll
 	var vscroll = textedit.scroll_vertical
 	var hscroll = textedit.scroll_horizontal
@@ -136,18 +144,20 @@ func text_changed(textedit : TextEdit):
 	font.font_data = load(settings.get_setting("interface/editor/code_font"))
 	font.size = settings.get_setting("interface/editor/code_font_size")
 	var fontsize = font.get_string_size(" ")
-	# Compensate for editor zoom... It took me all day uuuuugh
-	var editor_zoom=editor.get_editor_scale()
 	
-	# Compute padding
-	var num_str="%d"%line
-	var padding=(10+num_str.length()-1)
+	# Compensate for editor scaling
+	var scale = editor.get_editor_scale()
+
+	# Compute gutter width in characters
+	var line_count = textedit.get_line_count()
+	var gutter = str(line_count).length() + 6
+	
 	# Compute caret position
 	var pos = Vector2()
-	pos.x = ((column +padding) * fontsize.x) *editor_zoom
-	pos.x-=hscroll
-	pos.y = (line-vscroll) * (fontsize.y+line_spacing-2) + 16
-	pos.y*=editor_zoom
+	pos.x = (gutter + column) * fontsize.x * scale - hscroll
+	pos.y = (line - folding_adjustment - vscroll) * (fontsize.y + line_spacing - 2) + 16
+	pos.y *= scale
+	
 	if editors.has(textedit):
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
