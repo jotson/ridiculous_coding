@@ -103,21 +103,24 @@ func text_changed(textedit : TextEdit):
 		# when the file is saved so you need to reload them
 		editors.clear()
 		get_all_text_editors(editor.get_script_editor())
-		
+	
 	# Get line and character count
 	var line = textedit.cursor_get_line()
 	var column = textedit.cursor_get_column()
 	
 	# Compensate for code folding
+	var folding_adjustment = 0
 	for i in range(textedit.get_line_count()):
+		if i > line:
+			break
 		if textedit.is_line_hidden(i):
-			line -= 1
-	
+			folding_adjustment += 1
+
 	# Compensate for tab size
 	var tab_size = settings.get_setting("text_editor/indent/size")
 	var line_text = textedit.get_line(line).substr(0,column)
 	column += line_text.count("\t") * (tab_size - 1)
-	
+
 	# Compensate for scroll
 	var vscroll = textedit.scroll_vertical
 	var hscroll = textedit.scroll_horizontal
@@ -142,11 +145,15 @@ func text_changed(textedit : TextEdit):
 	font.size = settings.get_setting("interface/editor/code_font_size")
 	var fontsize = font.get_string_size(" ")
 	
+	# Compensate for editor scaling
+	var scale = editor.get_editor_scale()
+
 	# Compute caret position
 	var pos = Vector2()
-	pos.x = (column) * (fontsize.x) - hscroll + 100
-	pos.y = (line-vscroll) * (fontsize.y+line_spacing-2) + 16
-
+	pos.x = column * fontsize.x * scale + 100 * scale - hscroll
+	pos.y = (line - folding_adjustment - vscroll) * (fontsize.y + line_spacing - 2) + 16
+	pos.y *= scale
+	
 	if editors.has(textedit):
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
