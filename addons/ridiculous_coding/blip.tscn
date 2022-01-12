@@ -136,22 +136,23 @@ process_material = SubResource( 13 )
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 0.627155, 0.143495, 0.556584, 1 )
+modulate = Color( 1.24245, 1.51202, 0.815224, 1 )
 margin_left = -35.0
 margin_top = -70.0
 margin_right = 35.0
 margin_bottom = -54.0
 rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 35, 8 )
-custom_fonts/font = ExtResource( 4 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 0
+custom_fonts/font = ExtResource( 4 )
 align = 1
 valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite1_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

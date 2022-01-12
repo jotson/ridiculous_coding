@@ -13,16 +13,28 @@ const Boom = preload("boom.tscn")
 const Blip = preload("blip.tscn")
 const Newline = preload("newline.tscn")
 
+const Dock = preload("res://addons/ridiculous_coding/dock.tscn")
+var dock
+
+signal typing
+
 
 func _enter_tree():
 	var editor = get_editor_interface()
 	var script_editor = editor.get_script_editor()
 	script_editor.connect("editor_script_changed", self, "editor_script_changed")
 
+	# Add the main panel
+	dock = Dock.instance()
+	connect("typing", dock, "_on_typing")
+	add_control_to_dock(DOCK_SLOT_RIGHT_BL, dock)
+
 
 func _exit_tree():
-	pass
-
+	if dock:
+		remove_control_from_docks(dock)
+		dock.free()
+		
 
 func get_all_text_editors(parent : Node):
 	for child in parent.get_children():
@@ -158,20 +170,25 @@ func text_changed(textedit : TextEdit):
 	pos.y = (line - folding_adjustment - vscroll) * (fontsize.y + line_spacing - 2) + 16
 	pos.y *= scale
 	
+	emit_signal("typing")
+	
 	if editors.has(textedit):
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
 			timer = 0.0
 			
-			# Draw the thing
-			var thing = Boom.instance()
-			thing.position = pos
-			thing.destroy = true
-			thing.last_key = last_key
-			textedit.add_child(thing)
-			
-			# Shake
-			shake(0.2, 10)
+			if dock.explosions:
+				# Draw the thing
+				var thing = Boom.instance()
+				thing.position = pos
+				thing.destroy = true
+				if dock.chars: thing.last_key = last_key
+				thing.sound = dock.sound
+				textedit.add_child(thing)
+				
+				if dock.shake:
+					# Shake
+					shake(0.2, 10)
 
 		# Typing
 		if timer > 0.02 and len(textedit.text) >= len(editors[textedit]["text"]):
@@ -183,11 +200,14 @@ func text_changed(textedit : TextEdit):
 			pitch_increase += 1.0
 			thing.position = pos
 			thing.destroy = true
-			thing.last_key = last_key
+			thing.blips = dock.blips
+			if dock.chars: thing.last_key = last_key
+			thing.sound = dock.sound
 			textedit.add_child(thing)
 			
-			# Shake
-			shake(0.05, 5)
+			if dock.shake:
+				# Shake
+				shake(0.05, 5)
 			
 		# Newline
 		if textedit.cursor_get_line() != editors[textedit]["line"]:
@@ -195,10 +215,13 @@ func text_changed(textedit : TextEdit):
 			var thing = Newline.instance()
 			thing.position = pos
 			thing.destroy = true
+			thing.blips = dock.blips
 			textedit.add_child(thing)
 			
-			# Shake
-			shake(0.05, 5)
+			if dock.shake:
+				# Shake
+				shake(0.05, 5)
 
 	editors[textedit]["text"] = textedit.text
 	editors[textedit]["line"] = textedit.cursor_get_line()
+	

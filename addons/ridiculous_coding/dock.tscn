@@ -1,0 +1,183 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/ridiculous_coding/dock.gd" type="Script" id=1]
+[ext_resource path="res://addons/ridiculous_coding/progress.png" type="Texture" id=2]
+[ext_resource path="res://addons/ridiculous_coding/under.png" type="Texture" id=3]
+[ext_resource path="res://addons/ridiculous_coding/fireworks.wav" type="AudioStream" id=4]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.419689, 0.715026, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.979167, 1, 0.333333, 1, 1, 0, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 0.29
+flag_disable_z = true
+spread = 30.0
+gravity = Vector3( 0, 400, 0 )
+initial_velocity = 600.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 200.0
+scale = 10.0
+scale_random = 0.62
+color_ramp = SubResource( 2 )
+
+[node name="Ridiculous Coding" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XP" type="VBoxContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 38.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/XP"]
+margin_right = 1024.0
+margin_bottom = 14.0
+
+[node name="xpLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
+margin_right = 510.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "XP: 0 / 100"
+
+[node name="levelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Level: 1"
+align = 2
+
+[node name="ProgressBar" type="TextureProgress" parent="VBoxContainer/XP"]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 20 )
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 2 )
+nine_patch_stretch = true
+
+[node name="fire1" type="Control" parent="VBoxContainer/XP/ProgressBar"]
+margin_top = 8.0
+margin_right = 40.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="VBoxContainer/XP/ProgressBar/fire1"]
+rotation = -0.785397
+emitting = false
+amount = 200
+local_coords = false
+process_material = SubResource( 3 )
+
+[node name="fire2" type="Control" parent="VBoxContainer/XP/ProgressBar"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_top = 8.0
+margin_right = 40.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="VBoxContainer/XP/ProgressBar/fire2"]
+rotation = -2.35619
+emitting = false
+amount = 200
+local_coords = false
+process_material = SubResource( 3 )
+
+[node name="fireworksTimer" type="Timer" parent="VBoxContainer/XP/ProgressBar"]
+wait_time = 3.0
+
+[node name="sfxFireworks" type="AudioStreamPlayer" parent="VBoxContainer/XP/ProgressBar"]
+stream = ExtResource( 4 )
+volume_db = -12.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 1024.0
+margin_bottom = 170.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="explosionCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+margin_right = 148.0
+margin_bottom = 40.0
+pressed = true
+text = "Explosions"
+
+[node name="shakeCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+margin_left = 152.0
+margin_right = 293.0
+margin_bottom = 40.0
+pressed = true
+text = "Shake"
+
+[node name="blipCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+margin_top = 44.0
+margin_right = 148.0
+margin_bottom = 84.0
+pressed = true
+text = "Blips"
+
+[node name="charsCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+margin_left = 152.0
+margin_top = 44.0
+margin_right = 293.0
+margin_bottom = 84.0
+pressed = true
+text = "Keys"
+
+[node name="soundCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+margin_top = 88.0
+margin_right = 148.0
+margin_bottom = 128.0
+pressed = true
+text = "Sound"
+
+[node name="fireworksCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+margin_left = 152.0
+margin_top = 88.0
+margin_right = 293.0
+margin_bottom = 128.0
+pressed = true
+text = "Fireworks"
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 174.0
+margin_right = 1024.0
+margin_bottom = 194.0
+
+[node name="resetButton" type="Button" parent="VBoxContainer/CenterContainer"]
+margin_left = 488.0
+margin_right = 536.0
+margin_bottom = 20.0
+text = "Reset"
+
+[connection signal="timeout" from="VBoxContainer/XP/ProgressBar/fireworksTimer" to="." method="stop_fireworks"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/explosionCheckbox" to="." method="_on_explosionCheckbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/shakeCheckbox" to="." method="_on_shakeCheckbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/blipCheckbox" to="." method="_on_blipCheckbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/charsCheckbox" to="." method="_on_charsCheckbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/soundCheckbox" to="." method="_on_soundCheckbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/fireworksCheckbox" to="." method="_on_fireworksCheckbox_toggled"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/resetButton" to="." method="_on_resetButton_pressed"]

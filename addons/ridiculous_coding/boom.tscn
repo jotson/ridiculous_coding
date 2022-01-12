@@ -89,17 +89,17 @@ autoplay = true
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 1.24245, 1.51202, 0.815224, 1 )
+modulate = Color( 0.627155, 0.143495, 0.556584, 1 )
 margin_left = -35.0
-margin_top = -70.0
+margin_top = -53.6409
 margin_right = 35.0
-margin_bottom = -54.0
-rect_scale = Vector2( 2, 2 )
+margin_bottom = -37.6409
+rect_scale = Vector2( 1.5695, 1.5695 )
 rect_pivot_offset = Vector2( 35, 8 )
-custom_fonts/font = ExtResource( 5 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 0
+custom_fonts/font = ExtResource( 5 )
 align = 1
 valign = 1
 uppercase = true
@@ -110,5 +110,6 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
 anims/default = SubResource( 9 )
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

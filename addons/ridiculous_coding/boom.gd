@@ -3,9 +3,11 @@ extends Node2D
 
 var destroy = false
 var last_key = ""
+var sound = true
 
 func _ready():
-	$AudioStreamPlayer.play()
+	if sound:
+		$AudioStreamPlayer.play()
 	$AnimatedSprite.frame = 0
 	$AnimatedSprite.play("default")
 	$AnimationPlayer.play("default")
