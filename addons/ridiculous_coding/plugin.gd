@@ -7,6 +7,7 @@ var timer = 0.0
 var last_key = ""
 var pitch_increase := 0.0
 var editors = {}
+
 const PITCH_DECREMENT := 2.0
 
 const Boom = preload("boom.tscn")
@@ -28,7 +29,7 @@ func _enter_tree():
 	dock = Dock.instance()
 	connect("typing", dock, "_on_typing")
 	add_control_to_dock(DOCK_SLOT_RIGHT_BL, dock)
-
+	
 
 func _exit_tree():
 	if dock:
@@ -224,4 +225,3 @@ func text_changed(textedit : TextEdit):
 
 	editors[textedit]["text"] = textedit.text
 	editors[textedit]["line"] = textedit.cursor_get_line()
-	
