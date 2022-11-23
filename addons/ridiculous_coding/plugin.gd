@@ -30,7 +30,7 @@ func _enter_tree():
 	dock = Dock.instantiate()
 	typing.connect(Callable(dock,"_on_typing"))
 	add_control_to_dock(DOCK_SLOT_RIGHT_BL, dock)
-
+	
 
 func _exit_tree():
 	if dock:
