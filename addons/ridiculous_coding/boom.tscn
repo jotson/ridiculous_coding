@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=14 format=3]
 
-[ext_resource path="res://addons/ridiculous_coding/boom.png" type="Texture" id=1]
-[ext_resource path="res://addons/ridiculous_coding/boom.wav" type="AudioStream" id=2]
-[ext_resource path="res://addons/ridiculous_coding/boom.gd" type="Script" id=4]
-[ext_resource path="res://addons/ridiculous_coding/font.tres" type="DynamicFont" id=5]
+[ext_resource type="Texture2D" uid="uid://d38ycqpswd37g" path="res://addons/ridiculous_coding/boom.png" id="1"]
+[ext_resource type="AudioStream" uid="uid://hqc2v7ic00s" path="res://addons/ridiculous_coding/boom.wav" id="2"]
+[ext_resource type="Script" path="res://addons/ridiculous_coding/boom.gd" id="4"]
+[ext_resource type="FontFile" path="res://addons/ridiculous_coding/font.tres" id="5"]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -44,26 +44,26 @@ animations = [ {
 [sub_resource type="Animation" id=9]
 resource_name = "default"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Label:rect_scale")
+tracks/0/path = NodePath("Label:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( -2, 1 ),
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( -2, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Label:rect_position")
+tracks/1/path = NodePath("Label:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( -2, 1 ),
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( -2, 1 ),
 "update": 0,
 "values": [ Vector2( -35, -32 ), Vector2( -35, -70 ) ]
 }
@@ -71,7 +71,7 @@ tracks/1/keys = {
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 8 )
 frame = 6
@@ -90,12 +90,12 @@ one_shot = true
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 0.627155, 0.143495, 0.556584, 1 )
-margin_left = -35.0
-margin_top = -53.6409
-margin_right = 35.0
-margin_bottom = -37.6409
-rect_scale = Vector2( 1.5695, 1.5695 )
-rect_pivot_offset = Vector2( 35, 8 )
+offset_left = -35.0
+offset_top = -53.6409
+offset_right = 35.0
+offset_bottom = -37.6409
+scale = Vector2( 1.5695, 1.5695 )
+pivot_offset = Vector2( 35, 8 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 0
@@ -111,5 +111,5 @@ __meta__ = {
 autoplay = "default"
 anims/default = SubResource( 9 )
 
-[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
