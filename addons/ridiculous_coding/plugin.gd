@@ -112,64 +112,8 @@ func caret_changed(textedit):
 
 
 func text_changed(textedit : TextEdit):
-	var editor: EditorInterface = get_editor_interface()
-	var settings: EditorSettings = editor.get_editor_settings()
-	
-	if not editors.has(textedit):
-		# For some reason the editor instances all change
-		# when the file is saved so you need to reload them
-		editors.clear()
-		get_all_text_editors(editor.get_script_editor())
-	
-	# Get line and character count
-	var line = textedit.get_caret_line()
-	var column = textedit.get_caret_column()
-	
-	# Compensate for code folding
-	var folding_adjustment = line - textedit.get_visible_line_count_in_range(0, line-1)
-	
-	# Compensate for tab size
-	var tab_size = settings.get_setting("text_editor/behavior/indent/size")
-	var line_text = textedit.get_line(line).substr(0,column)
-	column += line_text.count("\t") * (tab_size - 1)
-	
-	# Compensate for scroll
-	var vscroll = textedit.scroll_vertical
-	var hscroll = textedit.scroll_horizontal
-	
-	# When you are scrolled to the bottom of a file
-	# and you delete some lines from the bottom using Ctrl+X
-	# then the vscroll can go down without changing the visible
-	# scroll position. That throws unchecked the calculation because
-	# we're calculating the position from the lower position but
-	# visually the position hasn't moved. By setting vscroll
-	# to the new actual position, the editor moves the visible
-	# lines to remove_at the gap. It changes the editor behavior
-	# slightly for a better result.
-	textedit.scroll_vertical = vscroll
-	
-	# Compensate for line spacing
-	var line_spacing = settings.get_setting("text_editor/appearance/whitespace/line_spacing")
-	
-	# Load editor font
-	var font : FontFile = FontFile.new()
-	font.load_dynamic_font(settings.get_setting("interface/editor/code_font"))
-	font.fixed_size = settings.get_setting("interface/editor/code_font_size")
-	var fontsize = font.get_string_size(" ")
-	
-	# Compensate for editor scaling
-	var scale = editor.get_editor_scale()
-	
-	# Compute gutter width in characters
-	var line_count = textedit.get_line_count()
-	var gutter = str(line_count).length() + 6
-	
-	# Compute caret position
-	var pos = Vector2()
-	pos.x = ((gutter + column) * fontsize.x * scale - hscroll) + 60
-	pos.y = (line - folding_adjustment - vscroll) * (fontsize.y + line_spacing - 2) + 10
-	pos.y *= scale
-	
+	var line_height = textedit.get_line_height()
+	var pos = textedit.get_caret_draw_pos() + Vector2(0,-line_height/2.0)
 	emit_signal("typing")
 	
 	if editors.has(textedit):
