@@ -1,87 +1,88 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=15 format=3 uid="uid://b1mpg7xsrglhk"]
 
-[ext_resource type="Texture2D" uid="uid://d38ycqpswd37g" path="res://addons/ridiculous_coding/boom.png" id="1"]
-[ext_resource type="AudioStream" uid="uid://hqc2v7ic00s" path="res://addons/ridiculous_coding/boom.wav" id="2"]
+[ext_resource type="Texture2D" uid="uid://iq7nou88a1p6" path="res://addons/ridiculous_coding/boom.png" id="1"]
+[ext_resource type="AudioStream" uid="uid://bi70kv2drp1wj" path="res://addons/ridiculous_coding/boom.wav" id="2"]
 [ext_resource type="Script" path="res://addons/ridiculous_coding/boom.gd" id="4"]
-[ext_resource type="FontFile" path="res://addons/ridiculous_coding/font.tres" id="5"]
+[ext_resource type="FontFile" uid="uid://lp5ov7pqea1q" path="res://addons/ridiculous_coding/font.tres" id="5"]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 128, 128 )
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3t5t"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 128, 128 )
+[sub_resource type="AtlasTexture" id="AtlasTexture_4skxo"]
+atlas = ExtResource("1")
+region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 128, 128 )
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccvbr"]
+atlas = ExtResource("1")
+region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 384, 0, 128, 128 )
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ojec"]
+atlas = ExtResource("1")
+region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 512, 0, 128, 128 )
+[sub_resource type="AtlasTexture" id="AtlasTexture_1koxs"]
+atlas = ExtResource("1")
+region = Rect2(512, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 640, 0, 128, 128 )
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5t7n"]
+atlas = ExtResource("1")
+region = Rect2(640, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 128, 128, 128 )
+[sub_resource type="AtlasTexture" id="AtlasTexture_27xno"]
+atlas = ExtResource("1")
+region = Rect2(0, 128, 128, 128)
 
-[sub_resource type="SpriteFrames" id=8]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+[sub_resource type="SpriteFrames" id="SpriteFrames_ld5tu"]
+animations = [{
+"frames": [SubResource("AtlasTexture_g3t5t"), SubResource("AtlasTexture_4skxo"), SubResource("AtlasTexture_ccvbr"), SubResource("AtlasTexture_0ojec"), SubResource("AtlasTexture_1koxs"), SubResource("AtlasTexture_g5t7n"), SubResource("AtlasTexture_27xno")],
 "loop": false,
-"name": "default",
+"name": &"default",
 "speed": 24.0
-} ]
+}]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id="Animation_pxf6h"]
 resource_name = "default"
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Label:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 1 ),
-"transitions": PackedFloat32Array( -2, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+"values": [Vector2(1, 1), Vector2(2, 2)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Label:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 1 ),
-"transitions": PackedFloat32Array( -2, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [ Vector2( -35, -32 ), Vector2( -35, -70 ) ]
+"values": [Vector2(-35, -32), Vector2(-35, -70)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ocb2c"]
+_data = {
+"default": SubResource("Animation_pxf6h")
 }
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 8 )
-frame = 6
+scale = Vector2(0.5, 0.5)
+frames = SubResource("SpriteFrames_ld5tu")
 playing = true
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+stream = ExtResource("2")
 volume_db = -26.0
 autoplay = true
 
@@ -89,27 +90,21 @@ autoplay = true
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 0.627155, 0.143495, 0.556584, 1 )
+modulate = Color(0.463204, 1.95831, 1.49541, 1)
 offset_left = -35.0
-offset_top = -53.6409
+offset_top = -70.0
 offset_right = 35.0
-offset_bottom = -37.6409
-scale = Vector2( 1.5695, 1.5695 )
-pivot_offset = Vector2( 35, 8 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 0
-custom_fonts/font = ExtResource( 5 )
-align = 1
-valign = 1
+offset_bottom = -47.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(35, 8)
+theme_override_fonts/font = ExtResource("5")
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
-anims/default = SubResource( 9 )
+libraries = {
+"": SubResource("AnimationLibrary_ocb2c")
+}
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
