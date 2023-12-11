@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://b1mpg7xsrglhk"]
 
-[ext_resource type="Texture2D" uid="uid://iq7nou88a1p6" path="res://addons/ridiculous_coding/boom.png" id="1"]
-[ext_resource type="AudioStream" uid="uid://bi70kv2drp1wj" path="res://addons/ridiculous_coding/boom.wav" id="2"]
+[ext_resource type="Texture2D" uid="uid://dl75e74oom1i3" path="res://addons/ridiculous_coding/boom.png" id="1"]
+[ext_resource type="AudioStream" uid="uid://b6841f7osi4rh" path="res://addons/ridiculous_coding/boom.wav" id="2"]
 [ext_resource type="Script" path="res://addons/ridiculous_coding/boom.gd" id="4"]
 [ext_resource type="FontFile" uid="uid://lp5ov7pqea1q" path="res://addons/ridiculous_coding/font.tres" id="5"]
 
