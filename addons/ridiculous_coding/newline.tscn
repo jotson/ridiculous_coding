@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/newline.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://dise0erjarjgh" path="res://addons/ridiculous_coding/newline.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b1vn1823wqae2" path="res://addons/ridiculous_coding/newline.png" id="2"]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )

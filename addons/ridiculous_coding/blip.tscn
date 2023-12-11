@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://cuhdlb32q67t2"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/blip.gd" id="1_tp8nq"]
-[ext_resource type="Texture2D" uid="uid://dxjiybsoe46f6" path="res://addons/ridiculous_coding/blip.png" id="2_kj7um"]
-[ext_resource type="AudioStream" uid="uid://ck2j5mgk2iggv" path="res://addons/ridiculous_coding/blip.wav" id="3_xg6qd"]
+[ext_resource type="Texture2D" uid="uid://d1tio2ceqgm7m" path="res://addons/ridiculous_coding/blip.png" id="2_kj7um"]
+[ext_resource type="AudioStream" uid="uid://b2ood3lkcgpqb" path="res://addons/ridiculous_coding/blip.wav" id="3_xg6qd"]
 [ext_resource type="FontFile" uid="uid://lp5ov7pqea1q" path="res://addons/ridiculous_coding/font.tres" id="4_ullf3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hp4ed"]
