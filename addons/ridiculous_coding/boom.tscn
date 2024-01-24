@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1mpg7xsrglhk"]
+[gd_scene load_steps=15 format=3 uid="uid://c4rdv4wkukc5g"]
 
 [ext_resource type="Texture2D" uid="uid://dl75e74oom1i3" path="res://addons/ridiculous_coding/boom.png" id="1"]
 [ext_resource type="AudioStream" uid="uid://b6841f7osi4rh" path="res://addons/ridiculous_coding/boom.wav" id="2"]
 [ext_resource type="Script" path="res://addons/ridiculous_coding/boom.gd" id="4"]
-[ext_resource type="FontFile" uid="uid://lp5ov7pqea1q" path="res://addons/ridiculous_coding/font.tres" id="5"]
+[ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3t5t"]
 atlas = ExtResource("1")
@@ -35,7 +35,28 @@ region = Rect2(0, 128, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ld5tu"]
 animations = [{
-"frames": [SubResource("AtlasTexture_g3t5t"), SubResource("AtlasTexture_4skxo"), SubResource("AtlasTexture_ccvbr"), SubResource("AtlasTexture_0ojec"), SubResource("AtlasTexture_1koxs"), SubResource("AtlasTexture_g5t7n"), SubResource("AtlasTexture_27xno")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3t5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4skxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccvbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ojec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1koxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5t7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27xno")
+}],
 "loop": false,
 "name": &"default",
 "speed": 24.0
@@ -74,12 +95,14 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
+texture_filter = 1
 script = ExtResource("4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-frames = SubResource("SpriteFrames_ld5tu")
-playing = true
+sprite_frames = SubResource("SpriteFrames_ld5tu")
+frame = 6
+frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2")
@@ -90,7 +113,8 @@ autoplay = true
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(0.463204, 1.95831, 1.49541, 1)
+modulate = Color(0.852828, 1.64201, 1.90577, 1)
+texture_filter = 1
 offset_left = -35.0
 offset_top = -70.0
 offset_right = 35.0
@@ -98,13 +122,14 @@ offset_bottom = -47.0
 scale = Vector2(2, 2)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 16
 uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_ocb2c")
 }
+autoplay = "default"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

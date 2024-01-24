@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b76vnt4rv4p0q"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/dock.gd" id="1_bwupq"]
-[ext_resource type="Texture2D" uid="uid://dgda8elabipl5" path="res://addons/ridiculous_coding/under.png" id="3_vdb3k"]
-[ext_resource type="AudioStream" uid="uid://dyi5lstxrfkdt" path="res://addons/ridiculous_coding/fireworks.wav" id="4_1o4lv"]
-[ext_resource type="Texture2D" uid="uid://dqpxh1bccjaae" path="res://addons/ridiculous_coding/progress.png" id="4_y2kl4"]
+[ext_resource type="Texture2D" uid="uid://c3ltnrdrb2qmg" path="res://addons/ridiculous_coding/under.png" id="3_vdb3k"]
+[ext_resource type="AudioStream" uid="uid://g6lh6kjt0ynq" path="res://addons/ridiculous_coding/fireworks.wav" id="4_1o4lv"]
+[ext_resource type="Texture2D" uid="uid://dmvuvaqf5uhwi" path="res://addons/ridiculous_coding/progress.png" id="4_y2kl4"]
 
 [sub_resource type="Gradient" id="Gradient_v1eyn"]
 offsets = PackedFloat32Array(0, 0.419689, 0.715026, 1)

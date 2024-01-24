@@ -1,12 +1,9 @@
-[gd_resource type="FontFile" load_steps=2 format=3 uid="uid://lp5ov7pqea1q"]
+[gd_resource type="FontFile" load_steps=2 format=3 uid="uid://bvwnnnja1ur2i"]
 
 [ext_resource type="FontFile" uid="uid://coiaqb8xwuaic" path="res://addons/ridiculous_coding/GravityBold8.ttf" id="1"]
 
 [resource]
-fallbacks = [ExtResource("1")]
-face_index = null
-embolden = null
-transform = null
+fallbacks = Array[Font]([ExtResource("1")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -15,6 +12,7 @@ cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/50/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/28/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/14/0 = Vector2(0, 0)
 cache/0/50/0/ascent = 0.0
 cache/0/50/0/descent = 0.0
 cache/0/50/0/underline_position = 0.0
@@ -23,6 +21,7 @@ cache/0/50/0/scale = 1.0
 cache/0/50/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/50/0/kerning_overrides/50/0 = Vector2(0, 0)
 cache/0/50/0/kerning_overrides/28/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/14/0 = Vector2(0, 0)
 cache/0/28/0/ascent = 0.0
 cache/0/28/0/descent = 0.0
 cache/0/28/0/underline_position = 0.0
@@ -31,3 +30,13 @@ cache/0/28/0/scale = 1.0
 cache/0/28/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/28/0/kerning_overrides/50/0 = Vector2(0, 0)
 cache/0/28/0/kerning_overrides/28/0 = Vector2(0, 0)
+cache/0/28/0/kerning_overrides/14/0 = Vector2(0, 0)
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/14/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/14/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/14/0/kerning_overrides/28/0 = Vector2(0, 0)
+cache/0/14/0/kerning_overrides/14/0 = Vector2(0, 0)
