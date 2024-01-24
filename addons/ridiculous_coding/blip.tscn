@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://cuhdlb32q67t2"]
+[gd_scene load_steps=19 format=3 uid="uid://c0fhho0dp1svt"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/blip.gd" id="1_tp8nq"]
 [ext_resource type="Texture2D" uid="uid://d1tio2ceqgm7m" path="res://addons/ridiculous_coding/blip.png" id="2_kj7um"]
 [ext_resource type="AudioStream" uid="uid://b2ood3lkcgpqb" path="res://addons/ridiculous_coding/blip.wav" id="3_xg6qd"]
-[ext_resource type="FontFile" uid="uid://lp5ov7pqea1q" path="res://addons/ridiculous_coding/font.tres" id="4_ullf3"]
+[ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="4_ullf3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hp4ed"]
 atlas = ExtResource("2_kj7um")
@@ -39,7 +39,31 @@ region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4ki7"]
 animations = [{
-"frames": [SubResource("AtlasTexture_hp4ed"), SubResource("AtlasTexture_hcxxe"), SubResource("AtlasTexture_3w7u8"), SubResource("AtlasTexture_qo2pv"), SubResource("AtlasTexture_55mlh"), SubResource("AtlasTexture_3eube"), SubResource("AtlasTexture_jwwsh"), SubResource("AtlasTexture_ye4cv")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp4ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcxxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w7u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo2pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55mlh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eube")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwwsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ye4cv")
+}],
 "loop": false,
 "name": &"default",
 "speed": 24.0
@@ -102,12 +126,14 @@ gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture2D_gu7qo")
 
 [node name="Node2D" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_tp8nq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
-frames = SubResource("SpriteFrames_g4ki7")
-playing = true
+sprite_frames = SubResource("SpriteFrames_g4ki7")
+frame = 7
+frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xg6qd")
@@ -115,24 +141,25 @@ volume_db = -12.0
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_8epm6")
 }
+autoplay = "default"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 50
+process_material = SubResource("ParticleProcessMaterial_5k50n")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_5k50n")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.59163, 1.00259, 1.09438, 1)
+modulate = Color(1.88557, 1.35563, 0.609976, 1)
+texture_filter = 1
 offset_left = -35.0
 offset_top = -70.0
 offset_right = 35.0
