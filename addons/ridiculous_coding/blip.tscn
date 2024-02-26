@@ -132,13 +132,12 @@ script = ExtResource("1_tp8nq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_g4ki7")
-frame = 7
-frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xg6qd")
 volume_db = -12.0
 autoplay = true
+stream_paused = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -147,7 +146,6 @@ libraries = {
 autoplay = "default"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_5k50n")
 lifetime = 0.5
@@ -158,7 +156,7 @@ explosiveness = 1.0
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.02899, 1.85914, 0.794836, 1)
+modulate = Color(1.68971, 0.693244, 1.60734, 1)
 texture_filter = 1
 offset_left = -35.0
 offset_top = -66.3831

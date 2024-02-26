@@ -1,29 +1,45 @@
-[gd_scene load_steps=8 format=3 uid="uid://b76vnt4rv4p0q"]
+[gd_scene load_steps=13 format=3 uid="uid://b76vnt4rv4p0q"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/dock.gd" id="1_bwupq"]
 [ext_resource type="Texture2D" uid="uid://dgda8elabipl5" path="res://addons/ridiculous_coding/under.png" id="3_vdb3k"]
 [ext_resource type="AudioStream" uid="uid://dyi5lstxrfkdt" path="res://addons/ridiculous_coding/fireworks.wav" id="4_1o4lv"]
 [ext_resource type="Texture2D" uid="uid://dqpxh1bccjaae" path="res://addons/ridiculous_coding/progress.png" id="4_y2kl4"]
 
-[sub_resource type="Gradient" id="Gradient_v1eyn"]
-offsets = PackedFloat32Array(0, 0.419689, 0.715026, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.979167, 1, 0.333333, 1, 1, 0, 0, 1, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_ujbx3"]
+offsets = PackedFloat32Array(0, 0.388128, 1)
+colors = PackedColorArray(0.215686, 0.878431, 0.956863, 1, 0.301961, 0.329412, 0.929412, 1, 0.537255, 0, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6lmfn"]
-gradient = SubResource("Gradient_v1eyn")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fepja"]
+gradient = SubResource("Gradient_ujbx3")
+width = 128
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x4b51"]
-lifetime_randomness = 0.29
-spread = 20.0
-initial_velocity_min = 400.0
-initial_velocity_max = 400.0
-gravity = Vector3(0, 300, 0)
-scale_min = 5.0
-scale_max = 6.0
-color_ramp = SubResource("GradientTexture2D_6lmfn")
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 10.34
+spread = 10.0
+initial_velocity_min = 250.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.5
+scale_max = 4.5
+color_ramp = SubResource("GradientTexture1D_fepja")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6vd3q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ggh1r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtsvn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_od64o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pct46"]
 
 [node name="Ridiculous Coding Dock" type="Control"]
-custom_minimum_size = Vector2(300, 175)
+texture_filter = 5
+custom_minimum_size = Vector2(300, 238)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,19 +65,18 @@ layout_mode = 2
 [node name="xpLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "XP 307 / 350"
+text = "XP 168 / 200"
 
 [node name="levelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "infant dev - Lvl 3"
+text = "infant dev - Lvl 2"
 horizontal_alignment = 2
 
 [node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/XP"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-max_value = 150.0
-value = 107.0
+value = 68.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_vdb3k")
 texture_progress = ExtResource("4_y2kl4")
@@ -73,9 +88,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/XP/ProgressBar/fire1"]
-rotation = -0.785397
+position = Vector2(25, 0)
+rotation = -1.5708
 emitting = false
-amount = 200
+amount = 130
 process_material = SubResource("ParticleProcessMaterial_x4b51")
 
 [node name="fire2" type="Control" parent="VBoxContainer/XP/ProgressBar"]
@@ -83,15 +99,15 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_top = 8.0
 offset_right = 40.0
-offset_bottom = 48.0
+offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/XP/ProgressBar/fire2"]
-rotation = -2.35619
+position = Vector2(-25, 0)
+rotation = -1.5708
 emitting = false
-amount = 200
+amount = 130
 process_material = SubResource("ParticleProcessMaterial_x4b51")
 
 [node name="fireworksTimer" type="Timer" parent="VBoxContainer/XP/ProgressBar"]
@@ -99,7 +115,9 @@ wait_time = 3.0
 
 [node name="sfxFireworks" type="AudioStreamPlayer" parent="VBoxContainer/XP/ProgressBar"]
 stream = ExtResource("4_1o4lv")
-volume_db = -12.0
+volume_db = -8.0
+pitch_scale = 0.88
+mix_target = 1
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -111,11 +129,11 @@ size_flags_horizontal = 11
 button_pressed = true
 text = "Explosions"
 
-[node name="shakeCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+[node name="fireworksCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Shake"
+text = "Fireworks"
 
 [node name="blipCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -123,11 +141,37 @@ size_flags_horizontal = 11
 button_pressed = true
 text = "Blips"
 
+[node name="newlineCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Newline"
+
 [node name="charsCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Keys"
+text = "Chars"
+
+[node name="blankButton" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vd3q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ggh1r")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gtsvn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_od64o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pct46")
+
+[node name="shakeCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Shake"
+
+[node name="shakeSlider" type="HSlider" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.1
 
 [node name="soundCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -135,15 +179,16 @@ size_flags_horizontal = 11
 button_pressed = true
 text = "Sound"
 
-[node name="fireworksCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+[node name="soundSlider" type="HSlider" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 11
-button_pressed = true
-text = "Fireworks"
+size_flags_vertical = 4
+min_value = -50.0
+max_value = 50.0
+step = 2.0
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="resetButton" type="Button" parent="VBoxContainer/CenterContainer"]
 layout_mode = 2
-text = "Reset"
+text = "--reset--"
