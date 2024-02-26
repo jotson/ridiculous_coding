@@ -114,13 +114,13 @@ stream_paused = true
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.28859, 0.934092, 0.350575, 1)
+modulate = Color(1.5972, 1.27399, 1.18683, 1)
 texture_filter = 1
 offset_left = -35.0
-offset_top = -70.0
+offset_top = -60.4252
 offset_right = 35.0
-offset_bottom = -47.0
-scale = Vector2(2, 2)
+offset_bottom = -37.4252
+scale = Vector2(1.74803, 1.74803)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("5")
 theme_override_font_sizes/font_size = 16

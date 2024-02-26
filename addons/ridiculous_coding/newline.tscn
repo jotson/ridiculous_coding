@@ -75,7 +75,7 @@ position = Vector2(-50, 0)
 rotation = -1.57079
 scale = Vector2(2, 2)
 sprite_frames = SubResource("6")
-frame_progress = 0.523728
+frame_progress = 0.273588
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

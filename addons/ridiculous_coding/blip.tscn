@@ -158,13 +158,13 @@ explosiveness = 1.0
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(0.368799, 1.29027, 1.60506, 1)
+modulate = Color(1.02899, 1.85914, 0.794836, 1)
 texture_filter = 1
 offset_left = -35.0
-offset_top = -70.0
+offset_top = -66.3831
 offset_right = 35.0
-offset_bottom = -47.0
-scale = Vector2(2, 2)
+offset_bottom = -43.3831
+scale = Vector2(1.90482, 1.90482)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("4_ullf3")
 theme_override_font_sizes/font_size = 16

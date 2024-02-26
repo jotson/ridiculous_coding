@@ -2,21 +2,33 @@
 class_name Dock extends Control
 
 const BASE_XP:int = 50
-const STATS_FILE:String = "user://ridiculous_xp.ini"
-
-var explosions:bool = true
-var blips:bool = true
-var chars:bool = true
-var shake:bool = true
-var sound:bool = true
-var fireworks:bool = true
-var xp:int = 0
+const ROOT_PATH:String = "user://"
+const FILE_NAME:String = "ridiculous_xp.tres"
+const WARN:String = "RidiculousCoding plugin couldn't load any savedata, proceed to load and save default config!\nShould the addon not work proceed to RELOAD!"
+const RANKS := {
+	10:  "initiate",
+	20:  "novice",
+	30:  "neophyte",
+	40:  "apprentice",
+	50:  "journeyman",
+	60:  "adept",
+	66:  "devilish",
+	70:  "wayfarer",
+	85:  "master",
+	100: "devotee",
+	115: "seasoned",
+	135: "veteran",
+	155: "elite",
+	175: "legendary",
+	200: "demigod",
+	333: "G.O.A.T",
+	999: "addicted",
+}
 var xp_next:int = 2*BASE_XP
-var level:int = 1
-var stats:ConfigFile = ConfigFile.new()
+var stats:StatsDataRC
 
 @onready var explosion_checkbox:CheckButton = $VBoxContainer/GridContainer/explosionCheckbox
-@onready var blip_checkbox:CheckButton = $VBoxContainer/GridContainer/blipCheckbox
+@onready var blips_checkbox:CheckButton = $VBoxContainer/GridContainer/blipCheckbox
 @onready var chars_checkbox:CheckButton = $VBoxContainer/GridContainer/charsCheckbox
 @onready var shake_checkbox:CheckButton = $VBoxContainer/GridContainer/shakeCheckbox
 @onready var sound_checkbox:CheckButton = $VBoxContainer/GridContainer/soundCheckbox
@@ -31,56 +43,39 @@ var stats:ConfigFile = ConfigFile.new()
 @onready var reset_button:Button = $VBoxContainer/CenterContainer/resetButton
 
 func _ready():
+	if _verify_file() == false:
+		push_warning(WARN)
+		stats = StatsDataRC.new()
+		_write_savefile()
+	else: stats = _load_savefile()
+
 	reset_button.pressed.connect(on_reset_button_pressed)
-	load_checkbox_state()
+	fireworks_timer.timeout.connect(stop_fireworks); stop_fireworks()
 	connect_checkboxes()
-	fireworks_timer.timeout.connect(stop_fireworks)
+
+	load_checkbox_state()
 	load_experience_progress()
 	update_progress()
-	stop_fireworks()
+
+func load_checkbox_state():
+	explosion_checkbox.button_pressed = stats.explosions
+	blips_checkbox.button_pressed = stats.blips
+	chars_checkbox.button_pressed = stats.chars
+	shake_checkbox.button_pressed = stats.shake
+	sound_checkbox.button_pressed = stats.sound
+	fireworks_checkbox.button_pressed = stats.fireworks
 
 func load_experience_progress():
-	if stats.load(STATS_FILE) == OK:
-		level = stats.get_value("xp", "level", 1)
-		xp = stats.get_value("xp", "xp", 0)
-	else:
-		level = 1
-		xp = 0
-
 	xp_next = 2*BASE_XP
 	progress.max_value = xp_next
-
-	for i in range(2,level+1):
+	for i in range(2,stats.level+1):
 		xp_next += round(BASE_XP * i / 10.0) * 10
-		progress.max_value = round(BASE_XP * level / 10.0) * 10
-
-	progress.value = xp - (xp_next - progress.max_value)
-
-func save_experioence_progress():
-	stats.set_value("xp", "level", level)
-	stats.set_value("xp", "xp", xp)
-	stats.save(STATS_FILE)
-
-func _on_typing():
-	xp += 1
-	progress.value += 1
-
-	if progress.value >= progress.max_value:
-		level += 1
-		xp_next = xp + round(BASE_XP * level / 10.0) * 10
-		progress.value = 0
-		progress.max_value = xp_next - xp
-
-		if fireworks:
-			start_fireworks()
-
-	save_experioence_progress()
-	update_progress()
+		progress.max_value = round(BASE_XP * stats.level / 10.0) * 10
+	progress.value = stats.xp - (xp_next - progress.max_value)
 
 func start_fireworks():
-	sfx_fireworks.play()
+	if stats.sound: sfx_fireworks.play()
 	fireworks_timer.start()
-
 	fire_particles_one.emitting = true
 	fire_particles_two.emitting = true
 
@@ -88,65 +83,63 @@ func stop_fireworks():
 	fire_particles_one.emitting = false
 	fire_particles_two.emitting = false
 
+func _on_typing():
+	stats.xp += 1
+	progress.value += 1
+	if progress.value >= progress.max_value:
+		stats.level += 1
+		xp_next = stats.xp + round(BASE_XP * stats.level / 10.0) * 10
+		progress.value = 0
+		progress.max_value = xp_next - stats.xp
+		for level in RANKS.keys(): if stats.level >= level: stats.rank = RANKS[level]
+		if stats.fireworks: start_fireworks()
+	_write_savefile()
+	update_progress()
+
 func update_progress():
-	xp_label.text = "XP: %d / %d" % [ xp, xp_next ]
-	level_label.text = "Level: %d" % level
+	xp_label.text = "XP %d / %d" % [ stats.xp, xp_next ]
+	level_label.text = "%s dev - Lvl %d" % [ stats.rank, stats.level ]
 
 func connect_checkboxes():
 	explosion_checkbox.toggled.connect(func(toggled):
-		explosions = toggled
-		save_checkbox_state()
+		stats.explosions = toggled
+		_write_savefile()
 	)
-	blip_checkbox.toggled.connect(func(toggled):
-		blips = toggled
-		save_checkbox_state()
+	blips_checkbox.toggled.connect(func(toggled):
+		stats.blips = toggled
+		_write_savefile()
 	)
 	chars_checkbox.toggled.connect(func(toggled):
-		chars = toggled
-		save_checkbox_state()
+		stats.chars = toggled
+		_write_savefile()
 	)
 	shake_checkbox.toggled.connect(func(toggled):
-		shake = toggled
-		save_checkbox_state()
+		stats.shake = toggled
+		_write_savefile()
 	)
 	sound_checkbox.toggled.connect(func(toggled):
-		sound = toggled
-		save_checkbox_state()
+		stats.sound = toggled
+		_write_savefile()
 	)
 	fireworks_checkbox.toggled.connect(func(toggled):
-		fireworks = toggled
-		save_checkbox_state()
+		stats.fireworks = toggled
+		_write_savefile()
 	)
 
-func save_checkbox_state():
-	stats.set_value("settings", "explosion", explosions)
-	stats.set_value("settings", "blips", blips)
-	stats.set_value("settings", "chars", chars)
-	stats.set_value("settings", "shake", shake)
-	stats.set_value("settings", "sound", sound)
-	stats.set_value("settings", "fireworks", fireworks)
-	stats.save(STATS_FILE)
-
-func load_checkbox_state():
-	if stats.load(STATS_FILE) == OK:
-		explosion_checkbox.button_pressed = stats.get_value("settings", "explosion", true)
-		blip_checkbox.button_pressed = stats.get_value("settings", "blips", true)
-		chars_checkbox.button_pressed = stats.get_value("settings", "chars", true)
-		shake_checkbox.button_pressed = stats.get_value("settings", "shake", true)
-		sound_checkbox.button_pressed = stats.get_value("settings", "sound", true)
-		fireworks_checkbox.button_pressed = stats.get_value("settings", "fireworks", true)
-	else:
-		explosion_checkbox.button_pressed = explosions
-		blip_checkbox.button_pressed = blips
-		chars_checkbox.button_pressed = chars
-		shake_checkbox.button_pressed = shake
-		sound_checkbox.button_pressed = sound
-		fireworks_checkbox.button_pressed = fireworks
-
 func on_reset_button_pressed():
-	level = 1
-	xp = 0
 	xp_next = 2*BASE_XP
 	progress.value = 0
 	progress.max_value = xp_next
+	stats = StatsDataRC.new()
+	_write_savefile()
 	update_progress()
+
+func _write_savefile() -> void:
+	ResourceSaver.save(stats,ROOT_PATH+FILE_NAME,0)
+
+func _load_savefile() -> Resource:
+	return ResourceLoader.load(ROOT_PATH+FILE_NAME,"",0)
+
+func _verify_file() -> bool:
+	if DirAccess.open(ROOT_PATH).file_exists(FILE_NAME) == true: return true
+	else: return false

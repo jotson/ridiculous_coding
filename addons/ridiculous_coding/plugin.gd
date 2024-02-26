@@ -95,15 +95,15 @@ func text_changed(textedit : TextEdit):
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
 			timer = 0.0
-			if dock.explosions:
+			if dock.stats.explosions:
 				# Draw the boom
 				var boom:Boom = BOOM.instantiate()
 				boom.position = pos
 				boom.destroy = true
-				if dock.chars: boom.last_key = last_key
-				boom.sound = dock.sound
+				if dock.stats.chars: boom.last_key = last_key
+				boom.sound = dock.stats.sound
 				textedit.add_child(boom)
-				if dock.shake: shake_screen(0.2, 10)
+				if dock.stats.shake: shake_screen(0.2, 10)
 		# Typing
 		if timer > 0.02 and len(textedit.text) >= len(editors[textedit]["text"]):
 			timer = 0.0
@@ -113,20 +113,20 @@ func text_changed(textedit : TextEdit):
 			pitch_increase += 1.0
 			blip.position = pos
 			blip.destroy = true
-			blip.blips = dock.blips
-			if dock.chars: blip.last_key = last_key
-			blip.sound = dock.sound
+			blip.blips = dock.stats.blips
+			if dock.stats.chars: blip.last_key = last_key
+			blip.sound = dock.stats.sound
 			textedit.add_child(blip)
-			if dock.shake: shake_screen(0.05, 5)
+			if dock.stats.shake: shake_screen(0.05, 5)
 		# Newline
 		if textedit.get_caret_line() != editors[textedit]["line"]:
 			# Draw the newline
 			var newline:Newline = NEWLINE.instantiate()
 			newline.position = pos
 			newline.destroy = true
-			newline.blips = dock.blips
+			newline.blips = dock.stats.blips
 			textedit.add_child(newline)
-			if dock.shake: shake_screen(0.05, 5)
+			if dock.stats.shake: shake_screen(0.05, 5)
 	else: pass
 	editors[textedit]["text"] = textedit.text
 	editors[textedit]["line"] = textedit.get_caret_line()
