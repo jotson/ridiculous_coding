@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b76vnt4rv4p0q"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/dock.gd" id="1_bwupq"]
-[ext_resource type="Texture2D" uid="uid://c3ltnrdrb2qmg" path="res://addons/ridiculous_coding/under.png" id="3_vdb3k"]
-[ext_resource type="AudioStream" uid="uid://g6lh6kjt0ynq" path="res://addons/ridiculous_coding/fireworks.wav" id="4_1o4lv"]
-[ext_resource type="Texture2D" uid="uid://dmvuvaqf5uhwi" path="res://addons/ridiculous_coding/progress.png" id="4_y2kl4"]
+[ext_resource type="Texture2D" uid="uid://dgda8elabipl5" path="res://addons/ridiculous_coding/under.png" id="3_vdb3k"]
+[ext_resource type="AudioStream" uid="uid://dyi5lstxrfkdt" path="res://addons/ridiculous_coding/fireworks.wav" id="4_1o4lv"]
+[ext_resource type="Texture2D" uid="uid://dqpxh1bccjaae" path="res://addons/ridiculous_coding/progress.png" id="4_y2kl4"]
 
 [sub_resource type="Gradient" id="Gradient_v1eyn"]
 offsets = PackedFloat32Array(0, 0.419689, 0.715026, 1)
@@ -15,9 +15,9 @@ gradient = SubResource("Gradient_v1eyn")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x4b51"]
 lifetime_randomness = 0.29
 spread = 20.0
-gravity = Vector3(0, 300, 0)
 initial_velocity_min = 400.0
 initial_velocity_max = 400.0
+gravity = Vector3(0, 300, 0)
 scale_min = 5.0
 scale_max = 6.0
 color_ramp = SubResource("GradientTexture2D_6lmfn")
@@ -49,19 +49,18 @@ layout_mode = 2
 [node name="xpLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "XP: 201 / 350"
+text = "XP: 91 / 100"
 
 [node name="levelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Level: 3"
+text = "Level: 1"
 horizontal_alignment = 2
 
 [node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/XP"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-max_value = 150.0
-value = 1.0
+value = 91.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_vdb3k")
 texture_progress = ExtResource("4_y2kl4")

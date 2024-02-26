@@ -158,7 +158,7 @@ explosiveness = 1.0
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.88557, 1.35563, 0.609976, 1)
+modulate = Color(0.368799, 1.29027, 1.60506, 1)
 texture_filter = 1
 offset_left = -35.0
 offset_top = -70.0

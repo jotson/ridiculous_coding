@@ -108,12 +108,13 @@ frame_progress = 1.0
 stream = ExtResource("2")
 volume_db = -26.0
 autoplay = true
+stream_paused = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(0.852828, 1.64201, 1.90577, 1)
+modulate = Color(1.28859, 0.934092, 0.350575, 1)
 texture_filter = 1
 offset_left = -35.0
 offset_top = -70.0
