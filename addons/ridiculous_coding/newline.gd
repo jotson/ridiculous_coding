@@ -2,14 +2,14 @@
 class_name Newline extends Node2D
 
 var destroy:bool = false
-var blips:bool = true
+var newline:bool = true
 
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite_2d:AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer:Timer = $Timer
 
 func _ready():
-	if blips:
+	if newline:
 		animation_player.stop()
 		animation_player.play("default")
 		animated_sprite_2d.frame = 0

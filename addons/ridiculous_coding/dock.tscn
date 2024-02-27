@@ -24,8 +24,8 @@ gravity = Vector3(0, 0, 0)
 scale_min = 3.5
 scale_max = 4.5
 color_ramp = SubResource("GradientTexture1D_fepja")
-hue_variation_min = -0.1
-hue_variation_max = 0.1
+hue_variation_min = -0.17
+hue_variation_max = 0.17
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6vd3q"]
 
@@ -65,18 +65,17 @@ layout_mode = 2
 [node name="xpLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "XP 168 / 200"
+text = "XP 0 / 100"
 
 [node name="levelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "infant dev - Lvl 2"
+text = "infant dev - Lvl 0"
 horizontal_alignment = 2
 
 [node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/XP"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-value = 68.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_vdb3k")
 texture_progress = ExtResource("4_y2kl4")
@@ -117,7 +116,6 @@ wait_time = 3.0
 stream = ExtResource("4_1o4lv")
 volume_db = -8.0
 pitch_scale = 0.88
-mix_target = 1
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -172,6 +170,7 @@ layout_mode = 2
 size_flags_vertical = 4
 max_value = 2.0
 step = 0.1
+value = 1.0
 
 [node name="soundCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -182,8 +181,8 @@ text = "Sound"
 [node name="soundSlider" type="HSlider" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-min_value = -50.0
-max_value = 50.0
+min_value = -20.0
+max_value = 20.0
 step = 2.0
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]

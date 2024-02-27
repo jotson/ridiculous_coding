@@ -77,7 +77,7 @@ func shake_screen(duration, intensity):
 	if shake_duration > 0: return
 	else:
 		shake_duration = duration
-		shake_intensity = intensity
+		shake_intensity = intensity * dock.stats.shake_scalar
 
 func caret_changed(textedit):
 	var editor := get_editor_interface()
@@ -89,7 +89,7 @@ func caret_changed(textedit):
 # Instanciate and add the defined scenes
 func text_changed(textedit : TextEdit):
 	var line_height:int = textedit.get_line_height()
-	var pos:Vector2 = textedit.get_caret_draw_pos() + Vector2(0,-line_height/2.0)
+	var pos:Vector2 = textedit.get_caret_draw_pos() + Vector2(0,(line_height*-1)/2.0)
 	emit_signal("typing")
 	if editors.has(textedit):
 		# Deleting
@@ -102,6 +102,7 @@ func text_changed(textedit : TextEdit):
 				boom.destroy = true
 				if dock.stats.chars: boom.last_key = last_key
 				boom.sound = dock.stats.sound
+				boom.sound_addend = dock.stats.sound_addend
 				textedit.add_child(boom)
 				if dock.stats.shake: shake_screen(0.2, 10)
 		# Typing
@@ -116,15 +117,16 @@ func text_changed(textedit : TextEdit):
 			blip.blips = dock.stats.blips
 			if dock.stats.chars: blip.last_key = last_key
 			blip.sound = dock.stats.sound
+			blip.sound_addend = dock.stats.sound_addend
 			textedit.add_child(blip)
 			if dock.stats.shake: shake_screen(0.05, 5)
 		# Newline
-		if textedit.get_caret_line() != editors[textedit]["line"]:
+		if textedit.get_caret_line() != editors[textedit]["line"] and dock.stats.newline == true:
 			# Draw the newline
 			var newline:Newline = NEWLINE.instantiate()
 			newline.position = pos
 			newline.destroy = true
-			newline.blips = dock.stats.blips
+			newline.newline = dock.stats.newline
 			textedit.add_child(newline)
 			if dock.stats.shake: shake_screen(0.05, 5)
 	else: pass

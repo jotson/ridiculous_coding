@@ -29,9 +29,12 @@ var stats:StatsDataRC
 
 @onready var explosion_checkbox:CheckButton = $VBoxContainer/GridContainer/explosionCheckbox
 @onready var blips_checkbox:CheckButton = $VBoxContainer/GridContainer/blipCheckbox
+@onready var newline_checkbox:CheckButton = $VBoxContainer/GridContainer/newlineCheckbox
 @onready var chars_checkbox:CheckButton = $VBoxContainer/GridContainer/charsCheckbox
 @onready var shake_checkbox:CheckButton = $VBoxContainer/GridContainer/shakeCheckbox
+@onready var shake_slider:HSlider = $VBoxContainer/GridContainer/shakeSlider
 @onready var sound_checkbox:CheckButton = $VBoxContainer/GridContainer/soundCheckbox
+@onready var sound_slider:HSlider = $VBoxContainer/GridContainer/soundSlider
 @onready var fireworks_checkbox:CheckButton = $VBoxContainer/GridContainer/fireworksCheckbox
 @onready var progress:TextureProgressBar = $VBoxContainer/XP/ProgressBar
 @onready var sfx_fireworks:AudioStreamPlayer = $VBoxContainer/XP/ProgressBar/sfxFireworks
@@ -60,10 +63,13 @@ func _ready():
 func load_checkbox_state():
 	explosion_checkbox.button_pressed = stats.explosions
 	blips_checkbox.button_pressed = stats.blips
+	newline_checkbox.button_pressed = stats.newline
 	chars_checkbox.button_pressed = stats.chars
 	shake_checkbox.button_pressed = stats.shake
 	sound_checkbox.button_pressed = stats.sound
 	fireworks_checkbox.button_pressed = stats.fireworks
+	sound_slider.value = stats.sound_addend
+	shake_slider.value = stats.shake_scalar
 
 func load_experience_progress():
 	xp_next = 2*BASE_XP
@@ -74,7 +80,10 @@ func load_experience_progress():
 	progress.value = stats.xp - (xp_next - progress.max_value)
 
 func start_fireworks():
-	if stats.sound: sfx_fireworks.play()
+	if stats.sound:
+		var base_db:int = -8
+		sfx_fireworks.volume_db = base_db+stats.sound_addend
+		sfx_fireworks.play()
 	fireworks_timer.start()
 	fire_particles_one.emitting = true
 	fire_particles_two.emitting = true
@@ -109,6 +118,10 @@ func connect_checkboxes():
 		stats.blips = toggled
 		_write_savefile()
 	)
+	newline_checkbox.toggled.connect(func(toggled):
+		stats.newline = toggled
+		_write_savefile()
+	)
 	chars_checkbox.toggled.connect(func(toggled):
 		stats.chars = toggled
 		_write_savefile()
@@ -117,8 +130,18 @@ func connect_checkboxes():
 		stats.shake = toggled
 		_write_savefile()
 	)
+	shake_slider.drag_ended.connect(func(_bool:bool):
+		print_debug("--> RC: Shake Intensity multiplier set: ",shake_slider.value)
+		stats.shake_scalar = shake_slider.value
+		_write_savefile()
+	)
 	sound_checkbox.toggled.connect(func(toggled):
 		stats.sound = toggled
+		_write_savefile()
+	)
+	sound_slider.drag_ended.connect(func(_bool:bool):
+		print_debug("--> RC: Sound Volume addend set: ",sound_slider.value)
+		stats.sound_addend = sound_slider.value
 		_write_savefile()
 	)
 	fireworks_checkbox.toggled.connect(func(toggled):
@@ -132,6 +155,7 @@ func on_reset_button_pressed():
 	progress.max_value = xp_next
 	stats = StatsDataRC.new()
 	_write_savefile()
+	load_checkbox_state()
 	update_progress()
 
 func _write_savefile() -> void:

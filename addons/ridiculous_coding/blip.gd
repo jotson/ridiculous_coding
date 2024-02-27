@@ -5,6 +5,7 @@ var destroy:bool = false
 var last_key:String = ""
 var pitch_increase:float = 0.0
 var sound:bool = true
+var sound_addend:int = 0
 var blips:bool = true
 
 @onready var audio_stream_player:AudioStreamPlayer = $AudioStreamPlayer
@@ -16,6 +17,8 @@ var blips:bool = true
 
 func _ready():
 	if sound:
+		var base_db:int = -25
+		audio_stream_player.volume_db = base_db+sound_addend
 		audio_stream_player.pitch_scale = 1.0 + pitch_increase * 0.01
 		audio_stream_player.play()
 	if blips:

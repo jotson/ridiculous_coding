@@ -95,33 +95,33 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
-texture_filter = 1
 script = ExtResource("4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 5
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ld5tu")
+frame = 6
+frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2")
-volume_db = -26.0
+volume_db = -25.0
 autoplay = true
-stream_paused = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.32362, 0.910475, 1.65192, 1)
-texture_filter = 1
+modulate = Color(0.366084, 0.0867838, 1.85533, 1)
+texture_filter = 5
 offset_left = -35.0
-offset_top = -70.0
+offset_top = -32.0
 offset_right = 35.0
-offset_bottom = -47.0
-scale = Vector2(2, 2)
+offset_bottom = -9.0
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("5")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 15
 uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -130,5 +130,4 @@ libraries = {
 }
 autoplay = "default"
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
