@@ -74,7 +74,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2)]
+"values": [Vector2(0.5, 0.5), Vector2(1.5, 1.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -86,7 +86,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(-35, -32), Vector2(-35, -70)]
+"values": [Vector2(-35, -25), Vector2(-35, -63)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ocb2c"]
@@ -99,7 +99,7 @@ script = ExtResource("4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 5
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_ld5tu")
 frame = 6
 frame_progress = 1.0
@@ -113,15 +113,16 @@ autoplay = true
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(0.366084, 0.0867838, 1.85533, 1)
+modulate = Color(1.93585, 1.2569, 0.303592, 0.937659)
 texture_filter = 5
 offset_left = -35.0
-offset_top = -32.0
+offset_top = -25.0
 offset_right = 35.0
-offset_bottom = -9.0
+offset_bottom = -2.0
+scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("5")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 14
 uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

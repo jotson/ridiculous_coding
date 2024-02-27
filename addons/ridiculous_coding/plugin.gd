@@ -95,16 +95,16 @@ func text_changed(textedit : TextEdit):
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
 			timer = 0.0
-			if dock.stats.explosions:
-				# Draw the boom
-				var boom:Boom = BOOM.instantiate()
-				boom.position = pos
-				boom.destroy = true
-				if dock.stats.chars: boom.last_key = last_key
-				boom.sound = dock.stats.sound
-				boom.sound_addend = dock.stats.sound_addend
-				textedit.add_child(boom)
-				if dock.stats.shake: shake_screen(0.2, 10)
+			# Draw the boom
+			var boom:Boom = BOOM.instantiate()
+			boom.position = pos
+			boom.destroy = true
+			boom.explosions = dock.stats.explosions
+			if dock.stats.chars: boom.last_key = last_key
+			boom.sound = dock.stats.sound
+			boom.sound_addend = dock.stats.sound_addend
+			textedit.add_child(boom)
+			if dock.stats.shake: shake_screen(0.2, 10)
 		# Typing
 		if timer > 0.02 and len(textedit.text) >= len(editors[textedit]["text"]):
 			timer = 0.0

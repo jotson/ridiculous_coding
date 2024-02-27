@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0fhho0dp1svt"]
+[gd_scene load_steps=16 format=3 uid="uid://c0fhho0dp1svt"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/blip.gd" id="1_tp8nq"]
 [ext_resource type="Texture2D" uid="uid://d1tio2ceqgm7m" path="res://addons/ridiculous_coding/blip.png" id="2_kj7um"]
-[ext_resource type="AudioStream" uid="uid://b2ood3lkcgpqb" path="res://addons/ridiculous_coding/blip.wav" id="3_xg6qd"]
+[ext_resource type="AudioStream" uid="uid://2qty6f6jeogc" path="res://addons/ridiculous_coding/typewriter.wav" id="3_xgx7t"]
 [ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="4_ullf3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hp4ed"]
@@ -77,10 +77,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(5, 5)]
+"values": [Vector2(0.8, 0.8), Vector2(2.25, 2.25)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -92,7 +92,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2)]
+"values": [Vector2(0.5, 0.5), Vector2(1.5, 1.5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -104,7 +104,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(-35, -32), Vector2(-35, -70)]
+"values": [Vector2(-25, -25), Vector2(-25, -43)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8epm6"]
@@ -112,32 +112,19 @@ _data = {
 "default": SubResource("Animation_u2m4c")
 }
 
-[sub_resource type="Gradient" id="Gradient_mplh3"]
-offsets = PackedFloat32Array(0, 0.350746, 1)
-colors = PackedColorArray(0.160156, 0.783478, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gu7qo"]
-gradient = SubResource("Gradient_mplh3")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5k50n"]
-lifetime_randomness = 0.5
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-color_ramp = SubResource("GradientTexture2D_gu7qo")
-
 [node name="Node2D" type="Node2D"]
-texture_filter = 1
 script = ExtResource("1_tp8nq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(5, 5)
+texture_filter = 5
+scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_g4ki7")
 frame = 7
 frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_xg6qd")
-volume_db = -25.0
+stream = ExtResource("3_xgx7t")
+volume_db = -10.0
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -146,29 +133,20 @@ libraries = {
 }
 autoplay = "default"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_5k50n")
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(0.713692, 1.78299, 1.99479, 1)
-texture_filter = 1
-offset_left = -35.0
-offset_top = -70.0
-offset_right = 35.0
-offset_bottom = -47.0
-scale = Vector2(2, 2)
+modulate = Color(0.086651, 0.688601, 1.79981, 1)
+texture_filter = 5
+offset_left = -25.0
+offset_top = -43.0
+offset_right = 45.0
+offset_bottom = -20.0
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("4_ullf3")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 15
 uppercase = true
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite1_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

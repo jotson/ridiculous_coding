@@ -81,8 +81,9 @@ func load_experience_progress():
 
 func start_fireworks():
 	if stats.sound:
-		var base_db:int = -8
+		var base_db:float = -8.0
 		sfx_fireworks.volume_db = base_db+stats.sound_addend
+		print("Actual fireworks value 2: ",sfx_fireworks.volume_db," || Base DB",base_db," || Sound addend",stats.sound_addend)
 		sfx_fireworks.play()
 	fireworks_timer.start()
 	fire_particles_one.emitting = true

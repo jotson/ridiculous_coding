@@ -11,5 +11,5 @@ class_name StatsDataRC extends Resource
 @export var shake:bool = true
 @export var shake_scalar:float = 1.0
 @export var sound:bool = true
-@export var sound_addend:int = 0
+@export var sound_addend:float = 0.0
 @export var fireworks:bool = true
