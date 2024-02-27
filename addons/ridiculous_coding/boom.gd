@@ -14,8 +14,8 @@ var explosions:bool = false
 @onready var label:Label = $Label
 
 func _ready():
-	if explosions and sound:
-		var base_db:float = -25.0
+	if sound:
+		var base_db:float = -30.0
 		audio_stream_player.volume_db = base_db+sound_addend
 		audio_stream_player.play()
 	if explosions:

@@ -106,20 +106,21 @@ frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2")
-volume_db = -25.0
+volume_db = -30.0
 autoplay = true
+stream_paused = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.93585, 1.2569, 0.303592, 0.937659)
+modulate = Color(1.53534, 1.01923, 0.0076831, 0.98821)
 texture_filter = 5
 offset_left = -35.0
-offset_top = -25.0
+offset_top = -63.0
 offset_right = 35.0
-offset_bottom = -2.0
-scale = Vector2(0.5, 0.5)
+offset_bottom = -40.0
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("5")
 theme_override_font_sizes/font_size = 14

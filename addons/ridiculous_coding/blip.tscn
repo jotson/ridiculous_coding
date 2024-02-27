@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0fhho0dp1svt"]
+[gd_scene load_steps=17 format=3 uid="uid://c0fhho0dp1svt"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/blip.gd" id="1_tp8nq"]
 [ext_resource type="Texture2D" uid="uid://d1tio2ceqgm7m" path="res://addons/ridiculous_coding/blip.png" id="2_kj7um"]
 [ext_resource type="AudioStream" uid="uid://2qty6f6jeogc" path="res://addons/ridiculous_coding/typewriter.wav" id="3_xgx7t"]
 [ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="4_ullf3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hp4ed"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhabj"]
 atlas = ExtResource("2_kj7um")
 region = Rect2(192, 0, 32, 32)
 
@@ -33,7 +33,7 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("2_kj7um")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ye4cv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gllt0"]
 atlas = ExtResource("2_kj7um")
 region = Rect2(224, 0, 32, 32)
 
@@ -41,7 +41,7 @@ region = Rect2(224, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hp4ed")
+"texture": SubResource("AtlasTexture_lhabj")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hcxxe")
@@ -62,12 +62,27 @@ animations = [{
 "texture": SubResource("AtlasTexture_jwwsh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ye4cv")
+"texture": SubResource("AtlasTexture_gllt0")
 }],
 "loop": false,
 "name": &"default",
-"speed": 24.0
+"speed": 30.0
 }]
+
+[sub_resource type="Animation" id="Animation_hkxge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1.03526),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
 
 [sub_resource type="Animation" id="Animation_u2m4c"]
 tracks/0/type = "value"
@@ -77,10 +92,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(0.8, 0.8), Vector2(2.25, 2.25)]
+"values": [Vector2(1.5, 1.5), Vector2(2, 2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -92,7 +107,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1.5, 1.5)]
+"values": [Vector2(0.5, 0.5), Vector2(1.45, 1.45)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -104,11 +119,12 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(-25, -25), Vector2(-25, -43)]
+"values": [Vector2(-25, -15), Vector2(-15, -43)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8epm6"]
 _data = {
+"RESET": SubResource("Animation_hkxge"),
 "default": SubResource("Animation_u2m4c")
 }
 
@@ -117,14 +133,15 @@ script = ExtResource("1_tp8nq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 5
-scale = Vector2(2.25, 2.25)
+position = Vector2(-5, 4)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_g4ki7")
 frame = 7
 frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xgx7t")
-volume_db = -10.0
+volume_db = -5.0
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -137,16 +154,16 @@ autoplay = "default"
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(0.086651, 0.688601, 1.79981, 1)
+modulate = Color(1.8134, 1.63909, 0.176737, 1)
 texture_filter = 5
-offset_left = -25.0
+offset_left = -15.0
 offset_top = -43.0
-offset_right = 45.0
+offset_right = 55.0
 offset_bottom = -20.0
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.45, 1.45)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("4_ullf3")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 14
 uppercase = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
