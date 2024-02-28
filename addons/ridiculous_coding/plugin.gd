@@ -30,6 +30,7 @@ func _enter_tree():
 
 func _exit_tree():
 	if dock:
+		dock.write_savefile()
 		remove_control_from_docks(dock)
 		dock.free()
 

@@ -49,7 +49,7 @@ func _ready():
 	if _verify_file() == false:
 		push_warning(WARN)
 		stats = StatsDataRC.new()
-		_write_savefile()
+		write_savefile()
 	else: stats = _load_savefile()
 
 	reset_button.pressed.connect(on_reset_button_pressed)
@@ -102,7 +102,6 @@ func _on_typing():
 		progress.max_value = xp_next - stats.xp
 		for level in RANKS.keys(): if stats.level >= level: stats.rank = RANKS[level]
 		if stats.fireworks: start_fireworks()
-	_write_savefile()
 	update_progress()
 
 func update_progress():
@@ -112,41 +111,32 @@ func update_progress():
 func connect_checkboxes():
 	explosion_checkbox.toggled.connect(func(toggled):
 		stats.explosions = toggled
-		_write_savefile()
 	)
 	blips_checkbox.toggled.connect(func(toggled):
 		stats.blips = toggled
-		_write_savefile()
 	)
 	newline_checkbox.toggled.connect(func(toggled):
 		stats.newline = toggled
-		_write_savefile()
 	)
 	chars_checkbox.toggled.connect(func(toggled):
 		stats.chars = toggled
-		_write_savefile()
 	)
 	shake_checkbox.toggled.connect(func(toggled):
 		stats.shake = toggled
-		_write_savefile()
 	)
 	shake_slider.drag_ended.connect(func(_bool:bool):
 		print_debug("--> RC: Shake Intensity multiplier set: ",shake_slider.value)
 		stats.shake_scalar = shake_slider.value
-		_write_savefile()
 	)
 	sound_checkbox.toggled.connect(func(toggled):
 		stats.sound = toggled
-		_write_savefile()
 	)
 	sound_slider.drag_ended.connect(func(_bool:bool):
 		print_debug("--> RC: Sound Volume addend set: ",sound_slider.value)
 		stats.sound_addend = sound_slider.value
-		_write_savefile()
 	)
 	fireworks_checkbox.toggled.connect(func(toggled):
 		stats.fireworks = toggled
-		_write_savefile()
 	)
 
 func on_reset_button_pressed():
@@ -154,11 +144,10 @@ func on_reset_button_pressed():
 	progress.value = 0
 	progress.max_value = xp_next
 	stats = StatsDataRC.new()
-	_write_savefile()
 	load_checkbox_state()
 	update_progress()
 
-func _write_savefile() -> void:
+func write_savefile() -> void:
 	ResourceSaver.save(stats,ROOT_PATH+FILE_NAME,0)
 
 func _load_savefile() -> Resource:
