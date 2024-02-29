@@ -18,52 +18,52 @@ var shake_duration:float = 0.0
 var shake_intensity:float  = 0.0
 var last_key:String = ""
 var editors := {}
-var dock:Dock
+var dock:RidiculousCodingDock
 
-func _enter_tree():
+func _enter_tree() -> void:
 	var editor:EditorInterface = get_editor_interface()
 	var script_editor:ScriptEditor = editor.get_script_editor()
-	script_editor.editor_script_changed.connect(editor_script_changed)
+	script_editor.editor_script_changed.connect(_editor_script_changed)
 	dock = DOCK.instantiate()
 	typing.connect(Callable(dock,"_on_typing"))
 	add_control_to_dock(DOCK_SLOT_RIGHT_BL, dock)
 
-func _exit_tree():
+func _exit_tree() -> void:
 	if dock:
 		dock.write_savefile()
 		remove_control_from_docks(dock)
 		dock.free()
 
-func get_all_text_editors(parent : Node):
+func _get_all_text_editors(parent:Node) -> void:
 	for child in parent.get_children():
 		if child.get_child_count():
-			get_all_text_editors(child)
+			_get_all_text_editors(child)
 
 		if child is TextEdit:
 			editors[child] = {
-				"text": child.text,
-				"line": child.get_caret_line(),
+				"text" : child.text,
+				"line" : child.get_caret_line(),
 			}
-			_reconnect_signal(child.caret_changed,caret_changed,caret_changed.bind(child))
-			_reconnect_signal(child.text_changed,text_changed,text_changed.bind(child))
-			_reconnect_signal(child.gui_input,gui_input,gui_input)
+			_reconnect_signal(child.caret_changed,_caret_changed,_caret_changed.bind(child))
+			_reconnect_signal(child.text_changed,_text_changed,_text_changed.bind(child))
+			_reconnect_signal(child.gui_input,_gui_input,_gui_input)
 
-func _reconnect_signal(my_signal,connection,connect_to):
+func _reconnect_signal(my_signal,connection,connect_to) -> void:
 	if my_signal.is_connected(connection): my_signal.disconnect(connection)
 	my_signal.connect(connect_to)
 
-func gui_input(event):
+func _gui_input(event) -> void:
 	if event is InputEventKey and event.pressed:
 		event = event as InputEventKey
 		last_key = OS.get_keycode_string(event.get_keycode_with_modifiers())
 
-func editor_script_changed(script):
+func _editor_script_changed(script) -> void:
 	var editor := get_editor_interface()
 	var script_editor := editor.get_script_editor()
 	editors.clear()
-	get_all_text_editors(script_editor)
+	_get_all_text_editors(script_editor)
 
-func _process(delta):
+func _process(delta) -> void:
 	var editor := get_editor_interface()
 	if shake_duration > 0:
 		shake_duration -= delta
@@ -74,21 +74,21 @@ func _process(delta):
 	timer += delta
 	if (pitch_increase > 0.0): pitch_increase -= delta * PITCH_DECREMENT
 
-func shake_screen(duration, intensity):
+func _shake_screen(duration, intensity) -> void:
 	if shake_duration > 0: return
 	else:
 		shake_duration = duration
 		shake_intensity = intensity * dock.stats.shake_scalar
 
-func caret_changed(textedit):
+func _caret_changed(textedit) -> void:
 	var editor := get_editor_interface()
 	if not editors.has(textedit):
 		editors.clear()
-		get_all_text_editors(editor.get_script_editor())
+		_get_all_text_editors(editor.get_script_editor())
 	editors[textedit]["line"] = textedit.get_caret_line()
 
 # Instanciate and add the defined scenes
-func text_changed(textedit : TextEdit):
+func _text_changed(textedit : TextEdit) -> void:
 	var line_height:int = textedit.get_line_height()
 	var pos:Vector2 = textedit.get_caret_draw_pos() + Vector2(0,(line_height*-1)/2.0)
 	emit_signal("typing")
@@ -101,11 +101,11 @@ func text_changed(textedit : TextEdit):
 			boom.position = pos
 			boom.destroy = true
 			boom.explosions = dock.stats.explosions
-			if dock.stats.chars: boom.last_key = last_key
+			if dock.stats.chars == true: boom.last_key = last_key
 			boom.sound = dock.stats.sound
 			boom.sound_addend = dock.stats.sound_addend
 			textedit.add_child(boom)
-			if dock.stats.shake: shake_screen(0.2, 10)
+			if dock.stats.shake == true: _shake_screen(0.2, 10)
 		# Typing
 		if timer > 0.02 and len(textedit.text) >= len(editors[textedit]["text"]):
 			timer = 0.0
@@ -116,11 +116,11 @@ func text_changed(textedit : TextEdit):
 			blip.position = pos
 			blip.destroy = true
 			blip.blips = dock.stats.blips
-			if dock.stats.chars: blip.last_key = last_key
+			if dock.stats.chars == true: blip.last_key = last_key
 			blip.sound = dock.stats.sound
 			blip.sound_addend = dock.stats.sound_addend
 			textedit.add_child(blip)
-			if dock.stats.shake: shake_screen(0.05, 5)
+			if dock.stats.shake == true: _shake_screen(0.05, 5)
 		# Newline
 		if textedit.get_caret_line() != editors[textedit]["line"] and dock.stats.newline == true:
 			# Draw the newline
@@ -129,7 +129,7 @@ func text_changed(textedit : TextEdit):
 			newline.destroy = true
 			newline.newline = dock.stats.newline
 			textedit.add_child(newline)
-			if dock.stats.shake: shake_screen(0.05, 5)
+			if dock.stats.shake == true: _shake_screen(0.05, 5)
 	else: pass
 	editors[textedit]["text"] = textedit.text
 	editors[textedit]["line"] = textedit.get_caret_line()

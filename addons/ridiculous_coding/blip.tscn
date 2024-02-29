@@ -74,7 +74,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/path = NodePath("BlipsSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -88,7 +88,7 @@ tracks/0/keys = {
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/path = NodePath("BlipsSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -128,10 +128,10 @@ _data = {
 "default": SubResource("Animation_u2m4c")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Blip2d" type="Node2D"]
 script = ExtResource("1_tp8nq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="BlipsSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 5
 position = Vector2(-5, 4)
 scale = Vector2(4, 4)
@@ -154,16 +154,16 @@ autoplay = "default"
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.8134, 1.63909, 0.176737, 1)
+modulate = Color(1.68637, 0.269558, 1.68099, 1)
 texture_filter = 5
-offset_left = -15.0
-offset_top = -43.0
-offset_right = 55.0
-offset_bottom = -20.0
-scale = Vector2(1.45, 1.45)
+offset_left = -25.0
+offset_top = -15.0
+offset_right = 45.0
+offset_bottom = 8.0
+scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("4_ullf3")
 theme_override_font_sizes/font_size = 14
 uppercase = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

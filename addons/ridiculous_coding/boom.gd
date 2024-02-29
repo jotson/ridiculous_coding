@@ -8,22 +8,22 @@ var sound_addend:float = 0.0
 var explosions:bool = false
 
 @onready var audio_stream_player:AudioStreamPlayer = $AudioStreamPlayer
-@onready var animated_sprite_2d:AnimatedSprite2D = $AnimatedSprite2D
+@onready var booms_sprite:AnimatedSprite2D = $BoomSprite
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var timer:Timer = $Timer
-@onready var label:Label = $Label
+@onready var key_label:Label = $Label
 
-func _ready():
-	if sound:
+func _ready() -> void:
+	if sound == true:
 		var base_db:float = -30.0
-		audio_stream_player.volume_db = base_db+sound_addend
+		audio_stream_player.volume_db = base_db + sound_addend
 		audio_stream_player.play()
-	if explosions:
-		animated_sprite_2d.frame = 0
-		animated_sprite_2d.play("default")
+	if explosions == true:
+		booms_sprite.frame = 0
+		booms_sprite.play("default")
 	animation_player.play("default")
 	timer.start()
-	label.text = last_key
-	label.modulate = Color(randf_range(1,2),randf_range(0,1.5),randf_range(0,0.4),randf_range(0.85,1))
+	key_label.text = last_key
+	key_label.modulate = Color(randf_range(1,2),randf_range(0,1.5),randf_range(0,0.4),randf_range(0.85,1))
 
-func _on_Timer_timeout(): if destroy: queue_free()
+func _on_timer_timeout() -> void: if destroy == true: queue_free()

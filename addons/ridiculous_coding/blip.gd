@@ -9,23 +9,23 @@ var sound_addend:float = 0.0
 var blips:bool = true
 
 @onready var audio_stream_player:AudioStreamPlayer = $AudioStreamPlayer
-@onready var animated_sprite_2d:AnimatedSprite2D = $AnimatedSprite2D
-@onready var animated_player:AnimationPlayer = $AnimationPlayer
+@onready var blips_sprite:AnimatedSprite2D = $BlipsSprite
+@onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var timer:Timer = $Timer
-@onready var label:Label = $Label
+@onready var key_label:Label = $Label
 
-func _ready():
-	if sound:
+func _ready() -> void:
+	if sound == true:
 		var base_db:float = -5.0
-		audio_stream_player.volume_db = base_db+sound_addend
+		audio_stream_player.volume_db = base_db + sound_addend
 		audio_stream_player.pitch_scale = 1.0 + pitch_increase * 0.01
 		audio_stream_player.play()
-	if blips:
-		animated_sprite_2d.frame = 0
-		animated_sprite_2d.play("default")
-	animated_player.play("default")
+	if blips == true:
+		blips_sprite.frame = 0
+		blips_sprite.play("default")
+	animation_player.play("default")
 	timer.start()
-	label.text = last_key
-	label.modulate = Color(randf_range(0,2),randf_range(0,2),randf_range(0,2))
+	key_label.text = last_key
+	key_label.modulate = Color(randf_range(0,2),randf_range(0,2),randf_range(0,2))
 
-func _on_Timer_timeout(): if destroy: queue_free()
+func _on_timer_timeout() -> void: if destroy == true: queue_free()

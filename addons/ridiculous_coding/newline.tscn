@@ -52,7 +52,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("NewlineSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,19 +67,17 @@ _data = {
 "default": SubResource("7")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Newline2d" type="Node2D"]
 script = ExtResource("1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="NewlineSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 6
-position = Vector2(-50, 3.5)
+position = Vector2(-200, 3.5)
 rotation = -1.57079
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("6")
+frame_progress = 0.732137
 speed_scale = 0.8
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -87,4 +85,7 @@ libraries = {
 }
 autoplay = "default"
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

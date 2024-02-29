@@ -94,10 +94,10 @@ _data = {
 "default": SubResource("Animation_pxf6h")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Boom2d" type="Node2D"]
 script = ExtResource("4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="BoomSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 5
 scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_ld5tu")
@@ -108,23 +108,6 @@ frame_progress = 1.0
 stream = ExtResource("2")
 volume_db = -30.0
 autoplay = true
-stream_paused = true
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Label" type="Label" parent="."]
-modulate = Color(1.53534, 1.01923, 0.0076831, 0.98821)
-texture_filter = 5
-offset_left = -35.0
-offset_top = -63.0
-offset_right = 35.0
-offset_bottom = -40.0
-scale = Vector2(1.5, 1.5)
-pivot_offset = Vector2(35, 8)
-theme_override_fonts/font = ExtResource("5")
-theme_override_font_sizes/font_size = 14
-uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -132,4 +115,20 @@ libraries = {
 }
 autoplay = "default"
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1.72173, 0.719095, 0.305122, 0.922202)
+texture_filter = 5
+offset_left = -35.0
+offset_top = -25.0
+offset_right = 35.0
+offset_bottom = -2.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(35, 8)
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 14
+uppercase = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
