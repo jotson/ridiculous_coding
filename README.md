@@ -1,6 +1,37 @@
 # ridiculous_coding for Godot
 
-Written by John Watson
+Written by John Watson and edited by Cuppixx.
+
+## A word by CuppiXD [aka Cuppixx]
+
+As this is a fork of the original addon by John Watson, the general idea and structure remain the same.
+Should you encounter any bugs (I hope you won't) while using my version of the addon please do not bother the original author as it is most likely an issue caused by me.
+
+What I fixed:
+- Saving works properly over new / multiple sessions now
+- Characters / Keys now animate even with the boom and / or blip settings toggled off
+- Fixed some node errors (most likely caused by porting to godot 4)
+- Slightly more stable in my testing
+
+What I changed:
+- Saving now utilizes godot resources instead of ini files
+- Code is more alligned with godot writing conventions
+- Code is more static
+- Less overhead in code
+- Added a seperate newline toggle button (For the newline effect)
+- Added sliders for shake and sound
+- Fireworks are now purple-ish instead of rainbow colored
+- The progress bar now includes different "ranks" to climb
+- I changed the typing sound to a typewriter clicking (previous a beeping sound). The old .wav still exists if you wanna change back
+- Smaller char / blip / newline effects
+- Chars emited upon destruction are now red / yellow instead of rainbow colored
+- Prob some more stuff I don't remember as of writing this LOL
+
+Besides the obvious fix and some new features my version of the addon aims to be overall less 'in your face'. **This is my personal taste**. Feel free to revert any changes back to a more 'in your face' type of style.
+
+**A huge thanks** to John Watson for creating such an amazing addon / plugin :D !!!!!!!
+
+# Below is the addons original README:
 
 ## What does it do?
 
