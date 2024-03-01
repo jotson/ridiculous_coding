@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="Ridiculous Coding Addon"
+config/version="1.0.2"
 config/tags=PackedStringArray("addon")
 config/features=PackedStringArray("4.2")
+boot_splash/image="res://ridiculous.png"
 config/icon="res://icon.png"
 
 [dotnet]
