@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Ridiculous Coding"
+config/name="Ridiculous Coding Addon"
 config/tags=PackedStringArray("addon")
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
