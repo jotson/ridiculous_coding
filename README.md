@@ -55,9 +55,9 @@ Your Godot directory structure should look like this:
 
 ```
 res://
-    addons
-        ridiculous_coding
-            ...all the ridiculous coding files...
+	addons
+		ridiculous_coding
+			...all the ridiculous coding files...
 ```
 
 ![Choose a code font](readme-font.png)
