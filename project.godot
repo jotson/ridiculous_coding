@@ -15,6 +15,7 @@ config/version="1.0.2"
 config/tags=PackedStringArray("addon")
 config/features=PackedStringArray("4.2")
 boot_splash/image="res://ridiculous.png"
+boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [dotnet]
@@ -28,7 +29,3 @@ enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
