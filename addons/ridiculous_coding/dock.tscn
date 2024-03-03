@@ -55,7 +55,7 @@ layout_mode = 2
 [node name="XPlabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "XP 63 / 100"
+text = "XP 2 / 100"
 
 [node name="LevelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
@@ -66,7 +66,7 @@ horizontal_alignment = 2
 [node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/XP"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-value = 63.0
+value = 2.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_vdb3k")
 texture_progress = ExtResource("4_y2kl4")

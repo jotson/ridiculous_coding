@@ -49,7 +49,7 @@ var stats:StatsDataRC
 @onready var level_label:Label = $VBoxContainer/XP/HBoxContainer/LevelLabel
 @onready var reset_button:Button = $VBoxContainer/CenterContainer/ResetButton
 
-@onready var settings_button = $VBoxContainer/GridContainer/TestButton
+@onready var settings_button = $VBoxContainer/GridContainer/SettingsButton
 
 func _ready() -> void:
 	if _verify_file() == false:

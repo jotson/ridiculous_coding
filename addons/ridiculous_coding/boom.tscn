@@ -120,13 +120,13 @@ autoplay = "default"
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.56326, 1.0687, 0.291237, 0.930289)
+modulate = Color(1.02284, 0.589087, 0.0862596, 0.85362)
 texture_filter = 5
 offset_left = -35.0
-offset_top = -25.0
+offset_top = -63.0
 offset_right = 35.0
-offset_bottom = -2.0
-scale = Vector2(0.5, 0.5)
+offset_bottom = -40.0
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("5")
 theme_override_font_sizes/font_size = 14

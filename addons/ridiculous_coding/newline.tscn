@@ -72,7 +72,7 @@ script = ExtResource("1")
 
 [node name="NewlineSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 6
-position = Vector2(-200, 3.5)
+position = Vector2(-50, 3.5)
 rotation = -1.57079
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("6")
