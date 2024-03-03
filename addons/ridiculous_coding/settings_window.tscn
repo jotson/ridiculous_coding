@@ -111,11 +111,14 @@ layout_mode = 2
 button_pressed = true
 text = "Newline"
 
-[node name="ExplosionCharsCheckbox2" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline"]
+[node name="Button" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline"]
 layout_mode = 2
-size_flags_horizontal = 11
-button_pressed = true
-text = "Newline Chars"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_i6pc5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_i4i4t")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_urufv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_h2j64")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jy0i1")
+disabled = true
 
 [node name="NewlineShakeCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline"]
 layout_mode = 2

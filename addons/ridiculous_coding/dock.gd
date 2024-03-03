@@ -145,13 +145,18 @@ func _connect_checkboxes() -> void:
 		stats.fireworks = toggled
 	)
 	settings_button.pressed.connect(func() -> void:
-		#get_viewport().set_embedding_subwindows(false)
 		var window:Resource = load("res://addons/ridiculous_coding/settings_window.tscn")
 		var window_instanciated:Window = window.instantiate()
+		window_instanciated.stats = stats
 		DisplayServer.set_native_icon("res://addons/ridiculous_coding/icon_small.ico")
 		window_instanciated.position = DisplayServer.screen_get_size() / 2 - window_instanciated.size / 2
 		add_child(window_instanciated,false,Node.INTERNAL_MODE_FRONT)
+		window_instanciated.transfer_stats_data_rc.connect(_get_stats)
 	)
+
+func _get_stats() -> void:
+	var settings_window:Window = get_child(0,true)
+	stats = settings_window.stats
 
 func _on_reset_button_pressed() -> void:
 	xp_next = 2 * BASE_XP
