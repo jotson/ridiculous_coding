@@ -49,6 +49,8 @@ var stats:StatsDataRC
 @onready var level_label:Label = $VBoxContainer/XP/HBoxContainer/LevelLabel
 @onready var reset_button:Button = $VBoxContainer/CenterContainer/ResetButton
 
+@onready var settings_button = $VBoxContainer/GridContainer/TestButton
+
 func _ready() -> void:
 	if _verify_file() == false:
 		push_warning(WARN)
@@ -141,6 +143,14 @@ func _connect_checkboxes() -> void:
 	)
 	fireworks_checkbox.toggled.connect(func(toggled) -> void:
 		stats.fireworks = toggled
+	)
+	settings_button.pressed.connect(func() -> void:
+		#get_viewport().set_embedding_subwindows(false)
+		var window:Resource = load("res://addons/ridiculous_coding/settings_window.tscn")
+		var window_instanciated:Window = window.instantiate()
+		DisplayServer.set_native_icon("res://addons/ridiculous_coding/icon_small.ico")
+		window_instanciated.position = DisplayServer.screen_get_size() / 2 - window_instanciated.size / 2
+		add_child(window_instanciated,false,Node.INTERNAL_MODE_FRONT)
 	)
 
 func _on_reset_button_pressed() -> void:

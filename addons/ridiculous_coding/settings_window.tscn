@@ -1,0 +1,257 @@
+[gd_scene load_steps=7 format=3 uid="uid://chmmdjabfrie0"]
+
+[ext_resource type="Script" path="res://addons/ridiculous_coding/settings_window.gd" id="1_y76xy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6pc5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4i4t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_urufv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2j64"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jy0i1"]
+
+[node name="Window" type="Window"]
+title = "RC Settings Window"
+size = Vector2i(400, 400)
+transient = true
+unresizable = true
+min_size = Vector2i(400, 400)
+max_size = Vector2i(400, 400)
+script = ExtResource("1_y76xy")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="ScrollContainer"]
+custom_minimum_size = Vector2(400, 830)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.0705882, 0.121569, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 55
+
+[node name="CenterContainerUpdate" type="CenterContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="UpdateButton" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/CenterContainerUpdate"]
+layout_mode = 2
+text = "--click here after installing a new version--"
+
+[node name="GridContainerMaster" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="SoundCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Master Volume"
+
+[node name="SoundSliderMaster" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster"]
+custom_minimum_size = Vector2(188, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -20.0
+max_value = 20.0
+step = 2.0
+
+[node name="ShakeCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Master Shake"
+
+[node name="ShakeSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster"]
+custom_minimum_size = Vector2(188, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="CharsCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Chars"
+
+[node name="GridContainerNewline" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="NewlineCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline"]
+custom_minimum_size = Vector2(188, 0)
+layout_mode = 2
+button_pressed = true
+text = "Newline"
+
+[node name="ExplosionCharsCheckbox2" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Newline Chars"
+
+[node name="NewlineShakeCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline"]
+layout_mode = 2
+button_pressed = true
+text = "Newline Shake"
+
+[node name="NewlineShakeSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline"]
+custom_minimum_size = Vector2(188, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="GridContainerExplosion" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="ExplosionCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosion"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Explosions"
+
+[node name="ExplosionCharsCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosion"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Explosions Chars"
+
+[node name="ExplosionShakeCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosion"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Explosions Shake"
+
+[node name="ExplosionShakeSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosion"]
+custom_minimum_size = Vector2(188, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="ExplosionSound" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosion"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Explosions Sound"
+
+[node name="ExplosionSoundSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosion"]
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -20.0
+max_value = 20.0
+step = 2.0
+
+[node name="GridContainerBlip" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="BlipCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Blips"
+
+[node name="BlipCharsCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Blips Chars"
+
+[node name="BlipShakeCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Blips Shake"
+
+[node name="BlipShakeSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
+custom_minimum_size = Vector2(188, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="BlipSoundCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Blips Sound"
+
+[node name="BlipSoundSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -20.0
+max_value = 20.0
+step = 2.0
+
+[node name="GridContainerFireworks" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="FireworksCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Fireworks"
+
+[node name="Button" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_i6pc5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_i4i4t")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_urufv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_h2j64")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jy0i1")
+disabled = true
+
+[node name="FireworksSoundCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks"]
+layout_mode = 2
+size_flags_horizontal = 11
+button_pressed = true
+text = "Fireworks Sound"
+
+[node name="FireworksSoundSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks"]
+custom_minimum_size = Vector2(188, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -20.0
+max_value = 20.0
+step = 2.0
+
+[node name="CenterContainerReset" type="CenterContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/CenterContainerReset"]
+layout_mode = 2
+text = "--reset settings--"
