@@ -98,7 +98,7 @@ func _update_progress() -> void:
 func _connect_signals() -> void:
 	settings_button.pressed.connect(func() -> void:
 		settings_button.disabled = true
-		var window:Resource = load("res://addons/ridiculous_coding/settings_window.tscn")
+		var window:Resource = load("res://addons/ridiculous_coding/resources/interfaces/settings_window.tscn")
 		var window_instance:Window = window.instantiate()
 		window_instance.stats = stats
 		window_instance.position = DisplayServer.screen_get_size() / 2 - window_instance.size / 2
