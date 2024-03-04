@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Ridiculous Coding Addon"
-config/version="1.0.2"
-config/tags=PackedStringArray("addon")
+config/version="2.0.2"
+config/tags=PackedStringArray("addon", "under_development")
 config/features=PackedStringArray("4.2")
 boot_splash/image="res://ridiculous.png"
 boot_splash/fullsize=false
@@ -25,7 +25,3 @@ project/assembly_name="Ridiculous Coding"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
-
-[physics]
-
-common/enable_pause_aware_picking=true

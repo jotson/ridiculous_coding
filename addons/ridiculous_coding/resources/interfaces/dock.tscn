@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=3 uid="uid://b76vnt4rv4p0q"]
+
+[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/interfaces/dock.gd" id="1_bsxap"]
+[ext_resource type="Texture2D" uid="uid://dgda8elabipl5" path="res://addons/ridiculous_coding/images/under.png" id="2_31vgn"]
+[ext_resource type="Texture2D" uid="uid://dqpxh1bccjaae" path="res://addons/ridiculous_coding/images/progress.png" id="3_8udha"]
+[ext_resource type="AudioStream" uid="uid://dyi5lstxrfkdt" path="res://addons/ridiculous_coding/sounds/others/fireworks.wav" id="4_j1xnt"]
+
+[sub_resource type="Gradient" id="Gradient_ujbx3"]
+offsets = PackedFloat32Array(0, 0.388128, 1)
+colors = PackedColorArray(0.215686, 0.878431, 0.956863, 1, 0.301961, 0.329412, 0.929412, 1, 0.537255, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fepja"]
+gradient = SubResource("Gradient_ujbx3")
+width = 128
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x4b51"]
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 10.34
+spread = 10.0
+initial_velocity_min = 250.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.5
+scale_max = 4.5
+color_ramp = SubResource("GradientTexture1D_fepja")
+hue_variation_min = -0.17
+hue_variation_max = 0.17
+
+[node name="RidiculousCodingDock" type="Control"]
+texture_filter = 5
+custom_minimum_size = Vector2(248, 78)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bsxap")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="XP" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/XP"]
+layout_mode = 2
+
+[node name="XPlabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "XP 0 / 100"
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "infant dev - Lvl 0"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/XP"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+nine_patch_stretch = true
+texture_under = ExtResource("2_31vgn")
+texture_progress = ExtResource("3_8udha")
+
+[node name="Fire1" type="Control" parent="VBoxContainer/XP/ProgressBar"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/XP/ProgressBar/Fire1"]
+position = Vector2(25, 0)
+rotation = -1.5708
+emitting = false
+amount = 130
+process_material = SubResource("ParticleProcessMaterial_x4b51")
+
+[node name="Fire2" type="Control" parent="VBoxContainer/XP/ProgressBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/XP/ProgressBar/Fire2"]
+position = Vector2(-25, 0)
+rotation = -1.5708
+emitting = false
+amount = 130
+process_material = SubResource("ParticleProcessMaterial_x4b51")
+
+[node name="FireworksTimer" type="Timer" parent="VBoxContainer/XP/ProgressBar"]
+wait_time = 3.0
+
+[node name="SFXfireworks" type="AudioStreamPlayer" parent="VBoxContainer/XP/ProgressBar"]
+stream = ExtResource("4_j1xnt")
+volume_db = -8.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="ResetUndoButton" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Undo Reset"
+
+[node name="ResetButton" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Reset Level"
+icon_alignment = 2
