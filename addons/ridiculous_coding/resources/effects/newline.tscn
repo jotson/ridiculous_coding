@@ -1,26 +1,26 @@
 [gd_scene load_steps=11 format=3 uid="uid://wd4tkg0uxd18"]
 
-[ext_resource type="Script" path="res://addons/ridiculous_coding/newline.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://b1vn1823wqae2" path="res://addons/ridiculous_coding/newline.png" id="2"]
+[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/newline.gd" id="1_q0o8v"]
+[ext_resource type="Texture2D" uid="uid://b1vn1823wqae2" path="res://addons/ridiculous_coding/images/newline.png" id="2_vndcj"]
 
 [sub_resource type="AtlasTexture" id="1"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_vndcj")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_vndcj")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_vndcj")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="4"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_vndcj")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="5"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_vndcj")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="6"]
@@ -68,7 +68,7 @@ _data = {
 }
 
 [node name="Newline2d" type="Node2D"]
-script = ExtResource("1")
+script = ExtResource("1_q0o8v")
 
 [node name="NewlineSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 6

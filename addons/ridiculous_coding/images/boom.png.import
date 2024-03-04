@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1tio2ceqgm7m"
-path="res://.godot/imported/blip.png-7449238b2e7dcd337fbb9eec8c7b957e.ctex"
+uid="uid://dl75e74oom1i3"
+path="res://.godot/imported/boom.png-ea351a78b3cdc1b11d183b3ebc04225e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ridiculous_coding/blip.png"
-dest_files=["res://.godot/imported/blip.png-7449238b2e7dcd337fbb9eec8c7b957e.ctex"]
+source_file="res://addons/ridiculous_coding/images/boom.png"
+dest_files=["res://.godot/imported/boom.png-ea351a78b3cdc1b11d183b3ebc04225e.ctex"]
 
 [params]
 

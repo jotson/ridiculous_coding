@@ -1,40 +1,40 @@
 [gd_scene load_steps=17 format=3 uid="uid://c0fhho0dp1svt"]
 
-[ext_resource type="Script" path="res://addons/ridiculous_coding/blip.gd" id="1_tp8nq"]
-[ext_resource type="Texture2D" uid="uid://d1tio2ceqgm7m" path="res://addons/ridiculous_coding/blip.png" id="2_kj7um"]
-[ext_resource type="AudioStream" uid="uid://2qty6f6jeogc" path="res://addons/ridiculous_coding/typewriter.wav" id="3_xgx7t"]
-[ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="4_ullf3"]
+[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/blip.gd" id="1_b2lxn"]
+[ext_resource type="Texture2D" uid="uid://d1tio2ceqgm7m" path="res://addons/ridiculous_coding/images/blip.png" id="2_n5ksr"]
+[ext_resource type="AudioStream" uid="uid://2qty6f6jeogc" path="res://addons/ridiculous_coding/sounds/typing/typewriter.wav" id="3_7vrup"]
+[ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="4_s3hpm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhabj"]
-atlas = ExtResource("2_kj7um")
+atlas = ExtResource("2_n5ksr")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hcxxe"]
-atlas = ExtResource("2_kj7um")
+atlas = ExtResource("2_n5ksr")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3w7u8"]
-atlas = ExtResource("2_kj7um")
+atlas = ExtResource("2_n5ksr")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qo2pv"]
-atlas = ExtResource("2_kj7um")
+atlas = ExtResource("2_n5ksr")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_55mlh"]
-atlas = ExtResource("2_kj7um")
+atlas = ExtResource("2_n5ksr")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3eube"]
-atlas = ExtResource("2_kj7um")
+atlas = ExtResource("2_n5ksr")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwwsh"]
-atlas = ExtResource("2_kj7um")
+atlas = ExtResource("2_n5ksr")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gllt0"]
-atlas = ExtResource("2_kj7um")
+atlas = ExtResource("2_n5ksr")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4ki7"]
@@ -129,7 +129,7 @@ _data = {
 }
 
 [node name="Blip2d" type="Node2D"]
-script = ExtResource("1_tp8nq")
+script = ExtResource("1_b2lxn")
 
 [node name="BlipsSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 5
@@ -140,7 +140,7 @@ frame = 7
 frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_xgx7t")
+stream = ExtResource("3_7vrup")
 volume_db = -5.0
 autoplay = true
 
@@ -154,7 +154,7 @@ autoplay = "default"
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.01233, 0.350658, 1.82538, 1)
+modulate = Color(1.71738, 0.0870557, 0.087943, 1)
 texture_filter = 5
 offset_left = -25.0
 offset_top = -15.0
@@ -162,7 +162,7 @@ offset_right = 45.0
 offset_bottom = 8.0
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(35, 8)
-theme_override_fonts/font = ExtResource("4_ullf3")
+theme_override_fonts/font = ExtResource("4_s3hpm")
 theme_override_font_sizes/font_size = 14
 uppercase = true
 

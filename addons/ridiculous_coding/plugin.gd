@@ -4,10 +4,10 @@ extends EditorPlugin
 signal typing
 
 # Scenes preloaded
-const BOOM:Resource = preload("res://addons/ridiculous_coding/boom.tscn")
-const BLIP:Resource = preload("res://addons/ridiculous_coding/blip.tscn")
-const NEWLINE:Resource = preload("res://addons/ridiculous_coding/newline.tscn")
-const DOCK:Resource = preload("res://addons/ridiculous_coding/dock.tscn")
+const NEWLINE:Resource = preload("res://addons/ridiculous_coding/resources/effects/newline.tscn")
+const BOOM:Resource = preload("res://addons/ridiculous_coding/resources/effects/boom.tscn")
+const BLIP:Resource = preload("res://addons/ridiculous_coding/resources/effects/blip.tscn")
+const DOCK:Resource = preload("res://addons/ridiculous_coding/resources/interfaces/dock.tscn")
 
 # Inner Variables
 const PITCH_DECREMENT:float = 2.0
@@ -125,8 +125,8 @@ func _text_changed(textedit : TextEdit) -> void:
 				blip.sound = true
 				blip.sound_addend = dock.stats.sound_addend + dock.stats.blips_sound_addend
 				match dock.stats.blips_sound_selected:
-					0: blip.sound_selected = load("res://addons/ridiculous_coding/typewriter.wav")
-					1: blip.sound_selected = load("res://addons/ridiculous_coding/blip.wav")
+					0: blip.sound_selected = load("res://addons/ridiculous_coding/sounds/typing/typewriter.wav")
+					1: blip.sound_selected = load("res://addons/ridiculous_coding/sounds/typing/blip.wav")
 				if dock.stats.blips_sound_pitch == true:
 					blip.pitch_increase = pitch_increase
 			pitch_increase += 1.0

@@ -1,6 +1,6 @@
 [gd_resource type="FontFile" load_steps=2 format=3 uid="uid://bvwnnnja1ur2i"]
 
-[ext_resource type="FontFile" uid="uid://coiaqb8xwuaic" path="res://addons/ridiculous_coding/GravityBold8.ttf" id="1"]
+[ext_resource type="FontFile" uid="uid://coiaqb8xwuaic" path="res://addons/ridiculous_coding/gravity_bold_8.ttf" id="1"]
 
 [resource]
 fallbacks = Array[Font]([ExtResource("1")])

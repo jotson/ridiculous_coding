@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://2qty6f6jeogc"
-path="res://.godot/imported/typewriter.wav-24aa044afe89907f43997998496dd88e.sample"
+path="res://.godot/imported/typewriter.wav-bbc316c6bf7b5199ec8fff5ba60ba0a4.sample"
 
 [deps]
 
-source_file="res://addons/ridiculous_coding/typewriter.wav"
-dest_files=["res://.godot/imported/typewriter.wav-24aa044afe89907f43997998496dd88e.sample"]
+source_file="res://addons/ridiculous_coding/sounds/typing/typewriter.wav"
+dest_files=["res://.godot/imported/typewriter.wav-bbc316c6bf7b5199ec8fff5ba60ba0a4.sample"]
 
 [params]
 

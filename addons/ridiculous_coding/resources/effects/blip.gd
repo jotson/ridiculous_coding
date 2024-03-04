@@ -6,7 +6,7 @@ var last_key:String = ""
 var pitch_increase:float = 0.0
 var sound:bool = false
 var sound_addend:float = 0.0
-var sound_selected:AudioStreamWAV = preload("res://addons/ridiculous_coding/typewriter.wav")
+var sound_selected:AudioStreamWAV = preload("res://addons/ridiculous_coding/sounds/typing/typewriter.wav")
 var blips:bool = false
 
 @onready var audio_stream_player:AudioStreamPlayer = $AudioStreamPlayer

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://chmmdjabfrie0"]
 
-[ext_resource type="Script" path="res://addons/ridiculous_coding/settings_window.gd" id="1_y76xy"]
+[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/interfaces/settings_window.gd" id="1_y76xy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6pc5"]
 

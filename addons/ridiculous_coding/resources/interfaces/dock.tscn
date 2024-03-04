@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b76vnt4rv4p0q"]
 
-[ext_resource type="Script" path="res://addons/ridiculous_coding/dock.gd" id="1_bwupq"]
-[ext_resource type="Texture2D" uid="uid://dgda8elabipl5" path="res://addons/ridiculous_coding/under.png" id="3_vdb3k"]
-[ext_resource type="AudioStream" uid="uid://dyi5lstxrfkdt" path="res://addons/ridiculous_coding/fireworks.wav" id="4_1o4lv"]
-[ext_resource type="Texture2D" uid="uid://dqpxh1bccjaae" path="res://addons/ridiculous_coding/progress.png" id="4_y2kl4"]
+[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/interfaces/dock.gd" id="1_bsxap"]
+[ext_resource type="Texture2D" uid="uid://dgda8elabipl5" path="res://addons/ridiculous_coding/images/under.png" id="2_31vgn"]
+[ext_resource type="Texture2D" uid="uid://dqpxh1bccjaae" path="res://addons/ridiculous_coding/images/progress.png" id="3_8udha"]
+[ext_resource type="AudioStream" uid="uid://dyi5lstxrfkdt" path="res://addons/ridiculous_coding/sounds/others/fireworks.wav" id="4_j1xnt"]
 
 [sub_resource type="Gradient" id="Gradient_ujbx3"]
 offsets = PackedFloat32Array(0, 0.388128, 1)
@@ -29,14 +29,14 @@ hue_variation_max = 0.17
 
 [node name="RidiculousCodingDock" type="Control"]
 texture_filter = 5
-custom_minimum_size = Vector2(245, 100)
+custom_minimum_size = Vector2(248, 78)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bwupq")
+script = ExtResource("1_bsxap")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -55,7 +55,7 @@ layout_mode = 2
 [node name="XPlabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "XP 46 / 100"
+text = "XP 0 / 100"
 
 [node name="LevelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
@@ -66,10 +66,9 @@ horizontal_alignment = 2
 [node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/XP"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-value = 46.0
 nine_patch_stretch = true
-texture_under = ExtResource("3_vdb3k")
-texture_progress = ExtResource("4_y2kl4")
+texture_under = ExtResource("2_31vgn")
+texture_progress = ExtResource("3_8udha")
 
 [node name="Fire1" type="Control" parent="VBoxContainer/XP/ProgressBar"]
 layout_mode = 1
@@ -104,7 +103,7 @@ process_material = SubResource("ParticleProcessMaterial_x4b51")
 wait_time = 3.0
 
 [node name="SFXfireworks" type="AudioStreamPlayer" parent="VBoxContainer/XP/ProgressBar"]
-stream = ExtResource("4_1o4lv")
+stream = ExtResource("4_j1xnt")
 volume_db = -8.0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]

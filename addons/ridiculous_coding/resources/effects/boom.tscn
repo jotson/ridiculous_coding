@@ -1,36 +1,36 @@
 [gd_scene load_steps=15 format=3 uid="uid://c4rdv4wkukc5g"]
 
-[ext_resource type="Texture2D" uid="uid://dl75e74oom1i3" path="res://addons/ridiculous_coding/boom.png" id="1"]
-[ext_resource type="AudioStream" uid="uid://b6841f7osi4rh" path="res://addons/ridiculous_coding/boom.wav" id="2"]
-[ext_resource type="Script" path="res://addons/ridiculous_coding/boom.gd" id="4"]
-[ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="5"]
+[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/boom.gd" id="1_125dg"]
+[ext_resource type="Texture2D" uid="uid://dl75e74oom1i3" path="res://addons/ridiculous_coding/images/boom.png" id="2_1f670"]
+[ext_resource type="AudioStream" uid="uid://b6841f7osi4rh" path="res://addons/ridiculous_coding/sounds/deletion/boom.wav" id="3_l3luk"]
+[ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="4_c8efe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3t5t"]
-atlas = ExtResource("1")
+atlas = ExtResource("2_1f670")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4skxo"]
-atlas = ExtResource("1")
+atlas = ExtResource("2_1f670")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ccvbr"]
-atlas = ExtResource("1")
+atlas = ExtResource("2_1f670")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ojec"]
-atlas = ExtResource("1")
+atlas = ExtResource("2_1f670")
 region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1koxs"]
-atlas = ExtResource("1")
+atlas = ExtResource("2_1f670")
 region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5t7n"]
-atlas = ExtResource("1")
+atlas = ExtResource("2_1f670")
 region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27xno"]
-atlas = ExtResource("1")
+atlas = ExtResource("2_1f670")
 region = Rect2(0, 128, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ld5tu"]
@@ -95,7 +95,7 @@ _data = {
 }
 
 [node name="Boom2d" type="Node2D"]
-script = ExtResource("4")
+script = ExtResource("1_125dg")
 
 [node name="BoomSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 5
@@ -105,7 +105,7 @@ frame = 6
 frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2")
+stream = ExtResource("3_l3luk")
 volume_db = -30.0
 autoplay = true
 
@@ -119,7 +119,7 @@ autoplay = "default"
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.50661, 0.348686, 0.0830176, 0.967601)
+modulate = Color(1.1378, 0.66006, 0.278808, 0.872385)
 texture_filter = 5
 offset_left = -35.0
 offset_top = -25.0
@@ -127,7 +127,7 @@ offset_right = 35.0
 offset_bottom = -2.0
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(35, 8)
-theme_override_fonts/font = ExtResource("5")
+theme_override_fonts/font = ExtResource("4_c8efe")
 theme_override_font_sizes/font_size = 14
 uppercase = true
 
