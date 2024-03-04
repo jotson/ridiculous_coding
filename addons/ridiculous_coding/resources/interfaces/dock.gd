@@ -71,9 +71,10 @@ func _start_fireworks() -> void:
 		var base_db:float = -8.0
 		sfx_fireworks.volume_db = base_db + stats.sound_addend + stats.fireworks_sound_addend
 		sfx_fireworks.play()
-	fireworks_timer.start()
-	fire_particles_one.emitting = true
-	fire_particles_two.emitting = true
+	if stats.fireworks == true:
+		fireworks_timer.start()
+		fire_particles_one.emitting = true
+		fire_particles_two.emitting = true
 
 func _stop_fireworks() -> void:
 	fire_particles_one.emitting = false
@@ -88,7 +89,7 @@ func _on_typing() -> void:
 		progress.value = 0
 		progress.max_value = xp_next - stats.xp
 		for level in RANKS.keys(): if stats.level >= level: stats.rank = RANKS[level]
-		if stats.fireworks == true: _start_fireworks()
+		_start_fireworks()
 	_update_progress()
 
 func _update_progress() -> void:
