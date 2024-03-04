@@ -31,15 +31,11 @@ const RANKS := {
 var xp_next:int = 2 * BASE_XP
 var stats:StatsDataRC
 
-@onready var explosion_checkbox:CheckButton = $VBoxContainer/GridContainer/ExplosionCheckbox
-@onready var blips_checkbox:CheckButton = $VBoxContainer/GridContainer/BlipCheckbox
-@onready var newline_checkbox:CheckButton = $VBoxContainer/GridContainer/NewlineCheckbox
-@onready var chars_checkbox:CheckButton = $VBoxContainer/GridContainer/CharsCheckbox
-@onready var shake_checkbox:CheckButton = $VBoxContainer/GridContainer/ShakeCheckbox
-@onready var shake_slider:HSlider = $VBoxContainer/GridContainer/ShakeSlider
-@onready var sound_checkbox:CheckButton = $VBoxContainer/GridContainer/SoundCheckbox
-@onready var sound_slider:HSlider = $VBoxContainer/GridContainer/SoundSlider
-@onready var fireworks_checkbox:CheckButton = $VBoxContainer/GridContainer/FireworksCheckbox
+var backup_xp:int
+var backup_xp_next:int
+var backup_level:int = 0
+var backup_rank:String
+
 @onready var progress:TextureProgressBar = $VBoxContainer/XP/ProgressBar
 @onready var sfx_fireworks:AudioStreamPlayer = $VBoxContainer/XP/ProgressBar/SFXfireworks
 @onready var fireworks_timer:Timer = $VBoxContainer/XP/ProgressBar/FireworksTimer
@@ -47,8 +43,9 @@ var stats:StatsDataRC
 @onready var fire_particles_two:GPUParticles2D = $VBoxContainer/XP/ProgressBar/Fire2/GPUParticles2D
 @onready var xp_label:Label = $VBoxContainer/XP/HBoxContainer/XPlabel
 @onready var level_label:Label = $VBoxContainer/XP/HBoxContainer/LevelLabel
-@onready var reset_button:Button = $VBoxContainer/CenterContainer/ResetButton
 
+@onready var restore_button:Button = $VBoxContainer/GridContainer/ResetUndoButton
+@onready var reset_button:Button = $VBoxContainer/GridContainer/ResetButton
 @onready var settings_button = $VBoxContainer/GridContainer/SettingsButton
 
 func _ready() -> void:
@@ -62,20 +59,8 @@ func _ready() -> void:
 	fireworks_timer.timeout.connect(_stop_fireworks); _stop_fireworks()
 	_connect_checkboxes()
 
-	_load_checkbox_state()
 	_load_experience_progress()
 	_update_progress()
-
-func _load_checkbox_state() -> void:
-	explosion_checkbox.button_pressed = stats.explosions
-	blips_checkbox.button_pressed = stats.blips
-	newline_checkbox.button_pressed = stats.newline
-	chars_checkbox.button_pressed = stats.chars
-	shake_checkbox.button_pressed = stats.shake
-	sound_checkbox.button_pressed = stats.sound
-	fireworks_checkbox.button_pressed = stats.fireworks
-	sound_slider.value = stats.sound_addend
-	shake_slider.value = stats.shake_scalar
 
 func _load_experience_progress() -> void:
 	xp_next = 2 * BASE_XP
@@ -115,55 +100,47 @@ func _update_progress() -> void:
 	level_label.text = "%s dev - Lvl %d" % [stats.rank,stats.level]
 
 func _connect_checkboxes() -> void:
-	explosion_checkbox.toggled.connect(func(toggled) -> void:
-		stats.explosions = toggled
-	)
-	blips_checkbox.toggled.connect(func(toggled) -> void:
-		stats.blips = toggled
-	)
-	newline_checkbox.toggled.connect(func(toggled) -> void:
-		stats.newline = toggled
-	)
-	chars_checkbox.toggled.connect(func(toggled) -> void:
-		stats.chars = toggled
-	)
-	shake_checkbox.toggled.connect(func(toggled) -> void:
-		stats.shake = toggled
-	)
-	shake_slider.drag_ended.connect(func(_bool:bool) -> void:
-		print_debug(MSG01+str(shake_slider.value))
-		stats.shake_scalar = shake_slider.value
-	)
-	sound_checkbox.toggled.connect(func(toggled) -> void:
-		stats.sound = toggled
-	)
-	sound_slider.drag_ended.connect(func(_bool:bool) -> void:
-		print_debug(MSG02+str(sound_slider.value))
-		stats.sound_addend = sound_slider.value
-	)
-	fireworks_checkbox.toggled.connect(func(toggled) -> void:
-		stats.fireworks = toggled
-	)
 	settings_button.pressed.connect(func() -> void:
+		settings_button.disabled = true
+		restore_button.disabled = true
+		reset_button.disabled = true
 		var window:Resource = load("res://addons/ridiculous_coding/settings_window.tscn")
-		var window_instanciated:Window = window.instantiate()
-		window_instanciated.stats = stats
+		var window_instance:Window = window.instantiate()
+		window_instance.stats = stats
+		window_instance.position = DisplayServer.screen_get_size() / 2 - window_instance.size / 2
 		DisplayServer.set_native_icon("res://addons/ridiculous_coding/icon_small.ico")
-		window_instanciated.position = DisplayServer.screen_get_size() / 2 - window_instanciated.size / 2
-		add_child(window_instanciated,false,Node.INTERNAL_MODE_FRONT)
-		window_instanciated.transfer_stats_data_rc.connect(_get_stats)
+		add_child(window_instance,false,Node.INTERNAL_MODE_FRONT)
+		window_instance.rc_settings_window_is_exiting.connect(func() -> void:
+			var settings_window:Window = get_child(0,true)
+			stats = settings_window.stats
+			settings_button.disabled = false
+			restore_button.disabled = false
+			reset_button.disabled = false
+		)
 	)
-
-func _get_stats() -> void:
-	var settings_window:Window = get_child(0,true)
-	stats = settings_window.stats
+	restore_button.pressed.connect(func() -> void:
+		if backup_level == 0: return
+		stats.xp = backup_xp
+		xp_next = stats.xp + round(BASE_XP * stats.level / 10.0) * 10
+		stats.level = backup_level
+		stats.rank = backup_rank
+		_load_experience_progress()
+		_update_progress()
+	)
 
 func _on_reset_button_pressed() -> void:
+	backup_xp = stats.xp
+	backup_xp_next = xp_next
+	backup_level = stats.level
+	backup_rank = stats.rank
+
 	xp_next = 2 * BASE_XP
 	progress.value = 0
 	progress.max_value = xp_next
-	stats = StatsDataRC.new()
-	_load_checkbox_state()
+	var default_stats = StatsDataRC.new()
+	stats.xp = default_stats.xp
+	stats.level = default_stats.level
+	stats.rank = default_stats.rank
 	_update_progress()
 
 func write_savefile() -> void:

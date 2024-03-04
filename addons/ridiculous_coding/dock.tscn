@@ -29,7 +29,7 @@ hue_variation_max = 0.17
 
 [node name="RidiculousCodingDock" type="Control"]
 texture_filter = 5
-custom_minimum_size = Vector2(300, 238)
+custom_minimum_size = Vector2(250, 100)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,19 +55,17 @@ layout_mode = 2
 [node name="XPlabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "XP 299 / 350"
+text = "XP 0 / 100"
 
 [node name="LevelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "infant dev - Lvl 3"
+text = "infant dev - Lvl 0"
 horizontal_alignment = 2
 
 [node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/XP"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-max_value = 150.0
-value = 99.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_vdb3k")
 texture_progress = ExtResource("4_y2kl4")
@@ -110,70 +108,16 @@ volume_db = -8.0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
-columns = 2
-
-[node name="ExplosionCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 11
-button_pressed = true
-text = "Explosions"
-
-[node name="FireworksCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 11
-button_pressed = true
-text = "Fireworks"
-
-[node name="BlipCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 11
-button_pressed = true
-text = "Blips"
-
-[node name="NewlineCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-button_pressed = true
-text = "Newline"
-
-[node name="CharsCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 11
-button_pressed = true
-text = "Chars"
+columns = 3
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="ShakeCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
+[node name="ResetUndoButton" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 11
-button_pressed = true
-text = "Shake"
+text = "Undo Reset"
 
-[node name="ShakeSlider" type="HSlider" parent="VBoxContainer/GridContainer"]
+[node name="ResetButton" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-max_value = 2.0
-step = 0.1
-value = 1.0
-
-[node name="SoundCheckbox" type="CheckButton" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 11
-button_pressed = true
-text = "Sound"
-
-[node name="SoundSlider" type="HSlider" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-min_value = -20.0
-max_value = 20.0
-step = 2.0
-
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="ResetButton" type="Button" parent="VBoxContainer/CenterContainer"]
-layout_mode = 2
-text = "--reset--"
+text = "Reset Level"
