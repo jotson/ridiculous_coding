@@ -63,7 +63,7 @@ func _editor_script_changed(script) -> void:
 	editors.clear()
 	_get_all_text_editors(script_editor)
 
-func _process(delta) -> void:
+func _process(delta:float) -> void:
 	var editor := get_editor_interface()
 	if shake_duration > 0:
 		shake_duration -= delta
@@ -74,11 +74,10 @@ func _process(delta) -> void:
 	timer += delta
 	if (pitch_increase > 0.0): pitch_increase -= delta * PITCH_DECREMENT
 
-func _shake_screen(duration, intensity) -> void:
+func _shake_screen(duration:float,intensity:float,unqiue_scalar:float) -> void:
 	if shake_duration > 0: return
-	else:
-		shake_duration = duration
-		shake_intensity = intensity * dock.stats.shake_scalar
+	shake_duration = duration
+	shake_intensity = intensity * dock.stats.shake_scalar * unqiue_scalar
 
 func _caret_changed(textedit) -> void:
 	var editor := get_editor_interface()
@@ -93,6 +92,7 @@ func _text_changed(textedit : TextEdit) -> void:
 	var pos:Vector2 = textedit.get_caret_draw_pos() + Vector2(0,(line_height*-1)/2.0)
 	emit_signal("typing")
 	if editors.has(textedit):
+
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
 			timer = 0.0
@@ -101,35 +101,50 @@ func _text_changed(textedit : TextEdit) -> void:
 			boom.position = pos
 			boom.destroy = true
 			boom.explosions = dock.stats.explosions
-			if dock.stats.chars == true: boom.last_key = last_key
-			boom.sound = dock.stats.sound
-			boom.sound_addend = dock.stats.sound_addend
+			if dock.stats.chars == true and dock.stats.explosions_chars == true:
+				boom.last_key = last_key
+			if dock.stats.sound == true and dock.stats.explosions_sound == true:
+				boom.sound = true
+				boom.sound_addend = dock.stats.sound_addend + dock.stats.explosions_sound_addend
 			textedit.add_child(boom)
-			if dock.stats.shake == true: _shake_screen(0.2, 10)
+			if dock.stats.shake == true and dock.stats.explosions_shake == true:
+				_shake_screen(0.2,10,dock.stats.explosions_shake_scalar)
+
 		# Typing
 		if timer > 0.02 and len(textedit.text) >= len(editors[textedit]["text"]):
 			timer = 0.0
 			# Draw the blip
 			var blip:Blip = BLIP.instantiate()
-			blip.pitch_increase = pitch_increase
-			pitch_increase += 1.0
+
 			blip.position = pos
 			blip.destroy = true
 			blip.blips = dock.stats.blips
-			if dock.stats.chars == true: blip.last_key = last_key
-			blip.sound = dock.stats.sound
-			blip.sound_addend = dock.stats.sound_addend
+			if dock.stats.chars == true and dock.stats.blips_chars == true:
+				blip.last_key = last_key
+			if dock.stats.sound == true and dock.stats.blips_sound == true:
+				blip.sound = true
+				blip.sound_addend = dock.stats.sound_addend + dock.stats.blips_sound_addend
+				match dock.stats.blips_sound_selected:
+					0: blip.sound_selected = load("res://addons/ridiculous_coding/typewriter.wav")
+					1: blip.sound_selected = load("res://addons/ridiculous_coding/blip.wav")
+				if dock.stats.blips_sound_pitch == true:
+					blip.pitch_increase = pitch_increase
+			pitch_increase += 1.0
 			textedit.add_child(blip)
-			if dock.stats.shake == true: _shake_screen(0.05, 5)
+			if dock.stats.shake == true and dock.stats.blips_shake == true:
+				_shake_screen(0.05,5,dock.stats.blips_shake_scalar)
+
 		# Newline
-		if textedit.get_caret_line() != editors[textedit]["line"] and dock.stats.newline == true:
+		if textedit.get_caret_line() != editors[textedit]["line"]:
 			# Draw the newline
-			var newline:Newline = NEWLINE.instantiate()
-			newline.position = pos
-			newline.destroy = true
-			newline.newline = dock.stats.newline
-			textedit.add_child(newline)
-			if dock.stats.shake == true: _shake_screen(0.05, 5)
+			if dock.stats.newline == true:
+				var newline:Newline = NEWLINE.instantiate()
+				newline.position = pos
+				newline.destroy = true
+				newline.newline = dock.stats.newline
+				textedit.add_child(newline)
+			if dock.stats.shake == true and dock.stats.newline_shake == true:
+				_shake_screen(0.05,5,dock.stats.newline_shake_scalar)
 	else: pass
 	editors[textedit]["text"] = textedit.text
 	editors[textedit]["line"] = textedit.get_caret_line()

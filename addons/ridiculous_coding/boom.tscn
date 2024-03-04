@@ -108,7 +108,6 @@ frame_progress = 1.0
 stream = ExtResource("2")
 volume_db = -30.0
 autoplay = true
-stream_paused = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -120,13 +119,13 @@ autoplay = "default"
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.29261, 0.413526, 0.150422, 0.975378)
+modulate = Color(1.50661, 0.348686, 0.0830176, 0.967601)
 texture_filter = 5
 offset_left = -35.0
-offset_top = -63.0
+offset_top = -25.0
 offset_right = 35.0
-offset_bottom = -40.0
-scale = Vector2(1.5, 1.5)
+offset_bottom = -2.0
+scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("5")
 theme_override_font_sizes/font_size = 14

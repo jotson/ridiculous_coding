@@ -136,12 +136,13 @@ texture_filter = 5
 position = Vector2(-5, 4)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_g4ki7")
+frame = 7
+frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xgx7t")
 volume_db = -5.0
 autoplay = true
-stream_paused = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -153,7 +154,7 @@ autoplay = "default"
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(0.658364, 0.390749, 1.13713, 1)
+modulate = Color(1.01233, 0.350658, 1.82538, 1)
 texture_filter = 5
 offset_left = -25.0
 offset_top = -15.0

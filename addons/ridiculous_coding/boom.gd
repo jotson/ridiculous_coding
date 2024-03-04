@@ -3,7 +3,7 @@ class_name Boom extends Node2D
 
 var destroy:bool = false
 var last_key:String = ""
-var sound:bool = true
+var sound:bool = false
 var sound_addend:float = 0.0
 var explosions:bool = false
 

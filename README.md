@@ -18,8 +18,7 @@ What I changed:
 - Code is more alligned with godot writing conventions
 - Code is more static
 - Less overhead in code
-- Added a seperate newline toggle button (For the newline effect)
-- Added sliders for shake and sound
+- Added an extensive settings window.
 - Fireworks are now purple-ish instead of rainbow colored
 - The progress bar now includes different "ranks" to climb
 - I changed the typing sound to a typewriter clicking (previous a beeping sound). The old .wav still exists if you wanna change back

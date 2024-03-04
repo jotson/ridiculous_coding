@@ -2,7 +2,7 @@
 class_name Newline extends Node2D
 
 var destroy:bool = false
-var newline:bool = true
+var newline:bool = false
 
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var newline_sprite:AnimatedSprite2D = $NewlineSprite

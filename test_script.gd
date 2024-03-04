@@ -9,6 +9,11 @@ This is a test on  line without the tabulator
 	Your test could go below......
 
 	This is my test!
-	tttttttttttttttttttttttttttttt
-	tttttttt
+	ttttttttttttttttttttttttttt
+0 = 100
+1 = 150
+2 = 250
+3 = 400
+4 = 600
+5 = 850
 """

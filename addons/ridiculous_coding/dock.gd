@@ -5,8 +5,6 @@ const BASE_XP:int = 50
 const ROOT_PATH:String = "user://"
 const FILE_NAME:String = "ridiculous_xp.tres"
 const WARN:String = "RidiculousCoding plugin couldn't load any savedata, proceed to load and save default config!\nShould the addon not work proceed to RELOAD!"
-const MSG01:String = "--> RC: Shake Intensity multiplier set: "
-const MSG02:String = "--> RC: Sound Volume addend set: "
 
 const RANKS := {
 	10:  "initiate",
@@ -32,7 +30,6 @@ var xp_next:int = 2 * BASE_XP
 var stats:StatsDataRC
 
 var backup_xp:int
-var backup_xp_next:int
 var backup_level:int = 0
 var backup_rank:String
 
@@ -46,7 +43,7 @@ var backup_rank:String
 
 @onready var restore_button:Button = $VBoxContainer/GridContainer/ResetUndoButton
 @onready var reset_button:Button = $VBoxContainer/GridContainer/ResetButton
-@onready var settings_button = $VBoxContainer/GridContainer/SettingsButton
+@onready var settings_button:Button = $VBoxContainer/GridContainer/SettingsButton
 
 func _ready() -> void:
 	if _verify_file() == false:
@@ -55,9 +52,8 @@ func _ready() -> void:
 		write_savefile()
 	else: stats = _load_savefile()
 
-	reset_button.pressed.connect(_on_reset_button_pressed)
 	fireworks_timer.timeout.connect(_stop_fireworks); _stop_fireworks()
-	_connect_checkboxes()
+	_connect_signals()
 
 	_load_experience_progress()
 	_update_progress()
@@ -65,15 +61,15 @@ func _ready() -> void:
 func _load_experience_progress() -> void:
 	xp_next = 2 * BASE_XP
 	progress.max_value = xp_next
-	for i in range(2,stats.level+1):
+	for i in range(1,stats.level+1):
 		xp_next += round(BASE_XP * i / 10.0) * 10
 		progress.max_value = round(BASE_XP * stats.level / 10.0) * 10
 	progress.value = stats.xp - (xp_next - progress.max_value)
 
 func _start_fireworks() -> void:
-	if stats.sound == true:
+	if stats.sound == true and stats.fireworks_sound == true:
 		var base_db:float = -8.0
-		sfx_fireworks.volume_db = base_db + stats.sound_addend
+		sfx_fireworks.volume_db = base_db + stats.sound_addend + stats.fireworks_sound_addend
 		sfx_fireworks.play()
 	fireworks_timer.start()
 	fire_particles_one.emitting = true
@@ -99,49 +95,43 @@ func _update_progress() -> void:
 	xp_label.text = "XP %d / %d" % [stats.xp,xp_next]
 	level_label.text = "%s dev - Lvl %d" % [stats.rank,stats.level]
 
-func _connect_checkboxes() -> void:
+func _connect_signals() -> void:
 	settings_button.pressed.connect(func() -> void:
 		settings_button.disabled = true
-		restore_button.disabled = true
-		reset_button.disabled = true
 		var window:Resource = load("res://addons/ridiculous_coding/settings_window.tscn")
 		var window_instance:Window = window.instantiate()
 		window_instance.stats = stats
 		window_instance.position = DisplayServer.screen_get_size() / 2 - window_instance.size / 2
 		DisplayServer.set_native_icon("res://addons/ridiculous_coding/icon_small.ico")
 		add_child(window_instance,false,Node.INTERNAL_MODE_FRONT)
-		window_instance.rc_settings_window_is_exiting.connect(func() -> void:
+		window_instance.tree_exiting.connect(func() -> void:
 			var settings_window:Window = get_child(0,true)
 			stats = settings_window.stats
 			settings_button.disabled = false
-			restore_button.disabled = false
-			reset_button.disabled = false
 		)
 	)
 	restore_button.pressed.connect(func() -> void:
 		if backup_level == 0: return
 		stats.xp = backup_xp
-		xp_next = stats.xp + round(BASE_XP * stats.level / 10.0) * 10
 		stats.level = backup_level
 		stats.rank = backup_rank
 		_load_experience_progress()
 		_update_progress()
 	)
+	reset_button.pressed.connect(func() -> void:
+		backup_xp = stats.xp
+		backup_level = stats.level
+		backup_rank = stats.rank
 
-func _on_reset_button_pressed() -> void:
-	backup_xp = stats.xp
-	backup_xp_next = xp_next
-	backup_level = stats.level
-	backup_rank = stats.rank
-
-	xp_next = 2 * BASE_XP
-	progress.value = 0
-	progress.max_value = xp_next
-	var default_stats = StatsDataRC.new()
-	stats.xp = default_stats.xp
-	stats.level = default_stats.level
-	stats.rank = default_stats.rank
-	_update_progress()
+		xp_next = 2 * BASE_XP
+		progress.value = 0
+		progress.max_value = xp_next
+		var default_stats = StatsDataRC.new()
+		stats.xp = default_stats.xp
+		stats.level = default_stats.level
+		stats.rank = default_stats.rank
+		_update_progress()
+	)
 
 func write_savefile() -> void:
 	ResourceSaver.save(stats,ROOT_PATH+FILE_NAME,0)
