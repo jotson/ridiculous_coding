@@ -26,6 +26,14 @@ What I changed:
 - Chars emited upon destruction are now red / yellow instead of rainbow colored
 - Prob some more stuff I don't remember as of writing this LOL
 
+What I want to do:
+- Make the implementation of some scenes more modular
+- Settings to configure pitch increase
+- Settings to confire VFX color schemes
+- Other Settings
+- Maybe some more sounds to pick from
+- Implement an optional custom background feature
+
 Besides the obvious fix and some new features my version of the addon aims to be overall less 'in your face'. **This is my personal taste**. Feel free to revert any changes back to a more 'in your face' type of style.
 
 **A huge thanks** to John Watson for creating such an amazing addon / plugin :D !!!!!!!
