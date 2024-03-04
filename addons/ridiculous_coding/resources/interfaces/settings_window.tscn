@@ -64,7 +64,7 @@ layout_mode = 2
 
 [node name="UpdateButton" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/CenterContainerUpdate"]
 layout_mode = 2
-text = "--click here after installing a new version--"
+text = "--click here after you installed a new version--"
 
 [node name="GridContainerMaster" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2

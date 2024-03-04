@@ -25,7 +25,3 @@ project/assembly_name="Ridiculous Coding"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
-
-[physics]
-
-common/enable_pause_aware_picking=true

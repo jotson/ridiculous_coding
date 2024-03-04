@@ -119,7 +119,7 @@ autoplay = "default"
 one_shot = true
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.1378, 0.66006, 0.278808, 0.872385)
+modulate = Color(1.30101, 1.44504, 0.0845115, 0.880912)
 texture_filter = 5
 offset_left = -35.0
 offset_top = -25.0
