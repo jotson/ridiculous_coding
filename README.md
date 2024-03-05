@@ -8,29 +8,29 @@ As this is a fork of the original addon by John Watson, the general idea and str
 Should you encounter any bugs (I hope you won't) while using my version of the addon please do not bother the original author as it is most likely an issue caused by me.
 
 What I fixed:
-- Saving works properly over new / multiple sessions now
+- **Saving works properly over new / multiple sessions now**
 - Characters / Keys now animate even with the boom and / or blip settings toggled off
 - Fixed some node errors (most likely caused by porting to godot 4)
-- Slightly more stable in my testing
+- More stable in my testing
 
 What I changed:
-- Saving now utilizes godot resources instead of ini files
-- Code is more alligned with godot writing conventions
-- Code is more static
-- Less overhead in code
-- Added an extensive settings window.
-- Fireworks are now purple-ish instead of rainbow colored
+- **Added an extensive settings window**
 - The progress bar now includes different "ranks" to climb
-- I changed the typing sound to a typewriter clicking (previous a beeping sound). The old .wav still exists if you wanna change back
+- You can choose between the original beeping sound and my typewriter sound
 - Smaller char / blip / newline effects
+- Fireworks are now purple-ish instead of rainbow colored
 - Chars emited upon destruction are now red / yellow instead of rainbow colored
+- Less overhead in code
+- Saving now utilizes godots resources instead of .ini files
+- Code is more alligned with (godot) writing conventions
+- Code is more static
 - Prob some more stuff I don't remember as of writing this LOL
 
 What I want to do:
 - Make the implementation of some scenes more modular
 - Settings to configure pitch increase
-- Settings to confire VFX color schemes
-- Other Settings
+- Settings to configure VFX color schemes
+- Other settings
 - Maybe some more sounds to pick from
 - Implement an optional custom background feature
 
