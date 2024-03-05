@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ridiculous Coding Addon"
-config/version="2.0.2"
+config/version="2.1.2"
 config/tags=PackedStringArray("addon", "under_development")
 config/features=PackedStringArray("4.2")
 boot_splash/image="res://ridiculous.png"

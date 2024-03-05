@@ -3,23 +3,25 @@ extends EditorPlugin
 
 signal typing
 
-# Scenes preloaded
+#region Preloaded Resources
 const NEWLINE:Resource = preload("res://addons/ridiculous_coding/resources/effects/newline.tscn")
 const BOOM:Resource = preload("res://addons/ridiculous_coding/resources/effects/boom.tscn")
 const BLIP:Resource = preload("res://addons/ridiculous_coding/resources/effects/blip.tscn")
 const DOCK:Resource = preload("res://addons/ridiculous_coding/resources/interfaces/dock.tscn")
-
-# Inner Variables
-const PITCH_DECREMENT:float = 2.7
-const PITCH_CLAMP:float = 25.5
+#endregion
+#region Variables
+var pitch_decrement:float = 2.7
+var pitch_clamp:float = 25.5
 var pitch_increase:float = 0.0
 
-var timer:float = 0.0
 var shake_duration:float = 0.0
 var shake_intensity:float  = 0.0
+
+var timer:float = 0.0
 var last_key:String = ""
 var editors := {}
 var dock:RidiculousCodingDock
+#endregion
 
 func _enter_tree() -> void:
 	var editor:EditorInterface = get_editor_interface()
@@ -33,13 +35,12 @@ func _exit_tree() -> void:
 	if dock:
 		dock.write_savefile()
 		remove_control_from_docks(dock)
-		dock.free()
+		dock.queue_free()
 
 func _get_all_text_editors(parent:Node) -> void:
 	for child in parent.get_children():
 		if child.get_child_count():
 			_get_all_text_editors(child)
-
 		if child is TextEdit:
 			editors[child] = {
 				"text" : child.text,
@@ -58,7 +59,7 @@ func _gui_input(event) -> void:
 		event = event as InputEventKey
 		last_key = OS.get_keycode_string(event.get_keycode_with_modifiers())
 
-func _editor_script_changed(script) -> void:
+func _editor_script_changed(_script) -> void:
 	var editor := get_editor_interface()
 	var script_editor := editor.get_script_editor()
 	editors.clear()
@@ -66,21 +67,25 @@ func _editor_script_changed(script) -> void:
 
 func _process(delta:float) -> void:
 	var editor := get_editor_interface()
-	if shake_duration > 0:
-		shake_duration -= delta
-		var random_pos:float = randf_range(-shake_intensity,shake_intensity)
-		editor.get_base_control().position = Vector2(random_pos,random_pos)
-	else:
-		editor.get_base_control().position = Vector2.ZERO
+	if dock.stats.shake == true:
+		if shake_duration > 0:
+			shake_duration -= delta
+			var random_pos:float = randf_range(-shake_intensity,shake_intensity)
+			editor.get_base_control().position = Vector2(random_pos,random_pos)
+		else:
+			editor.get_base_control().position = Vector2.ZERO
 	timer += delta
-	if (pitch_increase > 0.0):
-		if (pitch_increase > PITCH_CLAMP): pitch_increase = PITCH_CLAMP-0.1
-		pitch_increase -= delta * PITCH_DECREMENT
+	if dock.stats.blips_sound_pitch == true:
+		if (pitch_increase > 0.0):
+			if (pitch_increase > pitch_clamp): pitch_increase = pitch_clamp - 0.1
+			pitch_increase -= delta * pitch_decrement
 
 func _shake_screen(duration:float,intensity:float,unqiue_scalar:float) -> void:
 	if shake_duration > 0: return
+	else: pass
 	shake_duration = duration
-	shake_intensity = intensity * dock.stats.shake_scalar * unqiue_scalar
+	var final_scalar:float = dock.stats.shake_scalar * unqiue_scalar
+	shake_intensity = intensity * final_scalar
 
 func _caret_changed(textedit) -> void:
 	var editor := get_editor_interface()
@@ -96,6 +101,7 @@ func _text_changed(textedit : TextEdit) -> void:
 	emit_signal("typing")
 	if editors.has(textedit):
 
+		# TODO: Make the scenes more modular
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
 			timer = 0.0

@@ -156,11 +156,11 @@ one_shot = true
 [node name="Label" type="Label" parent="."]
 modulate = Color(1.84802, 0.828863, 1.21625, 1)
 texture_filter = 5
-offset_left = -25.0
-offset_top = -15.0
-offset_right = 45.0
-offset_bottom = 8.0
-scale = Vector2(0.5, 0.5)
+offset_left = -15.0
+offset_top = -43.0
+offset_right = 55.0
+offset_bottom = -20.0
+scale = Vector2(1.45, 1.45)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("4_s3hpm")
 theme_override_font_sizes/font_size = 14

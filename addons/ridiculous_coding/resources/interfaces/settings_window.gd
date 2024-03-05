@@ -1,15 +1,16 @@
 @tool
 class_name RCwindow extends Window
 
+#region Constants
 const ROOT_PATH:String = "user://"
 const FILE_NAME:String = "ridiculous_xp.tres"
 
 const MSG01:String = "--> RC: %s shake intensity multiplier set: "
 const MSG02:String = "--> RC: %s sound volume addend set: "
 const MSG03:String = "--> RC: Settings Window received close request!"
-
+#endregion
 var stats:StatsDataRC = StatsDataRC.new()
-
+#region Onready Variables
 @onready var update_addon_button:Button = $ScrollContainer/Control/MarginContainer/VBoxContainer/CenterContainerUpdate/UpdateButton
 @onready var reset_settings_button:Button = $ScrollContainer/Control/MarginContainer/VBoxContainer/CenterContainerReset/ResetButton
 
@@ -42,6 +43,7 @@ var stats:StatsDataRC = StatsDataRC.new()
 @onready var fireworks_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks/FireworksCheckbox
 @onready var fireworks_sound_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks/FireworksSoundCheckbox
 @onready var fireworks_sound_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks/FireworksSoundSlider
+#endregion
 
 func _notification(what:int) -> void:
 	match what:
