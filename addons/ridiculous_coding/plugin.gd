@@ -10,9 +10,7 @@ const BLIP:Resource = preload("res://addons/ridiculous_coding/resources/effects/
 const DOCK:Resource = preload("res://addons/ridiculous_coding/resources/interfaces/dock.tscn")
 #endregion
 #region Variables
-var pitch_decrement:float = 2.7
-var pitch_clamp:float = 25.5
-var pitch_increase:float = 0.0
+var pitch:float = 0.0
 
 var shake_duration:float = 0.0
 var shake_intensity:float  = 0.0
@@ -76,9 +74,9 @@ func _process(delta:float) -> void:
 			editor.get_base_control().position = Vector2.ZERO
 	timer += delta
 	if dock.stats.blips_sound_pitch == true:
-		if (pitch_increase > 0.0):
-			if (pitch_increase > pitch_clamp): pitch_increase = pitch_clamp - 0.1
-			pitch_increase -= delta * pitch_decrement
+		if (pitch > 0.0):
+			if (pitch > dock.stats.pitch_clamp): pitch = dock.stats.pitch_clamp - 0.1
+			pitch -= delta * dock.stats.pitch_decrement
 
 func _shake_screen(duration:float,intensity:float,unqiue_scalar:float) -> void:
 	if shake_duration > 0: return
@@ -136,8 +134,8 @@ func _text_changed(textedit : TextEdit) -> void:
 					0: blip.sound_selected = load("res://addons/ridiculous_coding/sounds/typing/typewriter.wav")
 					1: blip.sound_selected = load("res://addons/ridiculous_coding/sounds/typing/blip.wav")
 				if dock.stats.blips_sound_pitch == true:
-					blip.pitch_increase = pitch_increase
-					pitch_increase += 0.88
+					blip.pitch_increment = pitch
+					pitch += dock.stats.pitch_increment
 			textedit.add_child(blip)
 			if dock.stats.shake == true and dock.stats.blips_shake == true:
 				_shake_screen(0.05,5,dock.stats.blips_shake_scalar)

@@ -28,7 +28,6 @@ What I changed:
 
 What I want to do:
 - Make the implementation of some scenes more modular
-- Settings to configure pitch increase
 - Settings to configure VFX color schemes
 - Other settings
 - Maybe some more sounds to pick from

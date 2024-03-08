@@ -31,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Control" type="Control" parent="ScrollContainer"]
-custom_minimum_size = Vector2(400, 888)
+custom_minimum_size = Vector2(400, 1100)
 layout_mode = 2
 
 [node name="BackgroundColorRect" type="ColorRect" parent="ScrollContainer/Control"]
@@ -57,7 +57,7 @@ theme_override_constants/margin_right = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Control/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 55
+theme_override_constants/separation = 20
 
 [node name="CenterContainerUpdate" type="CenterContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -112,6 +112,9 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_h2j64")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jy0i1")
 disabled = true
 
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="GridContainerNewline" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
@@ -143,6 +146,9 @@ size_flags_vertical = 4
 max_value = 2.0
 step = 0.1
 value = 1.0
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="GridContainerExplosions" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -185,6 +191,9 @@ size_flags_vertical = 4
 min_value = -20.0
 max_value = 20.0
 step = 2.0
+
+[node name="HSeparator3" type="HSeparator" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="GridContainerBlips" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -241,6 +250,48 @@ popup/item_0/text = "TYPEWRITER.wav"
 popup/item_0/id = 0
 popup/item_1/text = "BLIP.wav"
 popup/item_1/id = 1
+
+[node name="PitchClampLabel" type="Label" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+layout_mode = 2
+text = "Pitch Clamp"
+
+[node name="PitchClampSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 40.0
+step = 0.5
+value = 25.5
+
+[node name="PitchIncrementLabel" type="Label" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+layout_mode = 2
+text = "Pitch Increment"
+
+[node name="PitchIncrementSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 0.2
+max_value = 2.0
+step = 0.2
+value = 1.0
+
+[node name="PitchDecrementLabel" type="Label" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+layout_mode = 2
+text = "Pitch Decrement"
+
+[node name="PitchDecrementSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 0.2
+max_value = 4.0
+step = 0.2
+value = 2.8
+
+[node name="PitchDebugButton" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+layout_mode = 2
+text = "Debug Pitch"
+
+[node name="HSeparator4" type="HSeparator" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="GridContainerFireworks" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -30,7 +30,11 @@ class_name StatsDataRC extends Resource
 @export var blips_sound:bool = true
 @export var blips_sound_addend:float = 0.0
 @export var blips_sound_selected:int = 0
+
 @export var blips_sound_pitch:bool = false
+@export var pitch_clamp:float = 25.5
+@export var pitch_increment:float = 1.0
+@export var pitch_decrement:float = 2.7
 
 @export var fireworks:bool = true
 @export var fireworks_sound:bool = true

@@ -1,6 +1,8 @@
 @tool
 class_name RCwindow extends Window
 
+signal rc_debug_pitch
+
 #region Constants
 const ROOT_PATH:String = "user://"
 const FILE_NAME:String = "ridiculous_xp.tres"
@@ -8,6 +10,7 @@ const FILE_NAME:String = "ridiculous_xp.tres"
 const MSG01:String = "--> RC: %s shake intensity multiplier set: "
 const MSG02:String = "--> RC: %s sound volume addend set: "
 const MSG03:String = "--> RC: Settings Window received close request!"
+const MSG04:String = "--> RC: Pitch %s set: "
 #endregion
 var stats:StatsDataRC = StatsDataRC.new()
 #region Onready Variables
@@ -39,6 +42,10 @@ var stats:StatsDataRC = StatsDataRC.new()
 @onready var blips_sound_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsSoundSlider
 @onready var blips_sound_selected:OptionButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsSoundSelectionMenu
 @onready var blips_sound_pitch_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsSoundPitchCheckbox
+@onready var pitch_clamp_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/PitchClampSlider
+@onready var pitch_increment_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/PitchIncrementSlider
+@onready var pitch_decrement_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/PitchDecrementSlider
+@onready var pitch_debug_button:Button = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/PitchDebugButton
 
 @onready var fireworks_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks/FireworksCheckbox
 @onready var fireworks_sound_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks/FireworksSoundCheckbox
@@ -89,7 +96,11 @@ func _load_settings_state() -> void:
 	blips_sound_checkbox.button_pressed = stats.blips_sound
 	blips_sound_slider.value = stats.blips_sound_addend
 	blips_sound_selected.selected = stats.blips_sound_selected
+
 	blips_sound_pitch_checkbox.button_pressed = stats.blips_sound_pitch
+	pitch_clamp_slider.value = stats.pitch_clamp
+	pitch_increment_slider.value = stats.pitch_increment
+	pitch_decrement_slider.value = stats.pitch_decrement
 
 	fireworks_checkbox.button_pressed = stats.fireworks
 	fireworks_sound_checkbox.button_pressed = stats.fireworks_sound
@@ -152,9 +163,24 @@ func _connect_settings() -> void:
 		stats.blips_sound_addend = blips_sound_slider.value
 	)
 	blips_sound_selected.item_selected.connect(func(index:int) -> void: stats.blips_sound_selected = index)
+
+	# Blips Pitch connections
 	blips_sound_pitch_checkbox.toggled.connect(func(toggled:bool) -> void:
 		stats.blips_sound_pitch = toggled
 	)
+	pitch_clamp_slider.drag_ended.connect(func(_bool:bool) -> void:
+		stats.pitch_clamp = pitch_clamp_slider.value
+		print_debug(MSG04 % ["clamp"]+str(pitch_clamp_slider.value))
+	)
+	pitch_increment_slider.drag_ended.connect(func(_bool:bool) -> void:
+		stats.pitch_increment = pitch_increment_slider.value
+		print_debug(MSG04 % ["increment"]+str(pitch_increment_slider.value))
+	)
+	pitch_decrement_slider.drag_ended.connect(func(_bool:bool) -> void:
+		stats.pitch_decrement = pitch_decrement_slider.value
+		print_debug(MSG04 % ["decrement"]+str(pitch_decrement_slider.value))
+	)
+	pitch_debug_button.pressed.connect(func() -> void: emit_signal("rc_debug_pitch"))
 
 	# Fireworks connections
 	fireworks_checkbox.toggled.connect(func(toggled:bool) -> void: stats.fireworks = toggled)

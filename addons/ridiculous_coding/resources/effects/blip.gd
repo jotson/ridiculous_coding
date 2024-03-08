@@ -3,7 +3,7 @@ class_name Blip extends Node2D
 
 var destroy:bool = false
 var last_key:String = ""
-var pitch_increase:float = 0.0
+var pitch_increment:float = 0.0
 var sound:bool = false
 var sound_addend:float = 0.0
 var sound_selected:AudioStreamWAV = preload("res://addons/ridiculous_coding/sounds/typing/typewriter.wav")
@@ -20,7 +20,7 @@ func _ready() -> void:
 		audio_stream_player.stream = sound_selected
 		var base_db:float = -5.0
 		audio_stream_player.volume_db = base_db + sound_addend
-		audio_stream_player.pitch_scale = 1.0 + pitch_increase * 0.01
+		audio_stream_player.pitch_scale = 1.0 + pitch_increment * 0.01
 		audio_stream_player.play()
 	if blips == true:
 		blips_sprite.frame = 0
