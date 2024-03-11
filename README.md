@@ -101,13 +101,19 @@ Currently I have no (active) social media!
 ### John Watson
 
 [Twitter](https://twitter.com/yafd) 
+
 [Gravity Ace](https://gravityace.com)
+
 [Gravity Ace on Steam](https://store.steampowered.com/app/1003860/Gravity_Ace/)
+
 [Gravity Ace on itch.io](https://jotson.itch.io/gravity)!
 
 ### Resources and Inspiration 
 
 [Textreme2 by Ash K](https://ash-k.itch.io/textreme-2)
+
 [RidiculousCoding by Jotson](https://github.com/jotson/ridiculous_coding/tree/godot4)
+
 [EditorImagePlugin2 by newjoker6](https://github.com/newjoker6/Editor-Image-Plugin-2)
+
 [EditorBackground by Nukiloco](https://github.com/Nukiloco/editor_background)
