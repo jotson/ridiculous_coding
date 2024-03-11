@@ -1,9 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0fhho0dp1svt"]
+[gd_scene load_steps=15 format=3 uid="uid://c0fhho0dp1svt"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/blip.gd" id="1_b2lxn"]
 [ext_resource type="Texture2D" uid="uid://d1tio2ceqgm7m" path="res://addons/ridiculous_coding/images/blip.png" id="2_n5ksr"]
-[ext_resource type="AudioStream" uid="uid://2qty6f6jeogc" path="res://addons/ridiculous_coding/sounds/typing/typewriter.wav" id="3_7vrup"]
-[ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="4_s3hpm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhabj"]
 atlas = ExtResource("2_n5ksr")
@@ -74,7 +72,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BlipsSprite:scale")
+tracks/0/path = NodePath("BlipSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -88,7 +86,7 @@ tracks/0/keys = {
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BlipsSprite:scale")
+tracks/0/path = NodePath("BlipSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,30 +94,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
 "values": [Vector2(1.5, 1.5), Vector2(2, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1.45, 1.45)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Label:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(-25, -15), Vector2(-15, -43)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8epm6"]
@@ -131,17 +105,13 @@ _data = {
 [node name="Blip2d" type="Node2D"]
 script = ExtResource("1_b2lxn")
 
-[node name="BlipsSprite" type="AnimatedSprite2D" parent="."]
+[node name="BlipSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 5
 position = Vector2(-5, 4)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_g4ki7")
 frame = 7
 frame_progress = 1.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_7vrup")
-volume_db = -5.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -151,18 +121,5 @@ autoplay = "default"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
-
-[node name="Label" type="Label" parent="."]
-modulate = Color(0.707762, 0.0521476, 0.887071, 1)
-texture_filter = 5
-offset_left = -15.0
-offset_top = -43.0
-offset_right = 55.0
-offset_bottom = -20.0
-scale = Vector2(1.45, 1.45)
-pivot_offset = Vector2(35, 8)
-theme_override_fonts/font = ExtResource("4_s3hpm")
-theme_override_font_sizes/font_size = 14
-uppercase = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

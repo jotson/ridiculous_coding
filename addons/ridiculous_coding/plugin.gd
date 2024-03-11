@@ -100,18 +100,16 @@ func _text_changed(textedit : TextEdit) -> void:
 	var pos:Vector2 = textedit.get_caret_draw_pos() + Vector2(0,(line_height*-1)/2.0)
 	emit_signal("typing")
 	if editors.has(textedit):
-
-		# TODO: Make the scenes more modular
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
 			timer = 0.0
-
 			# Draw the boom
-			var boom:RcBoom = BOOM.instantiate()
-			boom.position = pos
-			boom.destroy = true
-			boom.explosions = dock.stats.explosions
-			textedit.add_child(boom)
+			if dock.stats.explosions == true:
+				var boom:RcBoom = BOOM.instantiate()
+				boom.position = pos
+				boom.destroy = true
+				boom.explosions = dock.stats.explosions
+				textedit.add_child(boom)
 			# Draw the key
 			if dock.stats.chars == true and dock.stats.explosions_chars == true:
 				var key:RcKey = KEY.instantiate()
@@ -119,8 +117,7 @@ func _text_changed(textedit : TextEdit) -> void:
 				key.destroy = true
 				key.key = true
 				key.last_key = last_key
-				key.animation_name = "default"
-
+				key.animation_name = "explosion"
 				textedit.add_child(key)
 				key.set_key_color(1,2,0,1.5,0,0.4,0.85,1)
 			# Add the sound
@@ -140,22 +137,36 @@ func _text_changed(textedit : TextEdit) -> void:
 		if timer > 0.02 and len(textedit.text) >= len(editors[textedit]["text"]):
 			timer = 0.0
 			# Draw the blip
-			var blip:RcBlip = BLIP.instantiate()
-			blip.position = pos
-			blip.destroy = true
-			blip.blips = dock.stats.blips
+			if dock.stats.blips == true:
+				var blip:RcBlip = BLIP.instantiate()
+				blip.position = pos
+				blip.destroy = true
+				blip.blips = dock.stats.blips
+				textedit.add_child(blip)
+			# Draw the key
 			if dock.stats.chars == true and dock.stats.blips_chars == true:
-				blip.last_key = last_key
+				var key:RcKey = KEY.instantiate()
+				key.position = pos
+				key.destroy = true
+				key.key = true
+				key.last_key = last_key
+				key.animation_name = "blip"
+				textedit.add_child(key)
+				key.set_key_color(0,2,0,2,0,2,1,1)
+			# Add the sound
 			if dock.stats.sound == true and dock.stats.blips_sound == true:
-				blip.sound = true
-				blip.sound_addend = dock.stats.sound_addend + dock.stats.blips_sound_addend
-				match dock.stats.blips_sound_selected:
-					0: blip.sound_selected = load("res://addons/ridiculous_coding/sounds/typing/typewriter.wav")
-					1: blip.sound_selected = load("res://addons/ridiculous_coding/sounds/typing/blip.wav")
+				var sound:RcSound = SOUND.instantiate()
+				sound.destroy = true
+				sound.sound = true
+				sound.base_db = -5.0
+				sound.sound_addend = dock.stats.sound_addend + dock.stats.blips_sound_addend
 				if dock.stats.blips_sound_pitch == true:
-					blip.pitch_increment = pitch
+					sound.pitch_increment = pitch
 					pitch += dock.stats.pitch_increment
-			textedit.add_child(blip)
+				match dock.stats.blips_sound_selected:
+					0: sound.sound_selected = load("res://addons/ridiculous_coding/sounds/typing/typewriter.wav")
+					1: sound.sound_selected = load("res://addons/ridiculous_coding/sounds/typing/blip.wav")
+				textedit.add_child(sound)
 			# Apply the shake
 			if dock.stats.shake == true and dock.stats.blips_shake == true:
 				_shake_screen(0.05,5,dock.stats.blips_shake_scalar)

@@ -16,7 +16,6 @@ func _ready() -> void:
 		animation_player.stop()
 		animation_player.play(animation_name)
 	timer.start()
-	print("finished READY for key",key_label.text)
 
 func set_key_color(r1:float,r2:float,g1:float,g2:float,b1:float,b2:float,a1:float,a2:float) -> void:
 	var key_label_:Label = $Label

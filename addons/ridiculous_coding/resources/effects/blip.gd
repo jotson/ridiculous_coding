@@ -2,32 +2,18 @@
 class_name RcBlip extends Node2D
 
 var destroy:bool = false
-var last_key:String = ""
-var pitch_increment:float = 0.0
-var sound:bool = false
-var sound_addend:float = 0.0
-var sound_selected:AudioStreamWAV = preload("res://addons/ridiculous_coding/sounds/typing/typewriter.wav")
 var blips:bool = false
 
-@onready var audio_stream_player:AudioStreamPlayer = $AudioStreamPlayer
-@onready var blips_sprite:AnimatedSprite2D = $BlipsSprite
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
+@onready var blip_sprite:AnimatedSprite2D = $BlipSprite
 @onready var timer:Timer = $Timer
-@onready var key_label:Label = $Label
 
 func _ready() -> void:
-	if sound == true:
-		audio_stream_player.stream = sound_selected
-		var base_db:float = -5.0
-		audio_stream_player.volume_db = base_db + sound_addend
-		audio_stream_player.pitch_scale = 1.0 + pitch_increment * 0.01
-		audio_stream_player.play()
 	if blips == true:
-		blips_sprite.frame = 0
-		blips_sprite.play("default")
-	animation_player.play("default")
+		animation_player.stop()
+		animation_player.play("default")
+		blip_sprite.frame = 0
+		blip_sprite.play("default")
 	timer.start()
-	key_label.text = last_key
-	key_label.modulate = Color(randf_range(0,2),randf_range(0,2),randf_range(0,2))
 
 func _on_timer_timeout() -> void: if destroy == true: queue_free()

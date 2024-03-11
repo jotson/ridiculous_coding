@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8v5lr3gwe6mq"]
+[gd_scene load_steps=7 format=3 uid="uid://b8v5lr3gwe6mq"]
 
 [ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="1_80iah"]
 [ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/key.gd" id="1_unvpb"]
@@ -30,9 +30,65 @@ tracks/1/keys = {
 "values": [Vector2(-35, -25), Vector2(-35, -63)]
 }
 
+[sub_resource type="Animation" id="Animation_o46vu"]
+resource_name = "explosion"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1.5, 1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(-35, -25), Vector2(-35, -63)]
+}
+
+[sub_resource type="Animation" id="Animation_kl773"]
+resource_name = "blip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1.45, 1.45)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(-25, -15), Vector2(-15, -43)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ocb2c"]
 _data = {
-"default": SubResource("Animation_pxf6h")
+"blip": SubResource("Animation_kl773"),
+"default": SubResource("Animation_pxf6h"),
+"explosion": SubResource("Animation_o46vu")
 }
 
 [node name="RcKey" type="Node2D"]
@@ -41,10 +97,10 @@ script = ExtResource("1_unvpb")
 [node name="Label" type="Label" parent="."]
 modulate = Color(1.80832, 1.40533, 0.372687, 0.917828)
 texture_filter = 5
-offset_left = -35.0
-offset_top = -25.0
-offset_right = 35.0
-offset_bottom = -2.0
+offset_left = -25.0
+offset_top = -15.0
+offset_right = 45.0
+offset_bottom = 8.0
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(35, 8)
 theme_override_fonts/font = ExtResource("1_80iah")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4rdv4wkukc5g"]
+[gd_scene load_steps=13 format=3 uid="uid://c4rdv4wkukc5g"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/boom.gd" id="1_125dg"]
 [ext_resource type="Texture2D" uid="uid://dl75e74oom1i3" path="res://addons/ridiculous_coding/images/boom.png" id="2_1f670"]
-[ext_resource type="FontFile" uid="uid://bvwnnnja1ur2i" path="res://addons/ridiculous_coding/font.tres" id="4_c8efe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3t5t"]
 atlas = ExtResource("2_1f670")
@@ -66,26 +65,14 @@ resource_name = "default"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:scale")
+tracks/0/path = NodePath("BoomSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1.5, 1.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(-35, -25), Vector2(-35, -63)]
+"values": [Vector2(0.45, 0.45), Vector2(0.55, 0.55)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ocb2c"]
@@ -111,18 +98,5 @@ autoplay = "default"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
-
-[node name="Label" type="Label" parent="."]
-modulate = Color(1.80832, 1.40533, 0.372687, 0.917828)
-texture_filter = 5
-offset_left = -35.0
-offset_top = -25.0
-offset_right = 35.0
-offset_bottom = -2.0
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(35, 8)
-theme_override_fonts/font = ExtResource("4_c8efe")
-theme_override_font_sizes/font_size = 14
-uppercase = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
