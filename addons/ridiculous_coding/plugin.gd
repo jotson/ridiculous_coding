@@ -7,6 +7,8 @@ signal typing
 const NEWLINE:Resource = preload("res://addons/ridiculous_coding/resources/effects/newline.tscn")
 const BOOM:Resource = preload("res://addons/ridiculous_coding/resources/effects/boom.tscn")
 const BLIP:Resource = preload("res://addons/ridiculous_coding/resources/effects/blip.tscn")
+const KEY:Resource = preload("res://addons/ridiculous_coding/resources/effects/key.tscn")
+const SOUND:Resource = preload("res://addons/ridiculous_coding/resources/effects/sound.tscn")
 const DOCK:Resource = preload("res://addons/ridiculous_coding/resources/interfaces/dock.tscn")
 #endregion
 #region Variables
@@ -103,17 +105,34 @@ func _text_changed(textedit : TextEdit) -> void:
 		# Deleting
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
 			timer = 0.0
+
 			# Draw the boom
 			var boom:RcBoom = BOOM.instantiate()
 			boom.position = pos
 			boom.destroy = true
 			boom.explosions = dock.stats.explosions
-			if dock.stats.chars == true and dock.stats.explosions_chars == true:
-				boom.last_key = last_key
-			if dock.stats.sound == true and dock.stats.explosions_sound == true:
-				boom.sound = true
-				boom.sound_addend = dock.stats.sound_addend + dock.stats.explosions_sound_addend
 			textedit.add_child(boom)
+			# Draw the key
+			if dock.stats.chars == true and dock.stats.explosions_chars == true:
+				var key:RcKey = KEY.instantiate()
+				key.position = pos
+				key.destroy = true
+				key.key = true
+				key.last_key = last_key
+				key.animation_name = "default"
+
+				textedit.add_child(key)
+				key.set_key_color(1,2,0,1.5,0,0.4,0.85,1)
+			# Add the sound
+			if dock.stats.sound == true and dock.stats.explosions_sound == true:
+				var sound:RcSound = SOUND.instantiate()
+				sound.destroy = true
+				sound.sound = true
+				sound.base_db = -30.0
+				sound.sound_addend = dock.stats.sound_addend + dock.stats.explosions_sound_addend
+				sound.sound_selected = load("res://addons/ridiculous_coding/sounds/deletion/boom.wav")
+				textedit.add_child(sound)
+			# Apply the shake
 			if dock.stats.shake == true and dock.stats.explosions_shake == true:
 				_shake_screen(0.2,10,dock.stats.explosions_shake_scalar)
 
@@ -137,6 +156,7 @@ func _text_changed(textedit : TextEdit) -> void:
 					blip.pitch_increment = pitch
 					pitch += dock.stats.pitch_increment
 			textedit.add_child(blip)
+			# Apply the shake
 			if dock.stats.shake == true and dock.stats.blips_shake == true:
 				_shake_screen(0.05,5,dock.stats.blips_shake_scalar)
 
@@ -149,6 +169,7 @@ func _text_changed(textedit : TextEdit) -> void:
 				newline.destroy = true
 				newline.newline = dock.stats.newline
 				textedit.add_child(newline)
+			# Apply the shake
 			if dock.stats.shake == true and dock.stats.newline_shake == true:
 				_shake_screen(0.05,5,dock.stats.newline_shake_scalar)
 	else: pass

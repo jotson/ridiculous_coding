@@ -21,3 +21,7 @@ config/icon="res://icon.png"
 [dotnet]
 
 project/assembly_name="Ridiculous Coding"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")

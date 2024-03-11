@@ -4,6 +4,7 @@ class_name RcSound extends Node
 var destroy:bool = false
 var pitch_increment:float = 0.0
 var sound:bool = false
+var base_db:float = 0.0
 var sound_addend:float = 0.0
 var sound_selected:AudioStreamWAV = preload("res://addons/ridiculous_coding/sounds/typing/typewriter.wav")
 
@@ -13,7 +14,6 @@ var sound_selected:AudioStreamWAV = preload("res://addons/ridiculous_coding/soun
 func _ready() -> void:
 	if sound == true:
 		audio_stream_player.stream = sound_selected
-		var base_db:float = -5.0
 		audio_stream_player.volume_db = base_db + sound_addend
 		audio_stream_player.pitch_scale = 1.0 + pitch_increment * 0.01
 		audio_stream_player.play()
