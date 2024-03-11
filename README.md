@@ -76,6 +76,8 @@ res://
 			...all the ridiculous coding files...
 ```
 
+Remember to activate the addon in your project settings, like this:
+
 ![Enable plugin](readme-enable.png)
 
 ## About me
@@ -106,7 +108,7 @@ Currently I have no (active) social media!
 
 [Gravity Ace on Steam](https://store.steampowered.com/app/1003860/Gravity_Ace/)
 
-[Gravity Ace on itch.io](https://jotson.itch.io/gravity)!
+[Gravity Ace on itch.io](https://jotson.itch.io/gravity)
 
 ### Resources and Inspiration 
 
