@@ -62,6 +62,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_pxf6h"]
 resource_name = "default"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -80,7 +81,7 @@ _data = {
 "default": SubResource("Animation_pxf6h")
 }
 
-[node name="Boom2d" type="Node2D"]
+[node name="RcBoom" type="Node2D"]
 script = ExtResource("1_125dg")
 
 [node name="BoomSprite" type="AnimatedSprite2D" parent="."]
@@ -94,7 +95,6 @@ frame_progress = 1.0
 libraries = {
 "": SubResource("AnimationLibrary_ocb2c")
 }
-autoplay = "default"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

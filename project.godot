@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ridiculous Coding Addon"
-config/version="2.1.2"
+config/version="3.2.2"
 config/tags=PackedStringArray("addon", "under_development")
 config/features=PackedStringArray("4.2")
 boot_splash/image="res://ridiculous.png"
@@ -21,7 +21,3 @@ config/icon="res://icon.png"
 [dotnet]
 
 project/assembly_name="Ridiculous Coding"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")

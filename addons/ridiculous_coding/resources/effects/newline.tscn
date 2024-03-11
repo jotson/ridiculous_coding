@@ -48,7 +48,7 @@ animations = [{
 
 [sub_resource type="Animation" id="7"]
 resource_name = "default"
-length = 0.2
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -56,7 +56,7 @@ tracks/0/path = NodePath("NewlineSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.233258, 1),
 "update": 2,
 "values": [Vector2(-200, 3.5), Vector2(-50, 3.5)]
@@ -67,7 +67,7 @@ _data = {
 "default": SubResource("7")
 }
 
-[node name="Newline2d" type="Node2D"]
+[node name="RcNewline" type="Node2D"]
 script = ExtResource("1_q0o8v")
 
 [node name="NewlineSprite" type="AnimatedSprite2D" parent="."]
@@ -76,14 +76,13 @@ position = Vector2(-200, 3.5)
 rotation = -1.57079
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("6")
-frame_progress = 0.674132
+frame_progress = 0.335251
 speed_scale = 0.8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gwr1r")
 }
-autoplay = "default"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

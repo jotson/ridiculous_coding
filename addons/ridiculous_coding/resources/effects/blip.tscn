@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0fhho0dp1svt"]
+[gd_scene load_steps=14 format=3 uid="uid://c0fhho0dp1svt"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/blip.gd" id="1_b2lxn"]
 [ext_resource type="Texture2D" uid="uid://d1tio2ceqgm7m" path="res://addons/ridiculous_coding/images/blip.png" id="2_n5ksr"]
@@ -67,22 +67,8 @@ animations = [{
 "speed": 30.0
 }]
 
-[sub_resource type="Animation" id="Animation_hkxge"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BlipSprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1.03526),
-"update": 0,
-"values": [Vector2(4, 4)]
-}
-
 [sub_resource type="Animation" id="Animation_u2m4c"]
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -98,17 +84,16 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8epm6"]
 _data = {
-"RESET": SubResource("Animation_hkxge"),
 "default": SubResource("Animation_u2m4c")
 }
 
-[node name="Blip2d" type="Node2D"]
+[node name="RcBlip" type="Node2D"]
 script = ExtResource("1_b2lxn")
 
 [node name="BlipSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 5
 position = Vector2(-5, 4)
-scale = Vector2(4, 4)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_g4ki7")
 frame = 7
 frame_progress = 1.0
@@ -117,7 +102,6 @@ frame_progress = 1.0
 libraries = {
 "": SubResource("AnimationLibrary_8epm6")
 }
-autoplay = "default"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

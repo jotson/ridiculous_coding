@@ -27,10 +27,8 @@ What I changed:
 - Prob some more stuff I don't remember as of writing this LOL
 
 What I want to do:
-- Make the implementation of some scenes more modular
 - Settings to configure VFX color schemes
-- Other settings
-- Maybe some more sounds to pick from
+- Settings to adjust VFX positions
 - Implement an optional custom background feature
 
 Besides the obvious fix and some new features my version of the addon aims to be overall less 'in your face'. **This is my personal taste**. Feel free to revert any changes back to a more 'in your face' type of style.

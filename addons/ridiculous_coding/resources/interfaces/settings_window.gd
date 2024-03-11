@@ -21,35 +21,35 @@ var stats:StatsDataRC = StatsDataRC.new()
 @onready var sound_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster/SoundSlider
 @onready var shake_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster/ShakeCheckbox
 @onready var shake_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster/ShakeSlider
-@onready var chars_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster/CharsCheckbox
+@onready var key_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster/KeyCheckbox
 
 @onready var newline_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline/NewlineCheckbox
 @onready var newline_shake_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline/NewlineShakeCheckbox
 @onready var newline_shake_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerNewline/NewlineShakeSlider
 
-@onready var explosions_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions/ExplosionsCheckbox
-@onready var explosions_chars_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions/ExplosionsCharsCheckbox
-@onready var explosions_shake_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions/ExplosionsShakeCheckbox
-@onready var explosions_shake_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions/ExplosionsShakeSlider
-@onready var explosions_sound_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions/ExplosionsSound
-@onready var explosions_sound_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions/ExplosionsSoundSlider
+@onready var boom_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom/BoomCheckbox
+@onready var boom_key_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom/BoomKeyCheckbox
+@onready var boom_shake_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom/BoomShakeCheckbox
+@onready var boom_shake_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom/BoomShakeSlider
+@onready var boom_sound_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom/BoomSound
+@onready var boom_sound_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom/BoomSoundSlider
 
-@onready var blips_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsCheckbox
-@onready var blips_chars_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsCharsCheckbox
-@onready var blips_shake_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsShakeCheckbox
-@onready var blips_shake_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsShakeSlider
-@onready var blips_sound_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsSoundCheckbox
-@onready var blips_sound_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsSoundSlider
-@onready var blips_sound_selected:OptionButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsSoundSelectionMenu
-@onready var blips_sound_pitch_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/BlipsSoundPitchCheckbox
-@onready var pitch_clamp_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/PitchClampSlider
-@onready var pitch_increment_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/PitchIncrementSlider
-@onready var pitch_decrement_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/PitchDecrementSlider
-@onready var pitch_debug_button:Button = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips/PitchDebugButton
+@onready var blip_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/BlipCheckbox
+@onready var blip_key_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/BlipKeyCheckbox
+@onready var blip_shake_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/BlipShakeCheckbox
+@onready var blip_shake_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/BlipShakeSlider
+@onready var blip_sound_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/BlipSoundCheckbox
+@onready var blip_sound_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/BlipSoundSlider
+@onready var blip_sound_selected:OptionButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/BlipSoundSelectionMenu
+@onready var blip_sound_pitch_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/BlipSoundPitchCheckbox
+@onready var pitch_clamp_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/PitchClampSlider
+@onready var pitch_increment_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/PitchIncrementSlider
+@onready var pitch_decrement_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/PitchDecrementSlider
+@onready var pitch_debug_button:Button = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip/PitchDebugButton
 
-@onready var fireworks_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks/FireworksCheckbox
-@onready var fireworks_sound_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks/FireworksSoundCheckbox
-@onready var fireworks_sound_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks/FireworksSoundSlider
+@onready var firework_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFirework/FireworkCheckbox
+@onready var firework_sound_checkbox:CheckButton = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFirework/FireworkSoundCheckbox
+@onready var firework_sound_slider:HSlider = $ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFirework/FireworkSoundSlider
 #endregion
 
 func _notification(what:int) -> void:
@@ -76,35 +76,35 @@ func _load_settings_state() -> void:
 	sound_slider.value = stats.sound_addend
 	shake_checkbox.button_pressed = stats.shake
 	shake_slider.value = stats.shake_scalar
-	chars_checkbox.button_pressed = stats.chars
+	key_checkbox.button_pressed = stats.key
 
 	newline_checkbox.button_pressed = stats.newline
 	newline_shake_checkbox.button_pressed = stats.newline_shake
 	newline_shake_slider.value = stats.newline_shake_scalar
 
-	explosions_checkbox.button_pressed = stats.explosions
-	explosions_chars_checkbox.button_pressed = stats.explosions_chars
-	explosions_shake_checkbox.button_pressed = stats.explosions_shake
-	explosions_shake_slider.value = stats.explosions_shake_scalar
-	explosions_sound_checkbox.button_pressed = stats.explosions_sound
-	explosions_sound_slider.value = stats.explosions_sound_addend
+	boom_checkbox.button_pressed = stats.boom
+	boom_key_checkbox.button_pressed = stats.boom_key
+	boom_shake_checkbox.button_pressed = stats.boom_shake
+	boom_shake_slider.value = stats.boom_shake_scalar
+	boom_sound_checkbox.button_pressed = stats.boom_sound
+	boom_sound_slider.value = stats.boom_sound_addend
 
-	blips_checkbox.button_pressed = stats.blips
-	blips_chars_checkbox.button_pressed = stats.blips_chars
-	blips_shake_checkbox.button_pressed = stats.blips_shake
-	blips_shake_slider.value = stats.blips_shake_scalar
-	blips_sound_checkbox.button_pressed = stats.blips_sound
-	blips_sound_slider.value = stats.blips_sound_addend
-	blips_sound_selected.selected = stats.blips_sound_selected
+	blip_checkbox.button_pressed = stats.blip
+	blip_key_checkbox.button_pressed = stats.blip_key
+	blip_shake_checkbox.button_pressed = stats.blip_shake
+	blip_shake_slider.value = stats.blip_shake_scalar
+	blip_sound_checkbox.button_pressed = stats.blip_sound
+	blip_sound_slider.value = stats.blip_sound_addend
+	blip_sound_selected.selected = stats.blip_sound_selected
 
-	blips_sound_pitch_checkbox.button_pressed = stats.blips_sound_pitch
+	blip_sound_pitch_checkbox.button_pressed = stats.blip_sound_pitch
 	pitch_clamp_slider.value = stats.pitch_clamp
 	pitch_increment_slider.value = stats.pitch_increment
 	pitch_decrement_slider.value = stats.pitch_decrement
 
-	fireworks_checkbox.button_pressed = stats.fireworks
-	fireworks_sound_checkbox.button_pressed = stats.fireworks_sound
-	fireworks_sound_slider.value = stats.fireworks_sound_addend
+	firework_checkbox.button_pressed = stats.firework
+	firework_sound_checkbox.button_pressed = stats.firework_sound
+	firework_sound_slider.value = stats.firework_sound_addend
 
 func _connect_settings() -> void:
 	# Util connections
@@ -125,7 +125,7 @@ func _connect_settings() -> void:
 		print_debug(MSG01 % ["Global"]+str(shake_slider.value))
 		stats.shake_scalar = shake_slider.value
 	)
-	chars_checkbox.toggled.connect(func(toggled:bool) -> void: stats.chars = toggled)
+	key_checkbox.toggled.connect(func(toggled:bool) -> void: stats.key = toggled)
 
 	# Newline connections
 	newline_checkbox.toggled.connect(func(toggled:bool) -> void: stats.newline = toggled)
@@ -135,38 +135,38 @@ func _connect_settings() -> void:
 		stats.newline_shake_scalar = newline_shake_slider.value
 	)
 
-	# Explosions connections
-	explosions_checkbox.toggled.connect(func(toggled:bool) -> void: stats.explosions = toggled)
-	explosions_chars_checkbox.toggled.connect(func(toggled:bool) -> void: stats.explosions_chars = toggled)
-	explosions_shake_checkbox.toggled.connect(func(toggled:bool) -> void: stats.explosions_shake = toggled)
-	explosions_shake_slider.drag_ended.connect(func(_bool:bool) -> void:
-		print_debug(MSG01 % ["Explosions"]+str(explosions_shake_slider.value))
-		stats.explosions_shake_scalar = explosions_shake_slider.value
+	# Boom connections
+	boom_checkbox.toggled.connect(func(toggled:bool) -> void: stats.boom = toggled)
+	boom_key_checkbox.toggled.connect(func(toggled:bool) -> void: stats.boom_key = toggled)
+	boom_shake_checkbox.toggled.connect(func(toggled:bool) -> void: stats.boom_shake = toggled)
+	boom_shake_slider.drag_ended.connect(func(_bool:bool) -> void:
+		print_debug(MSG01 % ["Boom"]+str(boom_shake_slider.value))
+		stats.boom_shake_scalar = boom_shake_slider.value
 	)
-	explosions_sound_checkbox.toggled.connect(func(toggled:bool) -> void: stats.explosions_sound = toggled)
-	explosions_sound_slider.drag_ended.connect(func(_bool:bool) -> void:
-		print_debug(MSG02 % ["Explosions"]+str(explosions_sound_slider.value))
-		stats.explosions_sound_addend = explosions_sound_slider.value
+	boom_sound_checkbox.toggled.connect(func(toggled:bool) -> void: stats.boom_sound = toggled)
+	boom_sound_slider.drag_ended.connect(func(_bool:bool) -> void:
+		print_debug(MSG02 % ["Boom"]+str(boom_sound_slider.value))
+		stats.boom_sound_addend = boom_sound_slider.value
 	)
 
-	# Blips connections
-	blips_checkbox.toggled.connect(func(toggled:bool) -> void: stats.blips = toggled)
-	blips_chars_checkbox.toggled.connect(func(toggled:bool) -> void: stats.blips_chars = toggled)
-	blips_shake_checkbox.toggled.connect(func(toggled:bool) -> void: stats.blips_shake = toggled)
-	blips_shake_slider.drag_ended.connect(func(_bool:bool) -> void:
-		print_debug(MSG01 % ["Typing"]+str(blips_shake_slider.value))
-		stats.blips_shake_scalar = blips_shake_slider.value
+	# Blip connections
+	blip_checkbox.toggled.connect(func(toggled:bool) -> void: stats.blip = toggled)
+	blip_key_checkbox.toggled.connect(func(toggled:bool) -> void: stats.blip_key = toggled)
+	blip_shake_checkbox.toggled.connect(func(toggled:bool) -> void: stats.blip_shake = toggled)
+	blip_shake_slider.drag_ended.connect(func(_bool:bool) -> void:
+		print_debug(MSG01 % ["Typing"]+str(blip_shake_slider.value))
+		stats.blip_shake_scalar = blip_shake_slider.value
 	)
-	blips_sound_checkbox.toggled.connect(func(toggled:bool) -> void: stats.blips_sound = toggled)
-	blips_sound_slider.drag_ended.connect(func(_bool:bool) -> void:
-		print_debug(MSG02 % ["Typing"]+str(blips_sound_slider.value))
-		stats.blips_sound_addend = blips_sound_slider.value
+	blip_sound_checkbox.toggled.connect(func(toggled:bool) -> void: stats.blip_sound = toggled)
+	blip_sound_slider.drag_ended.connect(func(_bool:bool) -> void:
+		print_debug(MSG02 % ["Typing"]+str(blip_sound_slider.value))
+		stats.blip_sound_addend = blip_sound_slider.value
 	)
-	blips_sound_selected.item_selected.connect(func(index:int) -> void: stats.blips_sound_selected = index)
+	blip_sound_selected.item_selected.connect(func(index:int) -> void: stats.blip_sound_selected = index)
 
-	# Blips Pitch connections
-	blips_sound_pitch_checkbox.toggled.connect(func(toggled:bool) -> void:
-		stats.blips_sound_pitch = toggled
+	# Blip Pitch connections
+	blip_sound_pitch_checkbox.toggled.connect(func(toggled:bool) -> void:
+		stats.blip_sound_pitch = toggled
 	)
 	pitch_clamp_slider.drag_ended.connect(func(_bool:bool) -> void:
 		stats.pitch_clamp = pitch_clamp_slider.value
@@ -182,12 +182,12 @@ func _connect_settings() -> void:
 	)
 	pitch_debug_button.pressed.connect(func() -> void: emit_signal("rc_window_debug_pitch"))
 
-	# Fireworks connections
-	fireworks_checkbox.toggled.connect(func(toggled:bool) -> void: stats.fireworks = toggled)
-	fireworks_sound_checkbox.toggled.connect(func(toggled:bool) -> void: stats.fireworks_sound = toggled)
-	fireworks_sound_slider.drag_ended.connect(func(_bool:bool) -> void:
-		print_debug(MSG02 % ["Fireworks"]+str(fireworks_sound_slider.value))
-		stats.fireworks_sound_addend = fireworks_sound_slider.value
+	# Firework connections
+	firework_checkbox.toggled.connect(func(toggled:bool) -> void: stats.firework = toggled)
+	firework_sound_checkbox.toggled.connect(func(toggled:bool) -> void: stats.firework_sound = toggled)
+	firework_sound_slider.drag_ended.connect(func(_bool:bool) -> void:
+		print_debug(MSG02 % ["Firework"]+str(firework_sound_slider.value))
+		stats.firework_sound_addend = firework_sound_slider.value
 	)
 
 func _reset_settings() -> void:

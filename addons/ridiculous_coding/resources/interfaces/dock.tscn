@@ -52,40 +52,38 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/XP"]
 layout_mode = 2
 
-[node name="XPlabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
+[node name="XpLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "XP 882 / 1150"
+text = "XP 0 / 100"
 
 [node name="LevelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "infant dev - Lvl 6"
+text = "infant dev - Lvl 0"
 horizontal_alignment = 2
 
 [node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/XP"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-max_value = 300.0
-value = 32.0
 nine_patch_stretch = true
 texture_under = ExtResource("2_31vgn")
 texture_progress = ExtResource("3_8udha")
 
-[node name="Fire1" type="Control" parent="VBoxContainer/XP/ProgressBar"]
+[node name="Firework0" type="Control" parent="VBoxContainer/XP/ProgressBar"]
 layout_mode = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/XP/ProgressBar/Fire1"]
+[node name="FireworkParticles2d" type="GPUParticles2D" parent="VBoxContainer/XP/ProgressBar/Firework0"]
 position = Vector2(25, 0)
 rotation = -1.5708
 emitting = false
 amount = 130
 process_material = SubResource("ParticleProcessMaterial_x4b51")
 
-[node name="Fire2" type="Control" parent="VBoxContainer/XP/ProgressBar"]
+[node name="Firework1" type="Control" parent="VBoxContainer/XP/ProgressBar"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -94,17 +92,17 @@ offset_right = 40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/XP/ProgressBar/Fire2"]
+[node name="FireworkParticles2d" type="GPUParticles2D" parent="VBoxContainer/XP/ProgressBar/Firework1"]
 position = Vector2(-25, 0)
 rotation = -1.5708
 emitting = false
 amount = 130
 process_material = SubResource("ParticleProcessMaterial_x4b51")
 
-[node name="FireworksTimer" type="Timer" parent="VBoxContainer/XP/ProgressBar"]
+[node name="FireworkTimer" type="Timer" parent="VBoxContainer/XP/ProgressBar"]
 wait_time = 3.0
 
-[node name="SFXfireworks" type="AudioStreamPlayer" parent="VBoxContainer/XP/ProgressBar"]
+[node name="FireworkAudio" type="AudioStreamPlayer" parent="VBoxContainer/XP/ProgressBar"]
 stream = ExtResource("4_j1xnt")
 volume_db = -8.0
 

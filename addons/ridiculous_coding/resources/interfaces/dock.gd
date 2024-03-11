@@ -33,13 +33,13 @@ var backup_xp:int
 var backup_level:int = 0
 var backup_rank:String
 
-@onready var progress:TextureProgressBar = $VBoxContainer/XP/ProgressBar
-@onready var sfx_fireworks:AudioStreamPlayer = $VBoxContainer/XP/ProgressBar/SFXfireworks
-@onready var fireworks_timer:Timer = $VBoxContainer/XP/ProgressBar/FireworksTimer
-@onready var fire_particles_one:GPUParticles2D = $VBoxContainer/XP/ProgressBar/Fire1/GPUParticles2D
-@onready var fire_particles_two:GPUParticles2D = $VBoxContainer/XP/ProgressBar/Fire2/GPUParticles2D
-@onready var xp_label:Label = $VBoxContainer/XP/HBoxContainer/XPlabel
+@onready var xp_label:Label = $VBoxContainer/XP/HBoxContainer/XpLabel
 @onready var level_label:Label = $VBoxContainer/XP/HBoxContainer/LevelLabel
+@onready var progress:TextureProgressBar = $VBoxContainer/XP/ProgressBar
+
+@onready var firework_particles_one:GPUParticles2D = $VBoxContainer/XP/ProgressBar/Firework0/FireworkParticles2d
+@onready var firework_particles_two:GPUParticles2D = $VBoxContainer/XP/ProgressBar/Firework1/FireworkParticles2d
+@onready var firework_timer:Timer = $VBoxContainer/XP/ProgressBar/FireworkTimer
 
 @onready var restore_button:Button = $VBoxContainer/GridContainer/ResetUndoButton
 @onready var reset_button:Button = $VBoxContainer/GridContainer/ResetButton
@@ -52,7 +52,7 @@ func _ready() -> void:
 		write_savefile()
 	else: stats = _load_savefile()
 
-	fireworks_timer.timeout.connect(_stop_fireworks); _stop_fireworks()
+	firework_timer.timeout.connect(_stop_firework); _stop_firework()
 	_connect_signals()
 
 	_load_experience_progress()
@@ -66,19 +66,23 @@ func _load_experience_progress() -> void:
 		progress.max_value = round(BASE_XP * stats.level / 10.0) * 10
 	progress.value = stats.xp - (xp_next - progress.max_value)
 
-func _start_fireworks() -> void:
-	if stats.sound == true and stats.fireworks_sound == true:
-		var base_db:float = -8.0
-		sfx_fireworks.volume_db = base_db + stats.sound_addend + stats.fireworks_sound_addend
-		sfx_fireworks.play()
-	if stats.fireworks == true:
-		fireworks_timer.start()
-		fire_particles_one.emitting = true
-		fire_particles_two.emitting = true
+func _start_firework() -> void:
+	if stats.sound == true and stats.firework_sound == true:
+		var sound_resource:Resource = load("res://addons/ridiculous_coding/resources/effects/sound.tscn")
+		var sound:RcSound = sound_resource.instantiate()
+		sound.destroy = true
+		sound.sound_selected = load("res://addons/ridiculous_coding/sounds/others/fireworks.wav")
+		sound.base_db = -8.0
+		sound.sound_addend = stats.sound_addend + stats.firework_sound_addend
+		add_child(sound)
+	if stats.firework == true:
+		firework_timer.start()
+		firework_particles_one.emitting = true
+		firework_particles_two.emitting = true
 
-func _stop_fireworks() -> void:
-	fire_particles_one.emitting = false
-	fire_particles_two.emitting = false
+func _stop_firework() -> void:
+	firework_particles_one.emitting = false
+	firework_particles_two.emitting = false
 
 func _on_typing() -> void:
 	stats.xp += 1
@@ -89,7 +93,7 @@ func _on_typing() -> void:
 		progress.value = 0
 		progress.max_value = xp_next - stats.xp
 		for level in RANKS.keys(): if stats.level >= level: stats.rank = RANKS[level]
-		_start_fireworks()
+		_start_firework()
 	_update_progress()
 
 func _update_progress() -> void:
@@ -106,8 +110,8 @@ func _connect_signals() -> void:
 		DisplayServer.set_native_icon("res://addons/ridiculous_coding/icon_small.ico")
 		add_child(window_instance,false,Node.INTERNAL_MODE_FRONT)
 		window_instance.tree_exiting.connect(func() -> void:
-			var settings_window:Window = get_child(0,true)
-			stats = settings_window.stats
+			var window_instance_old:Window = get_child(0,true)
+			stats = window_instance_old.stats
 			settings_button.disabled = false
 		)
 	)

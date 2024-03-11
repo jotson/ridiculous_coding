@@ -12,7 +12,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jy0i1"]
 
-[node name="Window" type="Window"]
+[node name="RcWindow" type="Window"]
 disable_3d = true
 canvas_item_default_texture_filter = 3
 title = "RC Settings Window"
@@ -96,7 +96,7 @@ max_value = 2.0
 step = 0.1
 value = 1.0
 
-[node name="CharsCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster"]
+[node name="KeyCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerMaster"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
@@ -150,42 +150,42 @@ value = 1.0
 [node name="HSeparator2" type="HSeparator" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainerExplosions" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+[node name="GridContainerBoom" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="ExplosionsCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions"]
+[node name="BoomCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Explosions VFX"
+text = "Boom VFX"
 
-[node name="ExplosionsCharsCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions"]
+[node name="BoomKeyCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Explosions Key VFX"
+text = "Boom Key VFX"
 
-[node name="ExplosionsShakeCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions"]
+[node name="BoomShakeCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Explosions Shake"
+text = "Boom Shake"
 
-[node name="ExplosionsShakeSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions"]
+[node name="BoomShakeSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom"]
 layout_mode = 2
 size_flags_vertical = 4
 max_value = 2.0
 step = 0.1
 value = 1.0
 
-[node name="ExplosionsSound" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions"]
+[node name="BoomSound" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Explosions Volume"
+text = "Boom Volume"
 
-[node name="ExplosionsSoundSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerExplosions"]
+[node name="BoomSoundSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBoom"]
 layout_mode = 2
 size_flags_vertical = 4
 min_value = -20.0
@@ -195,54 +195,54 @@ step = 2.0
 [node name="HSeparator3" type="HSeparator" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainerBlips" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+[node name="GridContainerBlip" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="BlipsCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="BlipCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Blips VFX"
+text = "Blip VFX"
 
-[node name="BlipsCharsCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="BlipKeyCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Blips Key VFX"
+text = "Blip Key VFX"
 
-[node name="BlipsShakeCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="BlipShakeCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Blips Shake"
+text = "Blip Shake"
 
-[node name="BlipsShakeSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="BlipShakeSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_vertical = 4
 max_value = 2.0
 step = 0.1
 value = 1.0
 
-[node name="BlipsSoundCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="BlipSoundCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Blips Volume"
+text = "Blip Volume"
 
-[node name="BlipsSoundSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="BlipSoundSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_vertical = 4
 min_value = -20.0
 max_value = 20.0
 step = 2.0
 
-[node name="BlipsSoundPitchCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="BlipSoundPitchCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_horizontal = 11
 text = "Toggle Pitching"
 
-[node name="BlipsSoundSelectionMenu" type="OptionButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="BlipSoundSelectionMenu" type="OptionButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 item_count = 2
 selected = 0
@@ -251,22 +251,22 @@ popup/item_0/id = 0
 popup/item_1/text = "BLIP.wav"
 popup/item_1/id = 1
 
-[node name="PitchClampLabel" type="Label" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="PitchClampLabel" type="Label" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 text = "Pitch Clamp"
 
-[node name="PitchClampSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="PitchClampSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_vertical = 4
 max_value = 40.0
 step = 0.5
 value = 25.5
 
-[node name="PitchIncrementLabel" type="Label" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="PitchIncrementLabel" type="Label" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 text = "Pitch Increment"
 
-[node name="PitchIncrementSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="PitchIncrementSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_vertical = 4
 min_value = 0.2
@@ -274,11 +274,11 @@ max_value = 2.0
 step = 0.2
 value = 1.0
 
-[node name="PitchDecrementLabel" type="Label" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="PitchDecrementLabel" type="Label" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 text = "Pitch Decrement"
 
-[node name="PitchDecrementSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="PitchDecrementSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 size_flags_vertical = 4
 min_value = 0.2
@@ -286,24 +286,24 @@ max_value = 4.0
 step = 0.2
 value = 2.8
 
-[node name="PitchDebugButton" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlips"]
+[node name="PitchDebugButton" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerBlip"]
 layout_mode = 2
 text = "Debug Pitch"
 
 [node name="HSeparator4" type="HSeparator" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainerFireworks" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
+[node name="GridContainerFirework" type="GridContainer" parent="ScrollContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="FireworksCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks"]
+[node name="FireworkCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFirework"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Fireworks VFX"
+text = "Firework VFX"
 
-[node name="Button" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks"]
+[node name="Button" type="Button" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFirework"]
 custom_minimum_size = Vector2(188, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_i6pc5")
@@ -313,13 +313,13 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_h2j64")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jy0i1")
 disabled = true
 
-[node name="FireworksSoundCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks"]
+[node name="FireworkSoundCheckbox" type="CheckButton" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFirework"]
 layout_mode = 2
 size_flags_horizontal = 11
 button_pressed = true
-text = "Fireworks Volume"
+text = "Firework Volume"
 
-[node name="FireworksSoundSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFireworks"]
+[node name="FireworkSoundSlider" type="HSlider" parent="ScrollContainer/Control/MarginContainer/VBoxContainer/GridContainerFirework"]
 layout_mode = 2
 size_flags_vertical = 4
 min_value = -20.0
