@@ -98,7 +98,7 @@ Currently I have no (active) social media!
 
 ### Cuppixx
 
-[RidiculousCoding](https://github.com/Cuppixx/RidiculousCodingCuppixxVersion/tree/develop)
+[RidiculousCoding](https://github.com/Cuppixx/RidiculousCodingCuppixxVersion/tree/main)
 
 ### John Watson
 
