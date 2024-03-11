@@ -104,7 +104,7 @@ func _text_changed(textedit : TextEdit) -> void:
 		if timer > 0.1 and len(textedit.text) < len(editors[textedit]["text"]):
 			timer = 0.0
 			# Draw the boom
-			var boom:Boom = BOOM.instantiate()
+			var boom:RcBoom = BOOM.instantiate()
 			boom.position = pos
 			boom.destroy = true
 			boom.explosions = dock.stats.explosions
@@ -121,7 +121,7 @@ func _text_changed(textedit : TextEdit) -> void:
 		if timer > 0.02 and len(textedit.text) >= len(editors[textedit]["text"]):
 			timer = 0.0
 			# Draw the blip
-			var blip:Blip = BLIP.instantiate()
+			var blip:RcBlip = BLIP.instantiate()
 			blip.position = pos
 			blip.destroy = true
 			blip.blips = dock.stats.blips
@@ -144,7 +144,7 @@ func _text_changed(textedit : TextEdit) -> void:
 		if textedit.get_caret_line() != editors[textedit]["line"]:
 			# Draw the newline
 			if dock.stats.newline == true:
-				var newline:Newline = NEWLINE.instantiate()
+				var newline:RcNewline = NEWLINE.instantiate()
 				newline.position = pos
 				newline.destroy = true
 				newline.newline = dock.stats.newline

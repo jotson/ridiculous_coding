@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck0cmtwputw73"]
+
+[ext_resource type="Script" path="res://addons/ridiculous_coding/resources/effects/sound.gd" id="1_7m1er"]
+
+[node name="RcSound" type="Node"]
+script = ExtResource("1_7m1er")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

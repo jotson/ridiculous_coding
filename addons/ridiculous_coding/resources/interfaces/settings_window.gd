@@ -1,7 +1,7 @@
 @tool
-class_name RCwindow extends Window
+class_name RcWindow extends Window
 
-signal rc_debug_pitch
+signal rc_window_debug_pitch
 
 #region Constants
 const ROOT_PATH:String = "user://"
@@ -180,7 +180,7 @@ func _connect_settings() -> void:
 		stats.pitch_decrement = pitch_decrement_slider.value
 		print_debug(MSG04 % ["decrement"]+str(pitch_decrement_slider.value))
 	)
-	pitch_debug_button.pressed.connect(func() -> void: emit_signal("rc_debug_pitch"))
+	pitch_debug_button.pressed.connect(func() -> void: emit_signal("rc_window_debug_pitch"))
 
 	# Fireworks connections
 	fireworks_checkbox.toggled.connect(func(toggled:bool) -> void: stats.fireworks = toggled)

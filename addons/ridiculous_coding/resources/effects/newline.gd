@@ -1,5 +1,5 @@
 @tool
-class_name Newline extends Node2D
+class_name RcNewline extends Node2D
 
 var destroy:bool = false
 var newline:bool = false

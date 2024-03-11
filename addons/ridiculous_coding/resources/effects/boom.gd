@@ -1,5 +1,5 @@
 @tool
-class_name Boom extends Node2D
+class_name RcBoom extends Node2D
 
 var destroy:bool = false
 var last_key:String = ""
