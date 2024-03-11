@@ -1,6 +1,8 @@
 @tool
 class_name RidiculousCodingDock extends Control
 
+signal rc_window_debug_pitch
+
 const BASE_XP:int = 50
 const ROOT_PATH:String = "user://"
 const FILE_NAME:String = "ridiculous_xp.tres"
@@ -113,6 +115,9 @@ func _connect_signals() -> void:
 			var window_instance_old:Window = get_child(0,true)
 			stats = window_instance_old.stats
 			settings_button.disabled = false
+		)
+		window_instance.rc_window_debug_pitch.connect(func() -> void:
+			emit_signal("rc_window_debug_pitch")
 		)
 	)
 	restore_button.pressed.connect(func() -> void:

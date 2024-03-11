@@ -17,6 +17,7 @@ const SOUND_BLIP_02:AudioStreamWAV = preload("res://addons/ridiculous_coding/sou
 #endregion
 #region Variables
 var pitch:float = 0.0
+var debug_pitch:bool = false
 
 var shake_duration:float = 0.0
 var shake_intensity:float  = 0.0
@@ -32,6 +33,10 @@ func _enter_tree() -> void:
 	var script_editor:ScriptEditor = editor.get_script_editor()
 	script_editor.editor_script_changed.connect(_editor_script_changed)
 	dock = DOCK.instantiate()
+	dock.rc_window_debug_pitch.connect(func() -> void:
+		if debug_pitch == false: debug_pitch = true
+		else: debug_pitch = false
+	)
 	typing.connect(Callable(dock,"_on_typing"))
 	add_control_to_dock(DOCK_SLOT_RIGHT_BL, dock)
 
@@ -80,6 +85,7 @@ func _process(delta:float) -> void:
 			editor.get_base_control().position = Vector2.ZERO
 	timer += delta
 	if dock.stats.blip_sound_pitch == true:
+		if debug_pitch == true: print_debug("Current Pitch Lvl: %.2f" % [pitch])
 		if (pitch > 0.0):
 			if (pitch > dock.stats.pitch_clamp): pitch = dock.stats.pitch_clamp - 0.1
 			pitch -= delta * dock.stats.pitch_decrement

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b76vnt4rv4p0q"]
+[gd_scene load_steps=7 format=3 uid="uid://b76vnt4rv4p0q"]
 
 [ext_resource type="Script" path="res://addons/ridiculous_coding/resources/interfaces/dock.gd" id="1_bsxap"]
 [ext_resource type="Texture2D" uid="uid://dgda8elabipl5" path="res://addons/ridiculous_coding/images/under.png" id="2_31vgn"]
 [ext_resource type="Texture2D" uid="uid://dqpxh1bccjaae" path="res://addons/ridiculous_coding/images/progress.png" id="3_8udha"]
-[ext_resource type="AudioStream" uid="uid://dyi5lstxrfkdt" path="res://addons/ridiculous_coding/sounds/others/fireworks.wav" id="4_j1xnt"]
 
 [sub_resource type="Gradient" id="Gradient_ujbx3"]
 offsets = PackedFloat32Array(0, 0.388128, 1)
@@ -55,17 +54,19 @@ layout_mode = 2
 [node name="XpLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "XP 0 / 100"
+text = "XP 391 / 400"
 
 [node name="LevelLabel" type="Label" parent="VBoxContainer/XP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "infant dev - Lvl 0"
+text = "infant dev - Lvl 3"
 horizontal_alignment = 2
 
 [node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/XP"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+max_value = 150.0
+value = 141.0
 nine_patch_stretch = true
 texture_under = ExtResource("2_31vgn")
 texture_progress = ExtResource("3_8udha")
@@ -101,10 +102,6 @@ process_material = SubResource("ParticleProcessMaterial_x4b51")
 
 [node name="FireworkTimer" type="Timer" parent="VBoxContainer/XP/ProgressBar"]
 wait_time = 3.0
-
-[node name="FireworkAudio" type="AudioStreamPlayer" parent="VBoxContainer/XP/ProgressBar"]
-stream = ExtResource("4_j1xnt")
-volume_db = -8.0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
