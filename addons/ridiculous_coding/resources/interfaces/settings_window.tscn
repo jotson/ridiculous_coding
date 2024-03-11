@@ -31,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Control" type="Control" parent="ScrollContainer"]
-custom_minimum_size = Vector2(400, 1100)
+custom_minimum_size = Vector2(400, 880)
 layout_mode = 2
 
 [node name="BackgroundColorRect" type="ColorRect" parent="ScrollContainer/Control"]
