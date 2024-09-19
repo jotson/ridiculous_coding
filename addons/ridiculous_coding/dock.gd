@@ -145,19 +145,18 @@ func save_checkbox_state():
 
 func load_checkbox_state():
 	if stats.load(STATS_FILE) == OK:
-		explosion_checkbox.button_pressed = stats.get_value("settings", "explosion", true)
-		blip_checkbox.button_pressed = stats.get_value("settings", "blips", true)
-		chars_checkbox.button_pressed = stats.get_value("settings", "chars", true)
-		shake_checkbox.button_pressed = stats.get_value("settings", "shake", true)
-		sound_checkbox.button_pressed = stats.get_value("settings", "sound", true)
-		fireworks_checkbox.button_pressed = stats.get_value("settings", "fireworks", true)
-	else:
-		explosion_checkbox.button_pressed = explosions
-		blip_checkbox.button_pressed = blips
-		chars_checkbox.button_pressed = chars
-		shake_checkbox.button_pressed = shake
-		sound_checkbox.button_pressed = sound
-		fireworks_checkbox.button_pressed = fireworks
+		explosions = stats.get_value("settings", "explosion", true)
+		blips = stats.get_value("settings", "blips", true)
+		chars = stats.get_value("settings", "chars", true)
+		shake = stats.get_value("settings", "shake", true)
+		sound = stats.get_value("settings", "sound", true)
+		fireworks = stats.get_value("settings", "fireworks", true)
+	explosion_checkbox.set_pressed_no_signal(explosions)
+	blip_checkbox.set_pressed_no_signal(blips)
+	chars_checkbox.set_pressed_no_signal(chars)
+	shake_checkbox.set_pressed_no_signal(shake)
+	sound_checkbox.set_pressed_no_signal(sound)
+	fireworks_checkbox.set_pressed_no_signal(fireworks)
 
 
 func on_reset_button_pressed():
