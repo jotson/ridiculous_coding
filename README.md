@@ -35,6 +35,6 @@ res://
 
 ## About me
 
-Hey, I'm John and I'm making a game in Godot called [Gravity Ace](https://gravityace.com).
+Hey, I'm John and I'm making a horror job simulator in Godot called [The Mailroom](https://store.steampowered.com/app/3965430/The_Mailroom/) about working in The Mailroom of a small regional office of Hell located in Modesto, California. Please wishlist it!
 
-Come follow me on [Twitter](https://twitter.com/yafd) and [wishlist the game on Steam](https://store.steampowered.com/app/1003860/Gravity_Ace/) and [itch.io](https://jotson.itch.io/gravity)!
+Come follow me on [Bluesky](https://bsky.app/profile/jotson.bsky.social)
